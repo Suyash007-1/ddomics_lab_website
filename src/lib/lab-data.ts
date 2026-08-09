@@ -596,7 +596,7 @@ export const people: Person[] = [
     group: "student",
     photo: assetUrl("/images/people/harshada-pardeshi.jpg"),
   },
-  { slug: "bhagyashree-karmarkar", name: "Bhagyashree Karmarkar", role: "Ph.D. Student", group: "student" },
+  { slug: "bhagyashree-karmarkar", name: "Bhagyashree Karmarkar", role: "Ph.D. Student", group: "student", photo: assetUrl("/images/people/bhagyashree-karmarkar.jpg"), },
   { slug: "hemangini-mahadeo", name: "Hemangini Mahadeo", role: "Technical Officer", group: "staff" },
   {
     slug: "tanaya-ghanvatkar",
