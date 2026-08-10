@@ -1,6 +1,7 @@
-# DDOmics Lab Framework
+# DDOmics Lab Website 
 
 Static React application for the DDOmics Lab website.
+This is the proposed base website prototype for use.
 
 ## Development
 
