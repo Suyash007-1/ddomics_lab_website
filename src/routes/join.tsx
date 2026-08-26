@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { PageHero } from "@/components/PageHero";
+import bgJoin from "@/assets/bg-join.jpg";
 import { lab } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/join")({
@@ -11,10 +13,14 @@ export const Route = createFileRoute("/join")({
         content:
           "Open positions for postdocs, Ph.D. students and MSc project students in microbiome sequencing, metabolomics and anaerobic isolation at NCCS Pune.",
       },
-      { property: "og:title", content: "Join the Lab — DDOmics Lab, NCCS Pune" },
+      {
+        property: "og:title",
+        content: "Join the Lab — DDOmics Lab, NCCS Pune",
+      },
       {
         property: "og:description",
-        content: "Postdoc, Ph.D. and MSc project opportunities in the DDOmics Lab.",
+        content:
+          "Postdoc, Ph.D. and MSc project opportunities in the DDOmics Lab.",
       },
     ],
   }),
@@ -39,20 +45,17 @@ const roles = [
 function JoinPage() {
   return (
     <>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 pt-24 pb-16 lg:px-10 lg:pt-32">
-          <Reveal>
-            <p className="eyebrow mb-5 text-muted-foreground">Join the Lab</p>
-            <h1 className="display-title max-w-3xl text-4xl sm:text-5xl lg:text-6xl">
-              Let's collaborate
-            </h1>
-            <p className="measure mt-8 leading-relaxed text-muted-foreground">
-              The lab sits at the intersection of microbiology, sequencing and data science. If you want to
-              work on the Indian microbiome at scale, there's likely a project here for you.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <PageHero
+        image={bgJoin}
+        focal="right"
+        eyebrow="Join the Lab"
+        title={
+          <>
+            Let's <span className="silver-text">collaborate</span>
+          </>
+        }
+        lede="The lab sits at the intersection of microbiology, sequencing and data science. If you want to work on the Indian microbiome at scale, there's likely a project here for you."
+      />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         {roles.map((r, i) => (
@@ -62,10 +65,14 @@ function JoinPage() {
             className="grid grid-cols-1 gap-6 border-b border-border py-14 lg:grid-cols-12"
           >
             <div className="lg:col-span-4">
-              <span className="eyebrow text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
+              <span className="eyebrow text-muted-foreground">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <h2 className="display-title mt-3 text-2xl">{r.title}</h2>
             </div>
-            <p className="leading-relaxed text-muted-foreground lg:col-span-8">{r.body}</p>
+            <p className="leading-relaxed text-muted-foreground lg:col-span-8">
+              {r.body}
+            </p>
           </Reveal>
         ))}
       </div>
@@ -75,7 +82,8 @@ function JoinPage() {
           <Reveal>
             <h2 className="display-title text-3xl lg:text-4xl">Write to us</h2>
             <p className="measure mx-auto mt-6 leading-relaxed opacity-60">
-              Include a CV, a brief note on what you'd like to work on, and your expected start date.
+              Include a CV, a brief note on what you'd like to work on, and your
+              expected start date.
             </p>
             <a
               href={`mailto:${lab.email}`}

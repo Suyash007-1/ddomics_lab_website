@@ -15,7 +15,6 @@ export function SiteFooter() {
             <p className="eyebrow mb-3 opacity-70">Contact</p>
             <p className="text-sm leading-relaxed">
               Dr. Dhiraj S. Dhotre, Scientist 'E'
-
               <br />
               Lab 3, Old Building
               <br />
@@ -30,7 +29,10 @@ export function SiteFooter() {
             <ul className="space-y-2 text-sm">
               {navLinks.map((l) => (
                 <li key={l.to}>
-                  <Link to={l.to} className="transition-colors hover:text-ink-foreground">
+                  <Link
+                    to={l.to}
+                    className="transition-colors hover:text-ink-foreground"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -42,7 +44,10 @@ export function SiteFooter() {
             <p className="eyebrow mb-3 opacity-70">More</p>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/join" className="transition-colors hover:text-ink-foreground">
+                <Link
+                  to="/join"
+                  className="transition-colors hover:text-ink-foreground"
+                >
                   Join the Lab
                 </Link>
               </li>
@@ -55,7 +60,10 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href={lab.twitter} className="transition-colors hover:text-ink-foreground">
+                <a
+                  href={lab.twitter}
+                  className="transition-colors hover:text-ink-foreground"
+                >
                   @DDOmicsLab
                 </a>
               </li>
@@ -65,15 +73,17 @@ export function SiteFooter() {
           <div>
             <p className="eyebrow mb-3 opacity-70">Funded by</p>
             <p className="text-sm leading-relaxed">
-              Department of Biotechnology, Department of Science &amp; Technology, and Science &amp;
-              Engineering Research Board, New Delhi.
+              Department of Biotechnology, Department of Science &amp;
+              Technology, and Science &amp; Engineering Research Board, New
+              Delhi.
             </p>
           </div>
         </div>
 
         <div className="mt-14 border-t border-ink-foreground/10 pt-8">
           <p className="font-mono text-[11px] opacity-50">
-            © {new Date().getFullYear()} {lab.name}, NCCS Pune. All rights reserved.
+            © {new Date().getFullYear()} {lab.name}, NCCS Pune. All rights
+            reserved.
           </p>
         </div>
       </div>

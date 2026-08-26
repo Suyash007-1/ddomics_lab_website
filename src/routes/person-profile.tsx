@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { ProtectedImage } from "@/components/ProtectedImage";
 import { people } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/people/$personId")({
@@ -10,10 +11,16 @@ export const Route = createFileRoute("/people/$personId")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: loaderData ? `${loaderData.name} — DDOmics Lab, NCCS Pune` : "Profile — DDOmics Lab" },
+      {
+        title: loaderData
+          ? `${loaderData.name} — DDOmics Lab, NCCS Pune`
+          : "Profile — DDOmics Lab",
+      },
       {
         name: "description",
-        content: loaderData?.bio ?? `${loaderData?.name ?? "Lab member"} at DDOmics Lab, NCCS Pune.`,
+        content:
+          loaderData?.bio ??
+          `${loaderData?.name ?? "Lab member"} at DDOmics Lab, NCCS Pune.`,
       },
     ],
   }),
@@ -22,7 +29,10 @@ export const Route = createFileRoute("/people/$personId")({
     <div className="mx-auto max-w-2xl px-6 py-32 text-center">
       <p className="eyebrow mb-4 text-muted-foreground">Not found</p>
       <h1 className="display-title text-3xl">This person isn't listed</h1>
-      <Link to="/people" className="eyebrow sheen mt-8 inline-block border border-primary px-6 py-3 tracking-[0.12em] text-primary uppercase transition-colors hover:bg-primary hover:text-primary-foreground">
+      <Link
+        to="/people"
+        className="eyebrow sheen mt-8 inline-block border border-primary px-6 py-3 tracking-[0.12em] text-primary uppercase transition-colors hover:bg-primary hover:text-primary-foreground"
+      >
         Back to People
       </Link>
     </div>
@@ -51,7 +61,10 @@ const socialLabels: Record<string, string> = {
 function PersonProfilePage() {
   const person = Route.useLoaderData();
   const socialEntries = person.socials
-    ? (Object.entries(person.socials).filter(([, v]) => !!v) as [string, string][])
+    ? (Object.entries(person.socials).filter(([, v]) => !!v) as [
+        string,
+        string,
+      ][])
     : [];
 
   return (
@@ -60,23 +73,38 @@ function PersonProfilePage() {
         <Reveal className="lg:col-span-4">
           <div className="silver-frame sheen relative mx-auto flex aspect-[4/5] w-full max-w-xs items-center justify-center overflow-hidden bg-card/40 backdrop-blur">
             {person.photo ? (
-              <img src={person.photo} alt={person.name} className="h-full w-full object-cover" />
+              <ProtectedImage
+                src={person.photo}
+                alt={person.name}
+                className="h-full w-full object-cover"
+              />
             ) : (
-              <span className="display-title text-5xl text-muted-foreground">{initials(person.name)}</span>
+              <span className="display-title text-5xl text-muted-foreground">
+                {initials(person.name)}
+              </span>
             )}
           </div>
         </Reveal>
         <div className="lg:col-span-8">
           <Reveal>
-            <p className="eyebrow mb-5 opacity-60">{person.group === "pi" ? "Principal Investigator" : person.role}</p>
-            <h1 className="display-title silver-text text-4xl sm:text-5xl lg:text-6xl">{person.name}</h1>
-            <p className="mt-4 font-display text-xl font-semibold text-primary">{person.role}</p>
-            <p className="mt-1 text-sm opacity-70">DDOmics Lab, National Centre for Cell Science, Pune</p>
+            <p className="eyebrow mb-5 opacity-60">
+              {person.group === "pi" ? "Principal Investigator" : person.role}
+            </p>
+            <h1 className="display-title silver-text text-4xl sm:text-5xl lg:text-6xl">
+              {person.name}
+            </h1>
+            <p className="mt-4 font-display text-xl font-semibold text-primary">
+              {person.role}
+            </p>
+            <p className="mt-1 text-sm opacity-70">
+              DDOmics Lab, National Centre for Cell Science, Pune
+            </p>
           </Reveal>
 
           <Reveal delay={120}>
             <p className="measure mt-8 leading-relaxed opacity-85">
-              {person.bio ?? "This lab member hasn't shared a bio yet — check back soon."}
+              {person.bio ??
+                "This lab member hasn't shared a bio yet — check back soon."}
             </p>
           </Reveal>
 

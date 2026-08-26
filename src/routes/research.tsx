@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { PageHero } from "@/components/PageHero";
+import bgResearch from "@/assets/bg-research.jpg";
 import { methods, researchTracks } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/research")({
@@ -14,7 +16,8 @@ export const Route = createFileRoute("/research")({
       { property: "og:title", content: "Research — DDOmics Lab, NCCS Pune" },
       {
         property: "og:description",
-        content: "Microbiome research tracks spanning population cohorts, early life, and disease.",
+        content:
+          "Microbiome research tracks spanning population cohorts, early life, and disease.",
       },
     ],
   }),
@@ -24,21 +27,18 @@ export const Route = createFileRoute("/research")({
 function ResearchPage() {
   return (
     <>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 pt-24 pb-16 lg:px-10 lg:pt-32">
-          <Reveal>
-            <p className="eyebrow mb-5 text-muted-foreground">Research</p>
-            <h1 className="display-title max-w-4xl text-4xl sm:text-5xl lg:text-6xl">
-              Mapping microbial communities across populations, life stages and disease
-            </h1>
-            <p className="measure mt-8 leading-relaxed text-muted-foreground">
-              Our work moves between the bench and the cluster: anaerobic culture and isolation on one side,
-              metagenomic and metabolomic analysis on the other. Below are the five tracks currently running in
-              the lab.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <PageHero
+        image={bgResearch}
+        focal="left"
+        eyebrow="Research"
+        title={
+          <>
+            Mapping <span className="silver-text">microbial communities</span>{" "}
+            across populations, life stages and disease
+          </>
+        }
+        lede="Our work moves between the bench and the cluster: anaerobic culture and isolation on one side, metagenomic and metabolomic analysis on the other. Below are the five tracks currently running in the lab."
+      />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         {researchTracks.map((t, i) => (
@@ -51,22 +51,18 @@ function ResearchPage() {
               <span className="eyebrow text-muted-foreground">
                 {String(i + 1).padStart(2, "0")} / {t.code}
               </span>
-              <h2 id={t.code.replace(/[^a-z0-9]/gi, "").toLowerCase()} className="display-title mt-4 text-2xl lg:text-3xl">
+              <h2
+                id={t.code.replace(/[^a-z0-9]/gi, "").toLowerCase()}
+                className="display-title mt-4 text-2xl lg:text-3xl"
+              >
                 {t.title}
               </h2>
-              {t.image && (
-                <div className="lift-card sheen mt-8 overflow-hidden border border-border bg-white">
-                  <img
-                    src={t.image}
-                    alt={t.imageAlt ?? t.title}
-                    className="aspect-[4/3] w-full object-contain p-4"
-                  />
-                </div>
-              )}
             </div>
             <div className="lg:col-span-8">
               <p className="text-lg leading-relaxed">{t.summary}</p>
-              <p className="mt-5 leading-relaxed text-muted-foreground">{t.detail}</p>
+              <p className="mt-5 leading-relaxed text-muted-foreground">
+                {t.detail}
+              </p>
             </div>
           </Reveal>
         ))}
@@ -75,7 +71,9 @@ function ResearchPage() {
       <section className="bg-ink text-ink-foreground">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <Reveal>
-            <h2 className="display-title mb-12 text-2xl lg:text-3xl">How we work</h2>
+            <h2 className="display-title mb-12 text-2xl lg:text-3xl">
+              How we work
+            </h2>
           </Reveal>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             {methods.map((m, i) => (

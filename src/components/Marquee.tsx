@@ -9,8 +9,13 @@ export function Marquee() {
       <div className="marquee-track gap-10">
         {items.map((w, i) => (
           <span key={`${w}-${i}`} className="flex shrink-0 items-center gap-10">
-            <span className="display-title text-xl whitespace-nowrap opacity-70 sm:text-2xl">{w}</span>
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="display-title text-xl whitespace-nowrap opacity-70 sm:text-2xl">
+              {w}
+            </span>
+            <span
+              aria-hidden="true"
+              className="h-1.5 w-1.5 rounded-full bg-primary"
+            />
           </span>
         ))}
       </div>

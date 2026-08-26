@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DhirajDhotreRouteImport } from './routes/dhiraj-dhotre'
 import { Route as JoinRouteImport } from './routes/join'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as PeopleRouteImport } from './routes/people'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ResearchRouteImport } from './routes/research'
@@ -30,6 +31,11 @@ const DhirajDhotreRoute = DhirajDhotreRouteImport.update({
 const JoinRoute = JoinRouteImport.update({
   id: '/join',
   path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PeopleRoute = PeopleRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dhiraj-dhotre': typeof DhirajDhotreRoute
   '/join': typeof JoinRoute
+  '/news': typeof NewsRoute
   '/people': typeof PeopleRoute
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dhiraj-dhotre': typeof DhirajDhotreRoute
   '/join': typeof JoinRoute
+  '/news': typeof NewsRoute
   '/people': typeof PeopleRoute
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dhiraj-dhotre': typeof DhirajDhotreRoute
   '/join': typeof JoinRoute
+  '/news': typeof NewsRoute
   '/people': typeof PeopleRoute
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
@@ -84,15 +93,30 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/dhiraj-dhotre' | '/join' | '/people' | '/publications' | '/research' | '/people/$personId'
+    | '/'
+    | '/dhiraj-dhotre'
+    | '/join'
+    | '/news'
+    | '/people'
+    | '/publications'
+    | '/research'
+    | '/people/$personId'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/dhiraj-dhotre' | '/join' | '/people' | '/publications' | '/research' | '/people/$personId'
+    | '/'
+    | '/dhiraj-dhotre'
+    | '/join'
+    | '/news'
+    | '/people'
+    | '/publications'
+    | '/research'
+    | '/people/$personId'
   id:
     | '__root__'
     | '/'
     | '/dhiraj-dhotre'
     | '/join'
+    | '/news'
     | '/people'
     | '/publications'
     | '/research'
@@ -103,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DhirajDhotreRoute: typeof DhirajDhotreRoute
   JoinRoute: typeof JoinRoute
+  NewsRoute: typeof NewsRoute
   PeopleRoute: typeof PeopleRoute
   PublicationsRoute: typeof PublicationsRoute
   ResearchRoute: typeof ResearchRoute
@@ -130,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/join'
       fullPath: '/join'
       preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/people': {
@@ -167,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DhirajDhotreRoute: DhirajDhotreRoute,
   JoinRoute: JoinRoute,
+  NewsRoute: NewsRoute,
   PeopleRoute: PeopleRoute,
   PublicationsRoute: PublicationsRoute,
   ResearchRoute: ResearchRoute,

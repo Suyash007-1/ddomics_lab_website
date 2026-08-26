@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { lab, navLinks } from "@/lib/lab-data";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { assetUrl } from "@/lib/asset-path";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -25,18 +24,32 @@ export function SiteHeader() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex h-24 items-center justify-between gap-6">
+          {/* Logo slot — drop the lab logo image in place of the mark below */}
           <Link to="/" className="group flex items-center gap-3">
             <span
+              aria-hidden="true"
               data-logo-slot
-              className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-silver/50 transition-all duration-500 group-hover:ring-primary"
+              className="grid h-12 w-12 shrink-0 place-items-center rounded-full ring-1 ring-silver/50 transition-all duration-500 group-hover:ring-primary"
             >
-              <img src={assetUrl("/images/lab/logo.jpg")} alt={`${lab.name} logo`} className="h-full w-full object-cover" />
+              <svg viewBox="0 0 40 40" className="h-7 w-7">
+                <circle
+                  cx="17"
+                  cy="21"
+                  r="10"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="text-silver transition-colors duration-500 group-hover:text-primary"
+                />
+                <circle cx="25" cy="14" r="6" className="fill-primary" />
+                <circle cx="26" cy="29" r="4.5" className="fill-silver" />
+              </svg>
             </span>
             <span className="leading-none">
               <span className="block font-display text-[11px] font-semibold tracking-[0.28em] opacity-60">
                 THE
               </span>
-              <span className="block font-display text-2xl font-bold tracking-tight text-current">
+              <span className="block font-display text-3xl font-bold tracking-tight text-current sm:text-4xl">
                 {lab.name}
               </span>
             </span>
@@ -82,7 +95,9 @@ export function SiteHeader() {
               />
               <span
                 className={`h-[1.5px] bg-current transition-all duration-300 ${
-                  open ? "-translate-y-[6.5px] w-full -rotate-45" : "w-2/3 self-end"
+                  open
+                    ? "-translate-y-[6.5px] w-full -rotate-45"
+                    : "w-2/3 self-end"
                 }`}
               />
             </button>

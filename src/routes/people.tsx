@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { ImageMarquee } from "@/components/ImageMarquee";
-import { alumni, people } from "@/lib/lab-data";
-import { assetUrl } from "@/lib/asset-path";
+import { ProtectedImage } from "@/components/ProtectedImage";
+import { alumni, people, labGroupPhoto } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/people")({
   head: () => ({
@@ -14,7 +14,10 @@ export const Route = createFileRoute("/people")({
           "Meet the DDOmics Lab team: principal investigator Dr. Dhiraj Dhotre, project scientists, Ph.D. students and technical staff at NCCS Pune.",
       },
       { property: "og:title", content: "People — DDOmics Lab, NCCS Pune" },
-      { property: "og:description", content: "The scientists and students behind the DDOmics Lab." },
+      {
+        property: "og:description",
+        content: "The scientists and students behind the DDOmics Lab.",
+      },
     ],
   }),
   component: PeoplePage,
@@ -40,33 +43,32 @@ function initials(name: string) {
 function PeoplePage() {
   return (
     <>
-      <section className="border-b border-border">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 pt-24 pb-16 lg:grid-cols-12 lg:px-10 lg:pt-32">
-          <Reveal className="lg:col-span-7">
-            <p className="eyebrow mb-5 text-muted-foreground">People</p>
-            <h1 className="display-title max-w-3xl text-4xl sm:text-5xl lg:text-6xl">
-              Meet <span className="silver-text">the lab</span>
-            </h1>
-            <p className="measure mt-8 leading-relaxed text-muted-foreground">
-              A mix of microbiologists, bioinformaticians and students working between the wet lab and the
-              compute cluster at the National Centre for Cell Science, Pune.
+      <section className="hero-veil relative -mt-24 min-h-[64vh] overflow-hidden text-deep-foreground">
+        {/* Full-bleed lab group photo as the header background, in place of
+            the smaller framed image this hero used to show alongside the text. */}
+        <img
+          src={labGroupPhoto}
+          alt=""
+          aria-hidden="true"
+          width={1920}
+          height={1080}
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-45"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,var(--deep)_8%,color-mix(in_oklch,var(--deep)_78%,transparent)_55%,color-mix(in_oklch,var(--deep)_92%,transparent)_100%)]"
+        />
+        <div className="relative mx-auto flex min-h-[64vh] max-w-7xl flex-col justify-end px-6 pt-44 pb-16 lg:px-10 lg:pt-52 lg:pb-24">
+          <Reveal>
+            <p className="eyebrow mb-5 opacity-60">People</p>
+            <p className="measure mt-2 leading-relaxed opacity-80">
+              A mix of microbiologists, bioinformaticians and students working
+              between the wet lab and the compute cluster at the National Centre
+              for Cell Science, Pune.
             </p>
-          </Reveal>
-          <Reveal delay={120} className="lg:col-span-5">
-            <div className="lift-card sheen overflow-hidden border border-border">
-              <img
-                src={assetUrl("/images/lab/lab-group.jpg")}
-                alt="DDOmics Lab group photo"
-                className="aspect-[16/10] w-full object-cover"
-              />
-            </div>
           </Reveal>
         </div>
       </section>
-
-      <Reveal>
-        <ImageMarquee />
-      </Reveal>
 
       <section className="bg-surface">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
@@ -85,7 +87,7 @@ function PeoplePage() {
                       <>
                         <div className="relative flex aspect-square w-36 items-center justify-center overflow-hidden rounded-full bg-muted ring-1 ring-silver/30 transition-all duration-500 group-hover:ring-primary">
                           {p.photo ? (
-                            <img
+                            <ProtectedImage
                               src={p.photo}
                               alt={p.name}
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -97,8 +99,12 @@ function PeoplePage() {
                           )}
                         </div>
                         <div>
-                          <h3 className="display-title text-xl leading-tight">{p.name}</h3>
-                          <p className="mt-1 font-display text-base font-semibold text-primary">{p.role}</p>
+                          <h3 className="display-title text-xl leading-tight">
+                            {p.name}
+                          </h3>
+                          <p className="mt-1 font-display text-base font-semibold text-primary">
+                            {p.role}
+                          </p>
                         </div>
                       </>
                     );
@@ -117,7 +123,11 @@ function PeoplePage() {
                             {viewProfile}
                           </Link>
                         ) : (
-                          <Link to="/people/$personId" params={{ personId: p.slug }} className={cls}>
+                          <Link
+                            to="/people/$personId"
+                            params={{ personId: p.slug }}
+                            className={cls}
+                          >
                             {card}
                             {viewProfile}
                           </Link>
@@ -140,20 +150,29 @@ function PeoplePage() {
           </Reveal>
           <ul className="divide-y divide-border border-t border-b border-border">
             {alumni.map((a, i) => (
-              <Reveal as="li" key={a.name} delay={i * 70} className="flex items-center justify-between gap-4 py-5">
+              <Reveal
+                as="li"
+                key={a.name}
+                delay={i * 70}
+                className="flex items-center justify-between gap-4 py-5"
+              >
                 <span className="flex items-center gap-4">
                   {a.photo ? (
-                    <img
-                      src={a.photo}
-                      alt={a.name}
-                      className="h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-silver/30"
-                    />
+                    <span className="block h-12 w-12 shrink-0 overflow-hidden rounded-full ring-1 ring-silver/30">
+                      <ProtectedImage
+                        src={a.photo}
+                        alt={a.name}
+                        className="h-full w-full object-cover"
+                      />
+                    </span>
                   ) : (
                     <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-muted text-sm font-semibold text-muted-foreground ring-1 ring-silver/30">
                       {initials(a.name)}
                     </span>
                   )}
-                  <span className="font-display text-lg font-semibold">{a.name}</span>
+                  <span className="font-display text-lg font-semibold">
+                    {a.name}
+                  </span>
                 </span>
                 <span className="text-sm text-muted-foreground">{a.role}</span>
               </Reveal>
@@ -161,13 +180,20 @@ function PeoplePage() {
           </ul>
           <Reveal delay={140}>
             <p className="measure mt-8 leading-relaxed text-muted-foreground">
-              Former students and staff of the lab have moved on to postdoctoral positions, industry
-              bioinformatics roles and doctoral programmes in India and abroad. Alumni listings are updated
-              each academic year.
+              Former students and staff of the lab have moved on to postdoctoral
+              positions, industry bioinformatics roles and doctoral programmes
+              in India and abroad. Alumni listings are updated each academic
+              year.
             </p>
           </Reveal>
         </div>
       </section>
+
+      {/* People and profiles come first; the lab-life photo motion now runs
+          at the very bottom of the page instead of at the top. */}
+      <Reveal>
+        <ImageMarquee />
+      </Reveal>
     </>
   );
 }

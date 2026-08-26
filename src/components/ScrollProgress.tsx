@@ -19,7 +19,10 @@ export function ScrollProgress() {
   }, []);
 
   return (
-    <div aria-hidden="true" className="fixed inset-x-0 top-0 z-[60] h-[2px] bg-transparent">
+    <div
+      aria-hidden="true"
+      className="fixed inset-x-0 top-0 z-[60] h-[2px] bg-transparent"
+    >
       <div
         className="h-full origin-left transition-[width] duration-150 ease-out"
         style={{

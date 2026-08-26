@@ -1,19 +1,25 @@
-# DDOmics Lab Website 
+# DDOmics Lab Website
 
-Static React application for the DDOmics Lab website.
-This is the proposed base website prototype for use.
+This is the Multipage research lab website for the DDOmics Lab, National Centre for Cell Science (NCCS), Pune.
 
 ## Development
 
 You need Node.js and npm.
 
 ```sh
-git clone <your-repository-url>
-cd ddomics-lab-framework
+git clone <this-repository-url>
+
+cd <repository-name>
+
 npm install
+
 npm run dev
 ```
 
-## Deployment
+## Build
 
-The included GitHub Actions workflow builds and deploys the site to GitHub Pages. It assumes the repository is named `ddomics_lab_website`, so the Vite base path is `/ddomics_lab_website/`. If you ever rename the repo, update `base` in `vite.config.ts` to match.
+```sh
+npm run build
+```
+
+Outputs a static site to `dist/`, ready to deploy (e.g. to GitHub Pages via the included workflow in `.github/workflows`).

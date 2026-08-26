@@ -1,6 +1,31 @@
+import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
-import { publications } from "@/lib/lab-data";
+import { PageHero } from "@/components/PageHero";
+import bgPublications from "@/assets/bg-publications.jpg";
+import {
+  publications,
+  publicationTopics,
+  featuredPublications,
+} from "@/lib/lab-data";
+
+// TODO: swap these for the lab's actual Scopus author page and ORCID iD
+// once you have them — Scholar's link was already in place, these two are
+// generic author-name searches as placeholders.
+const profileLinks = [
+  {
+    label: "Google Scholar",
+    href: "https://scholar.google.com/citations?user=Dhiraj+Dhotre",
+  },
+  {
+    label: "Scopus",
+    href: "https://www.scopus.com/results/authorNamesList.uri?query=Dhiraj%20Dhotre",
+  },
+  {
+    label: "ORCID",
+    href: "https://orcid.org/orcid-search/search?searchQuery=Dhiraj%20Dhotre",
+  },
+] as const;
 
 export const Route = createFileRoute("/publications")({
   head: () => ({
@@ -9,70 +34,196 @@ export const Route = createFileRoute("/publications")({
       {
         name: "description",
         content:
-          "Peer-reviewed publications from the DDOmics Lab on gut, oral and skin microbiomes, diabetes, heart failure and Indian population cohorts.",
+          "Featured studies and the full list of peer-reviewed publications from the DDOmics Lab on gut, oral and skin microbiomes, gluten disorders and Indian population cohorts.",
       },
-      { property: "og:title", content: "Publications — DDOmics Lab, NCCS Pune" },
+      {
+        property: "og:title",
+        content: "Publications — DDOmics Lab, NCCS Pune",
+      },
       {
         property: "og:description",
-        content: "Selected peer-reviewed papers from the DDOmics Lab at NCCS Pune.",
+        content:
+          "Featured studies and complete publication list from the DDOmics Lab at NCCS Pune.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PublicationsPage,
 });
 
 function PublicationsPage() {
-  const years = [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a);
+  const years = useMemo(
+    () => [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a),
+    [],
+  );
+  const [year, setYear] = useState<"all" | number>("all");
+
+  const filtered = useMemo(
+    () =>
+      year === "all"
+        ? publications
+        : publications.filter((p) => p.year === year),
+    [year],
+  );
 
   return (
     <>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 pt-24 pb-16 lg:px-10 lg:pt-32">
-          <Reveal>
-            <p className="eyebrow mb-5 text-muted-foreground">Publications</p>
-            <h1 className="display-title max-w-3xl text-4xl sm:text-5xl lg:text-6xl">Papers from <span className="silver-text">the lab</span></h1>
-            <p className="measure mt-8 leading-relaxed text-muted-foreground">
-              A selection of peer-reviewed work. Each entry links out to the publisher via DOI.
+      <PageHero
+        image={bgPublications}
+        height="short"
+        eyebrow="Publications"
+        title={
+          <>
+            Papers from <span className="silver-text">the lab</span>
+          </>
+        }
+        lede="Featured studies below, followed by the complete list grouped by research theme. Each entry links out to the publisher via DOI."
+      />
+
+      {/* ---------- Featured studies ---------- */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 lg:px-10 lg:pt-24">
+          <Reveal className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-4">
+            <h2 className="display-title text-3xl lg:text-4xl">
+              Featured Publications
+            </h2>
+            <p className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+              {profileLinks.map((link, i) => (
+                <span key={link.label} className="flex items-center gap-x-4">
+                  {i > 0 && (
+                    <span aria-hidden="true" className="text-muted-foreground">
+                      ·
+                    </span>
+                  )}
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    {link.label}
+                  </a>
+                </span>
+              ))}
             </p>
           </Reveal>
+
+          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredPublications.map((p, i) => (
+              <Reveal key={p.title} delay={i * 80}>
+                <article className="group flex h-full flex-col">
+                  <div className="art-tile relative aspect-[4/3] overflow-hidden border border-border">
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      width={1024}
+                      height={768}
+                      className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="mt-5 font-display text-lg leading-snug font-semibold transition-colors group-hover:text-primary">
+                    {p.title}
+                  </p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {p.authors} · <em>{p.venue}</em> ({p.year})
+                  </p>
+                  {p.doi && (
+                    <a
+                      href={`https://doi.org/${p.doi}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="eyebrow sheen mt-4 inline-block self-start border border-border px-4 py-2 text-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary"
+                    >
+                      Read it →
+                    </a>
+                  )}
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
-        {years.map((year) => (
-          <section key={year} className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-12">
-            <Reveal className="lg:col-span-3">
-              <h2 className="display-title text-3xl text-muted-foreground lg:sticky lg:top-28">{year}</h2>
-            </Reveal>
-            <ul className="divide-y divide-border border-t border-border lg:col-span-9">
-              {publications
-                .filter((p) => p.year === year)
-                .map((p, i) => (
-                  <Reveal as="li" key={p.title} delay={i * 70} className="py-7">
-                    <a
-                      href={p.doi ? `https://doi.org/${p.doi}` : undefined}
-                      target={p.doi ? "_blank" : undefined}
-                      rel="noreferrer"
-                      className="group block"
+      {/* ---------- Full list ---------- */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+          <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-4 border-t border-border pt-10">
+            <h2 className="display-title text-3xl lg:text-4xl">
+              All Publications
+            </h2>
+            <label className="flex items-center gap-3 text-sm">
+              <span className="eyebrow text-muted-foreground">Year</span>
+              <select
+                value={String(year)}
+                onChange={(e) =>
+                  setYear(
+                    e.target.value === "all" ? "all" : Number(e.target.value),
+                  )
+                }
+                className="border border-border bg-background px-4 py-2 text-sm transition-colors hover:border-primary focus:border-primary focus:outline-none"
+              >
+                <option value="all">All years</option>
+                {years.map((y) => (
+                  <option key={y} value={y}>
+                    {y}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </Reveal>
+
+          {publicationTopics.map((topic) => {
+            const items = filtered.filter((p) => p.topic === topic);
+            if (items.length === 0) return null;
+            return (
+              <section key={topic} className="mb-16">
+                <Reveal>
+                  <h3 className="display-title text-2xl text-primary">
+                    {topic}
+                  </h3>
+                </Reveal>
+                <ul className="mt-6 divide-y divide-border border-t border-border">
+                  {items.map((p, i) => (
+                    <Reveal
+                      as="li"
+                      key={p.title}
+                      delay={i * 50}
+                      className="py-6"
                     >
-                      <p className="font-display text-xl font-semibold leading-snug transition-colors group-hover:text-primary">
-                        {p.title}
-                      </p>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {p.authors} · {p.venue}
+                      <p className="leading-relaxed">
+                        <span className="text-muted-foreground">
+                          {p.authors}
+                        </span>{" "}
+                        ({p.year}).{" "}
+                        <span className="font-medium">{p.title}</span>{" "}
+                        <em className="text-muted-foreground">{p.venue}</em>.
                       </p>
                       {p.doi && (
-                        <span className="eyebrow mt-3 inline-block text-muted-foreground transition-colors group-hover:text-primary">
-                          {p.doi} →
-                        </span>
+                        <a
+                          href={`https://doi.org/${p.doi}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mt-2 inline-block font-mono text-xs text-primary underline-offset-4 hover:underline"
+                        >
+                          https://doi.org/{p.doi}
+                        </a>
                       )}
-                    </a>
-                  </Reveal>
-                ))}
-            </ul>
-          </section>
-        ))}
-      </div>
+                    </Reveal>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+
+          {filtered.length === 0 && (
+            <p className="text-muted-foreground">
+              No publications listed for {String(year)}.
+            </p>
+          )}
+        </div>
+      </section>
     </>
   );
 }

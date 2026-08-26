@@ -1,4 +1,40 @@
-import { assetUrl } from "@/lib/asset-path";
+import artData from "@/assets/art-data.jpg";
+import artChromatogram from "@/assets/art-chromatogram.jpg";
+import artPetri from "@/assets/art-petri.jpg";
+import artGut from "@/assets/art-gut.jpg";
+import artMicrobes from "@/assets/art-microbes.png";
+import artHand from "@/assets/art-hand.png";
+import pubHeart from "@/assets/pub-heart.jpg";
+import pubMicfun from "@/assets/pub-micfunpred.jpg";
+import pubFamily from "@/assets/pub-family.jpg";
+import pubDiabetes from "@/assets/pub-diabetes.jpg";
+import pubGluten from "@/assets/pub-gluten.jpg";
+import pubSewage from "@/assets/pub-sewage.jpg";
+import photoDhirajDhotre from "@/assets/people/dhiraj-dhotre.jpg";
+import photoNirajRane from "@/assets/people/niraj-rane.jpg";
+import photoSuyashJadhav from "@/assets/people/suyash-jadhav.jpg";
+import photoHarshadaPardeshi from "@/assets/people/harshada-pardeshi.jpg";
+import photoBhagyashreeKarmarkar from "@/assets/people/bhagyashree-karmarkar.jpg";
+import photoTanayaGhanvatkar from "@/assets/people/tanaya-ghanvatkar.jpg";
+import photoDattatrayMongad from "@/assets/people/dattatray-mongad.jpg";
+import photoKunalDixit from "@/assets/people/kunal-dixit.jpg";
+import labGroupPhoto from "@/assets/lab-group.jpg";
+
+/** Candid lab-life photos for the scrolling gallery on the People page.
+ *
+ * Auto-discovered from src/assets/gallery — drop a new image file into that
+ * folder (any name, jpg/jpeg/png/webp) and it will automatically appear in
+ * the gallery on the next build. No code changes needed.
+ */
+const galleryModules = import.meta.glob<{ default: string }>(
+  "../assets/gallery/*.{jpg,jpeg,png,webp}",
+  { eager: true },
+);
+export const galleryPhotos = Object.keys(galleryModules)
+  .sort()
+  .map((key) => galleryModules[key]!.default);
+
+export { labGroupPhoto };
 
 export const lab = {
   name: "DDOmics Lab",
@@ -14,13 +50,14 @@ export const navLinks = [
   { to: "/research", label: "Research" },
   { to: "/publications", label: "Publications" },
   { to: "/people", label: "People" },
+  { to: "/news", label: "News" },
   { to: "/dhiraj-dhotre", label: "Dr. Dhotre" },
 ] as const;
 
 export const stats = [
-  { value: 3400, suffix: "+", label: "Individuals sequenced in IHMI phase I" },
+  { value: 4000, suffix: "+", label: "Individuals sequenced so far" },
   { value: 17, suffix: "", label: "Endogamous populations sampled" },
-  { value: 20000, suffix: "", label: "Target cohort for phase II" },
+  { value: 20000, suffix: "", label: "Target cohort for phase II of IHMI" },
   { value: 5, suffix: "", label: "Active research tracks" },
 ];
 
@@ -28,10 +65,9 @@ export const marqueeWords = [
   "Metagenomics",
   "Culturomics",
   "Metabolomics",
-  "16S rRNA",
+  "Amplicon sequencing",
   "Gut–Brain Axis",
-  "INSACOG",
-  "Anaerobic isolation",
+  "Anaerobic cultivation",
   "Multi-omics",
   "Indian Microbiome",
 ];
@@ -56,9 +92,6 @@ export type ResearchTrack = {
   title: string;
   summary: string;
   detail: string;
-  /** Optional visual (logo or illustration) associated with this track. */
-  image?: string;
-  imageAlt?: string;
 };
 
 export const researchTracks: ResearchTrack[] = [
@@ -69,8 +102,6 @@ export const researchTracks: ResearchTrack[] = [
       "A flagship project of NCCS Pune and DBT, Government of India, mapping the gut and oral cavity microbiome of 3,400 individuals from 17 endogamous populations.",
     detail:
       "Phase I profiles the gut and oral cavity microbiome of 3,400 individuals from 17 endogamous populations across the country using targeted amplicon and metagenomic sequencing, followed by 20,000 individuals in the next phase. The aim is a comprehensive dietary and baseline microbiome map of India for comparative analysis, usable across microbiome-based studies in human health, disease and therapy. The project runs in parallel with a genotyping study on the same individuals, allowing the two datasets to be correlated.",
-    image: assetUrl("/images/research/ihmi-logo.jpg"),
-    imageAlt: "Indian Human Microbiome Initiative logo",
   },
   {
     code: "M / I",
@@ -78,9 +109,7 @@ export const researchTracks: ResearchTrack[] = [
     summary:
       "Longitudinal study of maternal gut, milk and skin microbiomes and their role in establishing a healthy infant microbiome.",
     detail:
-      "Mothers play a crucial role in the acquisition and establishment of the infant microbiome in the first few weeks after birth. We study the longitudinal impact of maternal gut, milk and skin microbiomes on the development of the infant microbiome, focusing on how the maternal microbiome supports a healthy infant community and on tracking the physiological translocation of bacteria via the entero-mammary pathway.",
-    image: assetUrl("/images/research/mother-infant-microbiome.webp"),
-    imageAlt: "Illustration of maternal microbiome transmission to infant",
+      "The development of microbiome in infant occurs through mother-infant axis during or after the birth. First few days of life represent a crucial window of opportunity for shaping the development of the gastrointestinal tract and immune system, as well as the adult microbiome. But any dysbiosis during the development of microbiome in new-born can cause IBD, obesity, diabetes, inflammatory bowel disease and other long-term lifestyle disorders. The initial exposure of microbes in infant is said to begin during pregnancy through intra-uterine passage (fetal membranes, umbical cords, amniotic fluids) followed by the mode of delivery and by the type of feeding (breast feeding/ formulae fed) given to the infant. Breast milk is one of the continuous sources of mutually beneficial bacteria that are hypothesized to seed the infant’s gut via breastfeeding. It is believed that bacteria from mother’s gut translocate to breast milk via an entero-mammary pathway and thereby populate the infant’s oral and gut subsequently. Whereas, another hypothesis suggests the retrograde flux where a backward movement of milk occurs due to infant suckling and transfers the bacteria from infant’s mouth into the mother’s mammary gland. Mother’s breast milk serves as an important component in shaping the health of infant short term and long term as it harbours ideal balance of nutrients and the abundance of microbes which further acts as perfect food and an optimum medium for growth and development of immunity. Among all bioactive components present in milk, HMOs (Human Milk Oligosaccharides) presents chemical, microbial and medical importance. HMOs form a category of nondigestible, unconjugated, multifunctional and structurally glyans which resist gastrointestinal hydrolysis by gastric acidity and are not absorbable in significant amounts. Thus, allows HMOs to reach infant gut and produce a variety of beneficial effects. HMO’s acts as substrate for various useful bacteria like Bifidobacterium sp. where they are fermented in intestine. Apart from the nutritional role of HMOs in the intestinal microbiota of infants, there is increasing evidence that their interaction with pathogens is important in terms of reducing infection, for example HMOs exhibit bacteriostatic properties against group B Streptococcus (GBS). HMOs play a valuable role in development and maturation of the immune response by activating the expression of multiple cytokines and chemokines, adhesion molecules and receptors, thus maturing the naive immunity in infants. Any deviant in early microbial colonization in new-borns may lead to autoimmune diseases such as diabetes, inflammatory bowel disease, atopy, and other severe health conditions. It is known, that mother microbiome serves as reservoir in transmitting the microbes to infants. However, the exact source and route of infant pioneering microbes are poorly understood. Hence, to address this we propose a study of how different body sites of mother help in shaping the early microbiome of infant. The proposed longitudinal study will compare the effect of different maternal microbial communities (gut, breast milk and areolar skin) on the development of infant’s gut and oral microbiome. Moreover, to address this we have proposed an animal study of how different body sites of mother Balb/c mice help in shaping the early microbiome of infant mice. The proposed longitudinal study will compare the effect of different maternal microbial communities (gut, breast milk and areolar skin) on the development of infant’s gut and oral microbiome through high throughput species level targeted metagenomics (16S rRNA gene sequencing). For this purpose, fluorescently tagged specific bacterial stains will be transformed with a plasmid and subsequently, the transformed strains will be orally administered to pregnant mice. This mice model will allow the visualization, isolation, and detection of the transformed bacteria in different body locations, including mammary tissue and milk and hence reinforcing the hypothesis that physiological translocation of maternal bacteria during pregnancy and lactation may contribute to the composition of the microbiota of infant mice.",
   },
   {
     code: "INSACOG",
@@ -104,7 +133,7 @@ export const researchTracks: ResearchTrack[] = [
     summary:
       "Investigating gut–brain axis dysregulation in individuals with autism spectrum disorder.",
     detail:
-      "Our main goal is to understand how the microbiome present in the gastrointestinal tract affects neurodevelopmental disorders such as autism spectrum disorder. Microbes in the body produce secondary metabolites such as short-chain fatty acids that directly regulate brain gene expression, and we quantify these alongside community profiles to trace plausible mechanistic links.",
+      "Our main goal is to understand how the microbiome present in the gastrointestinal tract affects neurodevelopmental disorders such as autism spectrum disorder. Microbes in the body produce secondary metabolites such as short-chain fatty acids that directly regulate brain gene expression, and we quantify these alongside community profiles to trace plausible mechanistic links. During the last decade or so, clinical as well as animal studies linked gut microbiota with many psychiatric disorders. Gut microbial dynamics is an enormously strong, intrinsic, biologically active non-genetic factor. It may be suggested that the microbiota may undertake epigenetic events through its impact on metabolism. In the current study, we are aiming to investigate the possibility of gut microbial changes affecting the brain epigenetic events which could be leading to regulation of downstream target genes implicated in neuronal communication and synaptic plasticity using rodent animal model. With the importance of epigenetics in shaping the experience-induced brain functions, it is paramount to establish the link, in gut microbiota and brain epigenetics. Our goal is to identify the epigenetic signatures of neuronal plasticity drawn in by gut microbiota with potential probiotic characteristics in the neurocircuitry of emotion and cognition, i.e., amygdala and hippocampus. Whole genome-wide epigenetic changes and whole metagenomic sequencing will be employed to establish the correlations in the gut microbiome and epigenetic changes in the brain of behaving animals. In addition, the observations drawn through these studies will be further employed to draw the mechanistic molecular model operative in behavioural implications of probiotics. ",
   },
 ];
 
@@ -115,432 +144,711 @@ export type Publication = {
   year: number;
   doi?: string;
   selected?: boolean;
+  topic: PublicationTopic;
 };
+
+export type PublicationTopic =
+  | "Human Microbiome & Disease"
+  | "Gluten-Related Disorders"
+  | "Bioinformatics & Multi-omics"
+  | "Pathogen Genomics"
+  | "Environmental Microbiology";
+
+export const publicationTopics: PublicationTopic[] = [
+  "Human Microbiome & Disease",
+  "Gluten-Related Disorders",
+  "Bioinformatics & Multi-omics",
+  "Pathogen Genomics",
+  "Environmental Microbiology",
+];
 
 export const publications: Publication[] = [
   {
     title:
       "Heart failure severity closely correlates with intestinal dysbiosis and subsequent metabolomic alterations",
-    authors: "Spehlmann, M. E., Rangrez, A. Y., Dhotre, D. P., Schmiedel, N., Chavan, N., Bang, C., … Frey, N.",
+    authors:
+      "Spehlmann, M. E., Rangrez, A. Y., Dhotre, D. P., Schmiedel, N., Chavan, N., Bang, C., … Frey, N.",
     venue: "Biomedicines 10(4), 809",
     year: 2022,
+    topic: "Human Microbiome & Disease",
     doi: "10.3390/biomedicines10040809",
     selected: true,
   },
   {
     title:
       "MicFunPred: A conserved approach to predict functional profiles from 16S rRNA gene sequence data",
-    authors: "Mongad, D. S., Chavan, N. S., Narwade, N. P., Dixit, K., Shouche, Y. S., Dhotre, D. P.",
+    authors:
+      "Mongad, D. S., Chavan, N. S., Narwade, N. P., Dixit, K., Shouche, Y. S., Dhotre, D. P.",
     venue: "Genomics 113(6), 3635–3643",
     year: 2021,
+    topic: "Bioinformatics & Multi-omics",
     doi: "10.1016/j.ygeno.2021.08.016",
     selected: true,
   },
   {
     title:
       "Gut, oral and skin microbiome of Indian patrilineal families reveal perceptible association with age",
-    authors: "Chaudhari, D. S., Dhotre, D. P., Agarwal, D. M., Gaike, A. H., Bhalerao, D., Jadhav, P., … Shouche, Y. S.",
+    authors:
+      "Chaudhari, D. S., Dhotre, D. P., Agarwal, D. M., Gaike, A. H., Bhalerao, D., Jadhav, P., … Shouche, Y. S.",
     venue: "Scientific Reports 10(1), 5685",
     year: 2020,
+    topic: "Human Microbiome & Disease",
     doi: "10.1038/s41598-020-62195-5",
     selected: true,
   },
   {
     title:
       "The gut microbial diversity of newly diagnosed diabetics but not of prediabetics is significantly different from that of healthy nondiabetics",
-    authors: "Gaike, A. H., Paul, D., Bhute, S., Dhotre, D. P., Pande, P., Upadhyaya, S., … Shouche, Y. S.",
+    authors:
+      "Gaike, A. H., Paul, D., Bhute, S., Dhotre, D. P., Pande, P., Upadhyaya, S., … Shouche, Y. S.",
     venue: "mSystems 5(2), e00578-19",
     year: 2020,
+    topic: "Human Microbiome & Disease",
     doi: "10.1128/msystems.00578-19",
     selected: true,
   },
   {
-    title: "Comparative genomics of whole-cell pertussis vaccine strains from India",
-    authors: "Alai, S., Ghattargi, V. C., Gautam, M., Patel, K., Pawar, S. P., Dhotre, D. P., … Gairola, S.",
+    title:
+      "Comparative genomics of whole-cell pertussis vaccine strains from India",
+    authors:
+      "Alai, S., Ghattargi, V. C., Gautam, M., Patel, K., Pawar, S. P., Dhotre, D. P., … Gairola, S.",
     venue: "BMC Genomics 21, 1–15",
     year: 2020,
+    topic: "Pathogen Genomics",
     doi: "10.1186/s12864-020-6724-8",
     selected: true,
   },
   {
-    title: "Sieving out non-celiac gluten sensitivity amongst patients with irritable bowel syndrome",
-    authors: "Ahmed, A., Dixit, K., Singh, A., Agarwal, A., Mehtab, W., Prasad, S., Rajput, M. S., et al.",
+    title:
+      "Sieving out non-celiac gluten sensitivity amongst patients with irritable bowel syndrome",
+    authors:
+      "Ahmed, A., Dixit, K., Singh, A., Agarwal, A., Mehtab, W., Prasad, S., Rajput, M. S., et al.",
     venue: "Digestive and Liver Disease",
     year: 2023,
-  },
-  {
-    title:
-      "Site-specific microbial signatures in non-celiac gluten sensitivity and irritable bowel syndrome",
-    authors: "Dixit, K., Ahmed, A., Singh, A., Mehtab, W., Chauhan, A., Ahuja, V., Shouche, Y., Dhotre, D., Makharia, G. K.",
-    venue: "Gastroenterology 164(6), S-923",
-    year: 2023,
-  },
-  {
-    title:
-      "Indian sewage microbiome has unique community characteristics and potential for population-level disease predictions",
-    authors: "Singh, K. S., Paul, D., Gupta, A., Dhotre, D., Klawonn, F., Shouche, Y.",
-    venue: "Science of The Total Environment 858, 160178",
-    year: 2023,
-  },
-  {
-    title:
-      "High antibiotic resistance in Indian sewage shows distinct trends and might be disjoint from in-situ antibiotic levels",
-    authors: "Singh, K. S., Keer, A., Zed, A., Jasmeen, R., Mishra, K., Mourya, N., Paul, D., Dhotre, D., Shouche, Y.",
-    venue: "Water, Air, & Soil Pollution 234(7), 467",
-    year: 2023,
-  },
-  {
-    title:
-      "Prokaryotic communities adapted to microhabitats on the Indian lotus (Nelumbo nucifera) growing in the high-altitude urban Dal Lake",
-    authors: "Chaudhari, D., Kiran, S., Choudhary, A., Silveira, K., Narwade, N., Dhotre, D., Khazir, J., Mir, B. A., Shouche, Y. S., Rahi, P.",
-    venue: "International Microbiology 26(2), 257–267",
-    year: 2023,
-  },
-  {
-    title:
-      "Bacterial communities and diversity of Western Ghats soil: A study of a biodiversity hotspot",
-    authors: "Ghare, U., Narvekar, S., Lodha, T., Mallebhari, R., Dastager, S., Barvkar, V. T., Dhotre, D., Karmalkar, N. R., Pable, A. A.",
-    venue: "Current Microbiology 80(4), 108",
-    year: 2023,
+    topic: "Gluten-Related Disorders",
   },
   {
     title:
       "Recent advances in production and applications of ectoine, a compatible solute of industrial relevance",
-    authors: "Kadam, P., Khisti, M., Ravishankar, V., Barvkar, V., Dhotre, D., Sharma, A., Shouche, Y., Zinjarde, S.",
+    authors:
+      "Kadam, P., Khisti, M., Ravishankar, V., Barvkar, V., Dhotre, D., Sharma, A., Shouche, Y., Zinjarde, S.",
     venue: "Bioresource Technology, 130016",
     year: 2023,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "High antibiotic resistance in Indian sewage shows distinct trends and might be disjoint from in-situ antibiotic levels",
+    authors:
+      "Singh, K. S., Keer, A., Zed, A., Jasmeen, R., Mishra, K., Mourya, N., Paul, D., Dhotre, D., Shouche, Y.",
+    venue: "Water, Air, & Soil Pollution 234(7), 467",
+    year: 2023,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Mo1869 Site-specific microbial signatures in non-celiac gluten sensitivity and irritable bowel syndrome",
+    authors:
+      "Dixit, K., Ahmed, A., Singh, A., Mehtab, W., Chauhan, A., Ahuja, V., Shouche, Y., Dhotre, D., Makharia, G. K.",
+    venue: "Gastroenterology 164(6), S-923",
+    year: 2023,
+    topic: "Gluten-Related Disorders",
+  },
+  {
+    title:
+      "Prokaryotic communities adapted to microhabitats on the Indian lotus (Nelumbo nucifera) growing in the high-altitude urban Dal Lake",
+    authors:
+      "Chaudhari, D., Kiran, S., Choudhary, A., Silveira, K., Narwade, N., Dhotre, D., Khazir, J., Mir, B. A., Shouche, Y. S., Rahi, P.",
+    venue: "International Microbiology 26(2), 257–267",
+    year: 2023,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Bacterial Communities and Diversity of Western Ghats Soil: A Study of a Biodiversity Hotspot",
+    authors:
+      "Ghare, U., Narvekar, S., Lodha, T., Mallebhari, R., Dastager, S., Barvkar, V. T., Dhotre, D., Karmalkar, N. R., Pable, A. A.",
+    venue: "Current Microbiology 80(4), 108",
+    year: 2023,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Indian sewage microbiome has unique community characteristics and potential for population-level disease predictions",
+    authors:
+      "Singh, K. S., Paul, D., Gupta, A., Dhotre, D., Klawonn, F., Shouche, Y.",
+    venue: "Science of The Total Environment 858, 160178",
+    year: 2023,
+    topic: "Human Microbiome & Disease",
+  },
+  {
+    title:
+      "Corrigendum: Diversity of resistant determinants, virulence factors, and mobile genetic elements in Acinetobacter baumannii from India: A comprehensive in silico genome analysis",
+    authors:
+      "Kumkar, S. N., Kamble, E. E., Chavan, N. S., Dhotre, D. P., Pardesi, K. R.",
+    venue: "Frontiers in Cellular and Infection Microbiology 12, 1130394",
+    year: 2023,
+    topic: "Pathogen Genomics",
   },
   {
     title:
       "Diversity of resistant determinants, virulence factors, and mobile genetic elements in Acinetobacter baumannii from India: A comprehensive in silico genome analysis",
-    authors: "Kumkar, S. N., Kamble, E. E., Chavan, N. S., Dhotre, D. P., Pardesi, K. R.",
+    authors:
+      "Kumkar, S. N., Kamble, E. E., Chavan, N. S., Dhotre, D. P., Pardesi, K. R.",
     venue: "Frontiers in Cellular and Infection Microbiology 12, 997897",
     year: 2022,
-  },
-  {
-    title: "Characterization of Bordetella pertussis strains isolated from India",
-    authors: "Alai, S., Gautam, M., Palkar, S., Oswal, J., Gairola, S., Dhotre, D. P.",
-    venue: "Pathogens 11(7), 794",
-    year: 2022,
-  },
-  {
-    title: "Dataset of ileum bacterial diversity in mice after heart failure due to pressure overload",
-    authors: "Spehlmann, M. E., Dhotre, D. P., Schmiedel, N., Chavan, N., Bang, C., Rangrez, A. Y.",
-    venue: "Data in Brief 44, 108498",
-    year: 2022,
-  },
-  {
-    title: "Paenibacillus oleatilyticus sp. nov., isolated from soil",
-    authors: "Chauhan, N. S., Joseph, N., Shaligram, S., Chavan, N., Joshi, A., Dhotre, D., Lodha, T., Shouche, Y.",
-    venue: "Archives of Microbiology 204(8), 516",
-    year: 2022,
+    topic: "Pathogen Genomics",
   },
   {
     title:
-      "Whole-genome sequencing of the tropical marine bacterium Nocardiopsis dassonvillei NCIM 5124, containing the ectoine biosynthesis gene cluster ectABC",
-    authors: "Kadam, P., Kajale, S., Sharma, A., Dhotre, D., Barvkar, V., Shouche, Y., Zinjarde, S.",
+      "Whole-Genome Sequencing of the Tropical Marine Bacterium Nocardiopsis dassonvillei NCIM 5124, Containing the Ectoine Biosynthesis Gene Cluster ectABC",
+    authors:
+      "Kadam, P., Kajale, S., Sharma, A., Dhotre, D., Barvkar, V., Shouche, Y., Zinjarde, S.",
     venue: "Microbiology Resource Announcements 11(10), e00435-22",
     year: 2022,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "A microcosm model for the study of microbial community shift and carbon emission from landfills",
-    authors: "Sagar, I., Nimonkar, Y., Dhotre, D., Shouche, Y., Ranade, D., Dewala, S., Prakash, O.",
-    venue: "Indian Journal of Microbiology",
+    title:
+      "Dataset of ileum bacterial diversity in mice after heart failure due to pressure overload",
+    authors:
+      "Spehlmann, M. E., Dhotre, D. P., Schmiedel, N., Chavan, N., Bang, C., Rangrez, A. Y.",
+    venue: "Data in Brief 44, 108498",
     year: 2022,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Mo1869 SITE-SPECIFIC MICROBIAL SIGNATURES IN NON-CELIAC GLUTEN SENSITIVITY AND IRRITABLE BOWEL SYNDROME",
-    authors: "Dixit, Kunal, Anam Ahmed, Alka Singh, Wajiha Mehtab, Ashish Chauhan, Vineet Ahuja, Yogesh Shouche, Dhiraj Dhotre , Govind K. Makharia",
-    venue: "Gastroenterology 164, no. 6",
-    year: 2023,
-  },
-  {
-    title: "Corrigendum: Diversity of resistant determinants, virulence factors, and mobile genetic elements in Acinetobacter baumannii from India: A comprehensive in silico genome analysis",
-    authors: "Kumkar, Shital N., Ekta E. Kamble, Nikeeta S. Chavan, Dhiraj P. Dhotre , Karishma R. Pardesi",
-    venue: "Frontiers in Cellular and Infection Microbiology 12",
-    year: 2023,
-  },
-  {
-    title: "False-positive detection of Group B Streptococcus (GBS) in chromogenic media (Strep B Carrot Broth) due to presence of Enterococcus faecalis in High Vaginal swabs",
-    authors: "Singh, Abhishek, Atahar Husein, Salomi Singh, Vikas Ghattargi, Dhiraj Dhotre , Yogesh S. Shouche, Stacy Colaco et al.",
-    venue: "Journal of Medical Microbiology 71, no. 8",
+    title:
+      "False-positive detection of Group B Streptococcus (GBS) in chromogenic media (Strep B Carrot Broth) due to presence of Enterococcus faecalis in High Vaginal swabs",
+    authors:
+      "Singh, A., Husein, A., Singh, S., Ghattargi, V., Dhotre, D., Shouche, Y. S., Colaco, S., et al.",
+    venue: "Journal of Medical Microbiology 71(8), 001577",
     year: 2022,
+    topic: "Pathogen Genomics",
+  },
+  {
+    title: "Paenibacillus oleatilyticus sp. nov., isolated from soil",
+    authors:
+      "Chauhan, N. S., Joseph, N., Shaligram, S., Chavan, N., Joshi, A., Dhotre, D., Lodha, T., Shouche, Y.",
+    venue: "Archives of Microbiology 204(8), 516",
+    year: 2022,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Characterization of Bordetella pertussis Strains Isolated from India",
+    authors:
+      "Alai, S., Gautam, M., Palkar, S., Oswal, J., Gairola, S., Dhotre, D. P.",
+    venue: "Pathogens 11(7), 794",
+    year: 2022,
+    topic: "Pathogen Genomics",
+  },
+  {
+    title:
+      "A Microcosm Model for the Study of Microbial Community Shift and Carbon Emission from Landfills",
+    authors:
+      "Sagar, I., Nimonkar, Y., Dhotre, D., Shouche, Y., Ranade, D., Dewala, S., Prakash, O.",
+    venue: "Indian Journal of Microbiology, 1–9",
+    year: 2022,
+    topic: "Environmental Microbiology",
   },
   {
     title: "Probiotics: A Mainstream Therapy for the Disease Suppression",
-    authors: "Ghattargi, Vikas C., Yogesh S. Shouche, Prashant K. Dhakephalkar, Praveen Rao, Venkata Ramana, Dhiraj P. Dhotre , Vikram B. Lanjekar",
-    venue: "Publication details on request",
+    authors:
+      "Ghattargi, V. C., Shouche, Y. S., Dhakephalkar, P. K., Rao, P., Ramana, V., Dhotre, D. P., Lanjekar, V. B.",
+    venue: "Probiotic Research in Therapeutics, 257–273",
     year: 2022,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Rectal administration of buttermilk processed with medicinal plants alters gut microbiome in obese individuals",
-    authors: "Mane, Sarika, Kunal K. Dixit, Nidhi Lathwal, Dhiraj Dhotre , Priyadarshani Kadus, Yogesh S. Shouche, Supriya Bhalerao",
-    venue: "Journal of Diabetes & Metabolic Disorders 20, no. 2",
+    title:
+      "Rectal administration of buttermilk processed with medicinal plants alters gut microbiome in obese individuals",
+    authors:
+      "Mane, S., Dixit, K. K., Lathwal, N., Dhotre, D., Kadus, P., Shouche, Y. S., Bhalerao, S.",
+    venue: "Journal of Diabetes & Metabolic Disorders 20(2), 1415–1427",
     year: 2021,
+    topic: "Human Microbiome & Disease",
   },
   {
     title: "Restoration of dysbiotic human gut microbiome for homeostasis",
-    authors: "Dixit, Kunal, Diptaraj Chaudhari, Dhiraj Dhotre , Yogesh Shouche, Sunil Saroj",
-    venue: "Life Sciences 278",
+    authors: "Dixit, K., Chaudhari, D., Dhotre, D., Shouche, Y., Saroj, S.",
+    venue: "Life Sciences 278, 119622",
     year: 2021,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Integrated Genomic and Functional Characterization of the Anti-diabetic Potential of Arthrobacter sp. SW1",
-    authors: "Shaligram, Shraddha, Nitin P. Narwade, Shreyas V. Kumbhare, Manobjyoti Bordoloi, Kashyap J. Tamuli, Shyamalendu Nath, T. Parimelazhagan et al.",
-    venue: "Current Microbiology 78, no. 7",
+    title:
+      "Integrated Genomic and Functional Characterization of the Anti-diabetic Potential of Arthrobacter sp. SW1",
+    authors:
+      "Shaligram, S., Narwade, N. P., Kumbhare, S. V., Bordoloi, M., Tamuli, K. J., Nath, S., Parimelazhagan, T., et al.",
+    venue: "Current Microbiology 78(7), 2577–2588",
     year: 2021,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Disruptions in oral and nasal microbiota in biomass and tobacco smoke associated chronic obstructive pulmonary disease",
-    authors: "Agarwal, Dhiraj M., Dhiraj P. Dhotre , Shreyas V. Kumbhare, Akshay H. Gaike, Bill B. Brashier, Yogesh S. Shouche, Sanjay K. Juvekar, Sundeep S. Salvi",
-    venue: "Archives of Microbiology 203",
+    title:
+      "Disruptions in oral and nasal microbiota in biomass and tobacco smoke associated chronic obstructive pulmonary disease",
+    authors:
+      "Agarwal, D. M., Dhotre, D. P., Kumbhare, S. V., Gaike, A. H., Brashier, B. B., Shouche, Y. S., Juvekar, S. K., Salvi, S. S.",
+    venue: "Archives of Microbiology 203, 2087–2099",
     year: 2021,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Contrasting composition, diversity and predictive metabolic potential of the rhizobacterial microbiomes associated with native and invasive Prosopis congeners",
-    authors: "Kaushik, Rishabh, Maharaj K. Pandit, Laura A. Meyerson, Diptaraj S. Chaudhari, Meesha Sharma, Dhiraj Dhotre , Yogesh S. Shouche",
-    venue: "Current Microbiology 78",
+    title:
+      "Contrasting composition, diversity and predictive metabolic potential of the rhizobacterial microbiomes associated with native and invasive Prosopis congeners",
+    authors:
+      "Kaushik, R., Pandit, M. K., Meyerson, L. A., Chaudhari, D. S., Sharma, M., Dhotre, D., Shouche, Y. S.",
+    venue: "Current Microbiology 78, 2051–2060",
     year: 2021,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Benchmarking of 16S rRNA gene databases using known strain sequences",
-    authors: "Dixit, Kunal, Dimple Davray, Diptaraj Chaudhari, Pratik Kadam, Rudresh Kshirsagar, Yogesh Shouche, Dhiraj Dhotre , Sunil D. Saroj",
-    venue: "Bioinformation 17, no. 3",
+    title:
+      "Benchmarking of 16S rRNA gene databases using known strain sequences",
+    authors:
+      "Dixit, K., Davray, D., Chaudhari, D., Kadam, P., Kshirsagar, R., Shouche, Y., Dhotre, D., Saroj, S. D.",
+    venue: "Bioinformation 17(3), 377",
     year: 2021,
+    topic: "Bioinformatics & Multi-omics",
   },
   {
-    title: "Bacterial communities associated with the biofilms formed in high-altitude brackish water Pangong Tso located in the Himalayan Plateau",
-    authors: "Chaudhari, Diptaraj S., Dhiraj P. Dhotre , Kunal Jani, Avinash Sharma, Yadvinder Singh, Yogesh S. Shouche, Praveen Rahi",
-    venue: "Current Microbiology 77",
+    title:
+      "Bioprospecting appraisal of Himalayan pindrow fir for pharmacological applications",
+    authors:
+      "Assad, R., Reshi, Z. A., Mir, S. H., Rashid, I., Shouche, Y., Dhotre, D.",
+    venue: "Phytomedicine, 461–482. Academic Press",
+    year: 2021,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Bacterial communities associated with the biofilms formed in high-altitude brackish water Pangong Tso located in the Himalayan Plateau",
+    authors:
+      "Chaudhari, D. S., Dhotre, D. P., Jani, K., Sharma, A., Singh, Y., Shouche, Y. S., Rahi, P.",
+    venue: "Current Microbiology 77, 4072–4084",
     year: 2020,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Draft genome sequences of two phytoplasma strains associated with sugarcane grassy shoot (SCGS) and bermuda grass white leaf (BGWL) diseases",
-    authors: "Kirdat, Kiran, Bhavesh Tiwarekar, Vipool Thorat, Nitin Narawade, Dhiraj Dhotre , Shivaji Sathe, Yogesh Shouche, Amit Yadav",
-    venue: "Molecular plant-microbe interactions 33, no. 5",
+    title:
+      "Draft genome sequences of two phytoplasma strains associated with sugarcane grassy shoot (SCGS) and bermuda grass white leaf (BGWL) diseases",
+    authors:
+      "Kirdat, K., Tiwarekar, B., Thorat, V., Narawade, N., Dhotre, D., Sathe, S., Shouche, Y., Yadav, A.",
+    venue: "Molecular Plant-Microbe Interactions 33(5), 715–717",
     year: 2020,
+    topic: "Pathogen Genomics",
   },
   {
-    title: "Treatment of industrial effluents and assessment of their impact on the structure and function of microbial diversity in a unique Anoxic-Aerobic sequential batch reactor (AnASBR)",
-    authors: "Jena, Jyotsnarani, Nitin Narwade, Trupti Das, Dhiraj Dhotre , Ujjaini Sarkar, Yogesh Souche",
-    venue: "Journal of environmental management 261",
+    title:
+      "Treatment of industrial effluents and assessment of their impact on the structure and function of microbial diversity in a unique Anoxic-Aerobic sequential batch reactor (AnASBR)",
+    authors:
+      "Jena, J., Narwade, N., Das, T., Dhotre, D., Sarkar, U., Souche, Y.",
+    venue: "Journal of Environmental Management 261, 110241",
     year: 2020,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Nitrincola tapanii sp. nov., a novel alkaliphilic bacterium from An Indian Soda Lake",
-    authors: "Joshi, Amaraja, Sonia Thite, Dhiraj Dhotre , Manju Moorthy, Neetha Joseph, V. Venkata Ramana, Yogesh Shouche",
-    venue: "International journal of systematic and evolutionary microbiology 70, no. 2",
+    title:
+      "Nitrincola tapanii sp. nov., a novel alkaliphilic bacterium from an Indian soda lake",
+    authors:
+      "Joshi, A., Thite, S., Dhotre, D., Moorthy, M., Joseph, N., Ramana, V. V., Shouche, Y.",
+    venue:
+      "International Journal of Systematic and Evolutionary Microbiology 70(2), 1106–1111",
     year: 2020,
+    topic: "Environmental Microbiology",
   },
   {
     title: "Role of ectomycorrhizal biotechnology in pesticide remediation",
-    authors: "Assad, Rezwana, Zafar Ahmad Reshi, Irfan Rashid, Yogesh Shouche, Dhiraj Dhotre",
-    venue: "Bioremediation and Biotechnology, Vol 3: Persistent and Recalcitrant Toxic Substances",
+    authors: "Assad, R., Reshi, Z. A., Rashid, I., Shouche, Y., Dhotre, D.",
+    venue:
+      "Bioremediation and Biotechnology, Vol 3: Persistent and Recalcitrant Toxic Substances, 315–330",
     year: 2020,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Repeated mild traumatic brain injury affects microbial diversity in rat jejunum",
-    authors: "Matharu, Dollwin, Dhiraj Dhotre , Nagalakshmi Balasubramanian, Namrata Pawar, Sneha Sagarkar, Amul Sakharkar",
-    venue: "Journal of biosciences 44",
+    title:
+      "Human gut microbiome research in India: A retrospect and future opportunities",
+    authors: "Dhotre, D. P., Kumbhare, S. V., Sinkar, V. P., Shouche, Y. S.",
+    venue: "Proc Indian Natn Sci Acad 85(4), 1051–1066",
     year: 2019,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Understanding the association between the human gut, oral and skin microbiome and the Ayurvedic concept of prakriti",
-    authors: "Chaudhari, Diptaraj, Dhiraj Dhotre , Dhiraj Agarwal, Arun Gondhali, Anand Nagarkar, Vikas Lad, Ulhas Patil, Sanjay Juvekar, Vilas Sinkar, Yogesh Sh...",
-    venue: "Journal of Biosciences 44",
+    title:
+      "Per rectum administration of buttermilk processed with medicinal plants alters gut microbiota in obese individuals",
+    authors:
+      "Mane, S., Dixit, K., Lathwal, N., Dhotre, D., Shouche, Y., Kadus, P., Bhalerao, S.",
+    venue: "Journal of Gastroenterology and Hepatology 34, 272",
     year: 2019,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Microbiome and imputed metagenome study of crude and refined petroleum-oil-contaminated soils: Potential for hydrocarbon degradation and plant-growth promotion",
-    authors: "Auti, Asim M., Nitin P. Narwade, Neelima M. Deshpande, Dhiraj P. Dhotre",
-    venue: "Journal of Biosciences 44",
+    title:
+      "Repeated mild traumatic brain injury affects microbial diversity in rat jejunum",
+    authors:
+      "Matharu, D., Dhotre, D., Balasubramanian, N., Pawar, N., Sagarkar, S., Sakharkar, A.",
+    venue: "Journal of Biosciences 44, 1–12",
     year: 2019,
+    topic: "Human Microbiome & Disease",
+  },
+  {
+    title:
+      "Understanding the association between the human gut, oral and skin microbiome and the Ayurvedic concept of prakriti",
+    authors:
+      "Chaudhari, D., Dhotre, D., Agarwal, D., Gondhali, A., Nagarkar, A., Lad, V., Patil, U., Juvekar, S., Sinkar, V., Shouche, Y.",
+    venue: "Journal of Biosciences 44, 1–8",
+    year: 2019,
+    topic: "Human Microbiome & Disease",
+  },
+  {
+    title:
+      "Microbiome and imputed metagenome study of crude and refined petroleum-oil-contaminated soils: Potential for hydrocarbon degradation and plant-growth promotion",
+    authors: "Auti, A. M., Narwade, N. P., Deshpande, N. M., Dhotre, D. P.",
+    venue: "Journal of Biosciences 44, 1–16",
+    year: 2019,
+    topic: "Environmental Microbiology",
   },
   {
     title: "Genome sequence of Bordetella pertussis vaccine strain BP 165",
-    authors: "Alai, Shweta, Vikas C. Ghattargi, Manish Gautam, Dhiraj P. Dhotre , Krunal Patel, Shrikant P. Pawar, Rakesh Kumar, Umesh Shaligram, Deepti Deobagka...",
-    venue: "Microbiology Resource Announcements 8, no. 16",
+    authors:
+      "Alai, S., Ghattargi, V. C., Gautam, M., Dhotre, D. P., Patel, K., Pawar, S. P., Kumar, R., Shaligram, U., Deobagkar, D., Gairola, S.",
+    venue: "Microbiology Resource Announcements 8(16)",
     year: 2019,
+    topic: "Pathogen Genomics",
   },
   {
     title: "Mining the core gut microbiome from a sample Indian population",
-    authors: "Kulkarni, Abhijit S., Shreyas V. Kumbhare, Dhiraj P. Dhotre , Yogesh S. Shouche",
-    venue: "Indian journal of microbiology 59",
+    authors: "Kulkarni, A. S., Kumbhare, S. V., Dhotre, D. P., Shouche, Y. S.",
+    venue: "Indian Journal of Microbiology 59, 90–95",
     year: 2019,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Comparison of small gut and whole gut microbiota of first-degree relatives with adult celiac disease patients and controls",
-    authors: "Bodkhe, Rahul, Sudarshan A. Shetty, Dhiraj P. Dhotre , Anil K. Verma, Khushbo Bhatia, Asha Mishra, Gurvinder Kaur et al.",
-    venue: "Frontiers in microbiology",
+    title:
+      "Comparison of small gut and whole gut microbiota of first-degree relatives with adult celiac disease patients and controls",
+    authors:
+      "Bodkhe, R., Shetty, S. A., Dhotre, D. P., Verma, A. K., Bhatia, K., Mishra, A., Kaur, G., et al.",
+    venue: "Frontiers in Microbiology, 164",
     year: 2019,
+    topic: "Gluten-Related Disorders",
   },
   {
-    title: "Comparative genome analysis reveals key genetic factors associated with probiotic property in Enterococcus faecium strains",
-    authors: "Ghattargi, Vikas C., Meghana A. Gaikwad, Bharati S. Meti, Yogesh S. Nimonkar, Kunal Dixit, Om Prakash, Yogesh S. Shouche, Shrikant P. Pawar, Dhiraj...",
-    venue: "BMC genomics 19, no. 1",
+    title:
+      "Comparative genome analysis reveals key genetic factors associated with probiotic property in Enterococcus faecium strains",
+    authors:
+      "Ghattargi, V. C., Gaikwad, M. A., Meti, B. S., Nimonkar, Y. S., Dixit, K., Prakash, O., Shouche, Y. S., Pawar, S. P., Dhotre, D. P.",
+    venue: "BMC Genomics 19(1), 1–16",
     year: 2018,
+    topic: "Bioinformatics & Multi-omics",
   },
   {
-    title: "World’s largest mass bathing event influences the bacterial communities of Godavari, a holy river of India",
-    authors: "Jani, Kunal, Dhiraj Dhotre , Jayashree Bandal, Yogesh Shouche, Mangesh Suryavanshi, Vinay Rale, Avinash Sharma",
-    venue: "Microbial ecology 76",
+    title:
+      "World's largest mass bathing event influences the bacterial communities of Godavari, a holy river of India",
+    authors:
+      "Jani, K., Dhotre, D., Bandal, J., Shouche, Y., Suryavanshi, M., Rale, V., Sharma, A.",
+    venue: "Microbial Ecology 76, 706–718",
     year: 2018,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Effective biotransformation and detoxification of anthraquinone dye reactive blue 4 by using aerobic bacterial granules",
-    authors: "Chaudhari, Ashvini U., Dhiraj Paul, Dhiraj Dhotre , Kisan M. Kodam",
-    venue: "Water Research 122",
+    title:
+      "Comparison of Small Gut and Whole Gut Microbiota of First-Degree Relatives with Adult Celiac Disease Patients and Controls",
+    authors:
+      "Shetty, S. A., Bodkhe, R., Dhotre, D. P., Verma, A. K., Bhatia, K., Mishra, A., Kaur, G., et al.",
+    venue: "bioRxiv, 227272",
     year: 2017,
+    topic: "Gluten-Related Disorders",
   },
   {
-    title: "A cross-sectional comparative study of gut bacterial community of Indian and Finnish children",
-    authors: "Kumbhare, Shreyas V., Himanshu Kumar, Somak P. Chowdhury, Dhiraj P. Dhotre , Akihito Endo, Jaana Mättö, Arthur C. Ouwehand et al.",
-    venue: "Scientific reports 7, no. 1",
+    title:
+      "Effective biotransformation and detoxification of anthraquinone dye reactive blue 4 by using aerobic bacterial granules",
+    authors: "Chaudhari, A. U., Paul, D., Dhotre, D., Kodam, K. M.",
+    venue: "Water Research 122, 603–613",
     year: 2017,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Induced sputum microbiome in smoker and non-smoker COPD subjects and its association with lung function in Indian subjects",
-    authors: "Ghosh, Baishakhi, Akshay Gaike, Shreyas Kumbhare, Kanchan Pyasi, Jyoti Londhe, Vandana Vincent, Bill Brashier et al.",
-    venue: "Publication details on request",
+    title:
+      "A cross-sectional comparative study of gut bacterial community of Indian and Finnish children",
+    authors:
+      "Kumbhare, S. V., Kumar, H., Chowdhury, S. P., Dhotre, D. P., Endo, A., Mättö, J., Ouwehand, A. C., et al.",
+    venue: "Scientific Reports 7(1), 10555",
     year: 2017,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Potential of health and demographic surveillance system in asthma and chronic obstructive pulmonary disease microbiome research",
-    authors: "Agarwal, Dhiraj, Dhiraj Dhotre , Rutuja Patil, Yogesh Shouche, Sanjay Juvekar, Sundeep Salvi",
-    venue: "Frontiers in public health 5",
+    title:
+      "Induced sputum microbiome in smoker and non-smoker COPD subjects and its association with lung function in Indian subjects",
+    authors:
+      "Ghosh, B., Gaike, A., Kumbhare, S., Pyasi, K., Londhe, J., Vincent, V., Brashier, B., et al.",
+    venue: "(2017)",
     year: 2017,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Reclassification of Phycicola gilvus (Lee et al. 2008) and Leifsonia pindariensis (Reddy et al. 2008) as Microterricola gilva comb. nov. and Microterricola pindariensis comb. nov. and emended description of the genus Microterricola",
-    authors: "Dhotre, Dhiraj Prakash , Vaheesan Rajabal, Avinash Sharma, Girish J. Kulkarni, Om Prakash, Venkata Ramana Vemuluri, Neetha Joseph, Praveen Rahi, Yo...",
-    venue: "International Journal of Systematic and Evolutionary Microbiology 67, no. 8",
+    title:
+      "Potential of health and demographic surveillance system in asthma and chronic obstructive pulmonary disease microbiome research",
+    authors:
+      "Agarwal, D., Dhotre, D., Patil, R., Shouche, Y., Juvekar, S., Salvi, S.",
+    venue: "Frontiers in Public Health 5, 196",
     year: 2017,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Deep sequencing analysis of bacterial community structure of Soldhar hot spring, India",
-    authors: "Sharma, A., D. Paul, D. Dhotre , K. Jani, A. Pandey, Y. S. Shouche",
-    venue: "Microbiology 86",
+    title:
+      "Reclassification of Phycicola gilvus and Leifsonia pindariensis as Microterricola gilva comb. nov. and Microterricola pindariensis comb. nov. and emended description of the genus Microterricola",
+    authors:
+      "Dhotre, D. P., Rajabal, V., Sharma, A., Kulkarni, G. J., Prakash, O., Vemuluri, V. R., Joseph, N., Rahi, P., Shouche, Y. S.",
+    venue:
+      "International Journal of Systematic and Evolutionary Microbiology 67(8), 2766–2772",
     year: 2017,
+    topic: "Bioinformatics & Multi-omics",
   },
   {
-    title: "Genomic and functional features of the biosurfactant producing Bacillus sp. AM13",
-    authors: "Shaligram, Shraddha, Shreyas V. Kumbhare, Dhiraj P. Dhotre , Manohar G. Muddeshwar, Atya Kapley, Neetha Joseph, Hemant P. Purohit, Yogesh S. Shouch...",
-    venue: "Functional & integrative genomics 16",
+    title:
+      "Deep sequencing analysis of bacterial community structure of Soldhar hot spring, India",
+    authors:
+      "Sharma, A., Paul, D., Dhotre, D., Jani, K., Pandey, A., Shouche, Y. S.",
+    venue: "Microbiology 86, 136–142",
+    year: 2017,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Genomic and functional features of the biosurfactant producing Bacillus sp. AM13",
+    authors:
+      "Shaligram, S., Kumbhare, S. V., Dhotre, D. P., Muddeshwar, M. G., Kapley, A., Joseph, N., Purohit, H. P., Shouche, Y. S., Pawar, S. P.",
+    venue: "Functional & Integrative Genomics 16, 557–566",
     year: 2016,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Molecular characterization and meta-analysis of gut microbial communities illustrate enrichment of Prevotella and Megasphaera in Indian subjects",
-    authors: "Bhute, Shrikant, Pranav Pande, Sudarshan A. Shetty, Rahul Shelar, Sachin Mane, Shreyas V. Kumbhare, Ashwini Gawali et al.",
-    venue: "Frontiers in microbiology 7",
+    title:
+      "Molecular characterization and meta-analysis of gut microbial communities illustrate enrichment of Prevotella and Megasphaera in Indian subjects",
+    authors:
+      "Bhute, S., Pande, P., Shetty, S. A., Shelar, R., Mane, S., Kumbhare, S. V., Gawali, A., et al.",
+    venue: "Frontiers in Microbiology 7, 660",
     year: 2016,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Nitrincola alkalisediminis s p. nov., an alkaliphilic bacterium isolated from an alkaline lake",
-    authors: "Joshi, Amaraja, Sonia Thite, Girish Kulkarni, Dhiraj Dhotre , Neetha Joseph, V. Venkata Ramana, Ashish Polkade, Yogesh Shouche",
-    venue: "International Journal of Systematic and Evolutionary Microbiology 66, no. 3",
+    title:
+      "Nitrincola alkalisediminis sp. nov., an alkaliphilic bacterium isolated from an alkaline lake",
+    authors:
+      "Joshi, A., Thite, S., Kulkarni, G., Dhotre, D., Joseph, N., Ramana, V. V., Polkade, A., Shouche, Y.",
+    venue:
+      "International Journal of Systematic and Evolutionary Microbiology 66(3), 1254–1259",
     year: 2016,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Insights into diversity and imputed metabolic potential of bacterial communities in the continental shelf of Agatti Island",
-    authors: "Kumbhare, Shreyas V., Dhiraj P. Dhotre , Sunil Kumar Dhar, Kunal Jani, Deepak A. Apte, Yogesh S. Shouche, Avinash Sharma",
-    venue: "PLoS One 10, no. 6",
+    title:
+      "Insights into diversity and imputed metabolic potential of bacterial communities in the continental shelf of Agatti Island",
+    authors:
+      "Kumbhare, S. V., Dhotre, D. P., Dhar, S. K., Jani, K., Apte, D. A., Shouche, Y. S., Sharma, A.",
+    venue: "PLoS ONE 10(6), e0129864",
     year: 2015,
+    topic: "Environmental Microbiology",
   },
   {
     title: "Selenomonas",
-    authors: "Shouche, Yogesh S., Abhijit S. Dighe, Dhiraj P. Dhotre , Milind S. Patole, Dilip R. Ranade",
-    venue: "Bergey’s Manual of Systematics of Archaea and Bacteria",
+    authors:
+      "Shouche, Y. S., Dighe, A. S., Dhotre, D. P., Patole, M. S., Ranade, D. R.",
+    venue: "Bergey's Manual of Systematics of Archaea and Bacteria, 1–12",
     year: 2015,
+    topic: "Bioinformatics & Multi-omics",
   },
   {
-    title: "Distribution and molecular characterization of Wolbachia endosymbionts in Odonata (Insecta) from Central India by multigene approach",
-    authors: "Salunkhe, Rahul C., Dhiraj P. Dhotre , Bipinchandra K. Salunke, Vikas S. Patil, Vaibhav Mahale, Raymond J. Andrew, Milind S. Patole, Ketan P. Narkh...",
-    venue: "Current Science",
+    title:
+      "Distribution and molecular characterization of Wolbachia endosymbionts in Odonata (Insecta) from Central India by multigene approach",
+    authors:
+      "Salunkhe, R. C., Dhotre, D. P., Salunke, B. K., Patil, V. S., Mahale, V., Andrew, R. J., Patole, M. S., Narkhede, K. P., Shouche, Y. S.",
+    venue: "Current Science, 971–978",
     year: 2015,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Draft genome sequences of Yersinia pestis strains from the 1994 plague epidemic of Surat and 2002 Shimla outbreak in India",
-    authors: "Mahale, Kiran N., Pradyumna S. Paranjape, Nachiket P. Marathe, Dhiraj P. Dhotre , Somak Chowdhury, Sudarshan A. Shetty, Avinash Sharma et al.",
-    venue: "Indian journal of microbiology 54",
+    title:
+      "Draft genome sequences of Yersinia pestis strains from the 1994 plague epidemic of Surat and 2002 Shimla outbreak in India",
+    authors:
+      "Mahale, K. N., Paranjape, P. S., Marathe, N. P., Dhotre, D. P., Chowdhury, S., Shetty, S. A., Sharma, A., et al.",
+    venue: "Indian Journal of Microbiology 54, 480–482",
     year: 2014,
+    topic: "Pathogen Genomics",
   },
   {
-    title: "Characterization of bacterial community shift in human Ulcerative Colitis patients revealed by Illumina based 16S rRNA gene amplicon sequencing",
-    authors: "Walujkar, Sandeep A., Dhiraj P. Dhotre , Nachiket P. Marathe, Parimal S. Lawate, Renu S. Bharadwaj, Yogesh S. Shouche",
-    venue: "Gut pathogens 6, no. 1",
+    title:
+      "Characterization of bacterial community shift in human Ulcerative Colitis patients revealed by Illumina based 16S rRNA gene amplicon sequencing",
+    authors:
+      "Walujkar, S. A., Dhotre, D. P., Marathe, N. P., Lawate, P. S., Bharadwaj, R. S., Shouche, Y. S.",
+    venue: "Gut Pathogens 6(1), 1–11",
     year: 2014,
+    topic: "Human Microbiome & Disease",
   },
   {
     title: "Comparative genome analysis of Mosquito vector",
-    authors: "Dhotre, Dhiraj Prakash",
-    venue: "Publication details on request",
+    authors: "Dhotre, D. P.",
+    venue: "(2013)",
     year: 2013,
+    topic: "Bioinformatics & Multi-omics",
   },
   {
-    title: "Draft genome sequence of Methylophaga lonarensis MPLT, a haloalkaliphilic (non-methane-utilizing) methylotroph",
-    authors: "Shetty, Sudarshan A., Nachiket P. Marathe, Hitendra Munot, Chakkiath Paul Antony, Dhiraj P. Dhotre , J. Colin Murrell, Yogesh S. Shouche",
-    venue: "Genome announcements 1, no. 3",
+    title:
+      "Draft genome sequence of Methylophaga lonarensis MPLT, a haloalkaliphilic (non-methane-utilizing) methylotroph",
+    authors:
+      "Shetty, S. A., Marathe, N. P., Munot, H., Antony, C. P., Dhotre, D. P., Murrell, J. C., Shouche, Y. S.",
+    venue: "Genome Announcements 1(3)",
     year: 2013,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Transcriptome analysis of Anopheles stephensi embryo using expressed sequence tags",
-    authors: "Gokhale, Kaustubh, Deepak P. Patil, Dhiraj P. Dhotre , Rajnikant Dixit, Murlidhar J. Mendki, Milind S. Patole, Yogesh S. Shouche",
-    venue: "Journal of biosciences 38",
+    title:
+      "Transcriptome analysis of Anopheles stephensi embryo using expressed sequence tags",
+    authors:
+      "Gokhale, K., Patil, D. P., Dhotre, D. P., Dixit, R., Mendki, M. J., Patole, M. S., Shouche, Y. S.",
+    venue: "Journal of Biosciences 38, 301–309",
     year: 2013,
+    topic: "Bioinformatics & Multi-omics",
   },
   {
-    title: "Draft genome of Ochrobactrum intermedium strain M86 isolated from non-ulcer dyspeptic individual from India",
-    authors: "Kulkarni, Girish, Dhiraj Dhotre , Mahesh Dharne, Sudarshan Shetty, Somak Chowdhury, Vatsala Misra, Sriprakash Misra, Milind Patole, Yogesh Shouche",
-    venue: "Gut Pathogens 5, no. 1",
+    title:
+      "Draft genome of Ochrobactrum intermedium strain M86 isolated from non-ulcer dyspeptic individual from India",
+    authors:
+      "Kulkarni, G., Dhotre, D., Dharne, M., Shetty, S., Chowdhury, S., Misra, V., Misra, S., Patole, M., Shouche, Y.",
+    venue: "Gut Pathogens 5(1), 1–5",
     year: 2013,
+    topic: "Pathogen Genomics",
   },
   {
-    title: "Genome sequence of Janibacter hoylei MTCC8307, isolated from the stratospheric air",
-    authors: "Pawar, S. P., D. P. Dhotre , S. A. Shetty, S. P. Chowdhury, B. L. Chaudhari, Y. S. Shouche",
-    venue: "Publication details on request",
+    title:
+      "Genome sequence of Janibacter hoylei MTCC8307, isolated from the stratospheric air",
+    authors:
+      "Pawar, S. P., Dhotre, D. P., Shetty, S. A., Chowdhury, S. P., Chaudhari, B. L., Shouche, Y. S.",
+    venue: "(2012): 6629–6630",
     year: 2012,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Molecular analysis of gut microbiota in obesity among Indian individuals",
-    authors: "Patil, Deepak P., Dhiraj P. Dhotre , Sachin G. Chavan, Armiya Sultan, Dhawal S. Jain, Vikram B. Lanjekar, Jayshree Gangawani et al.",
-    venue: "Journal of biosciences 37",
+    title:
+      "Molecular analysis of gut microbiota in obesity among Indian individuals",
+    authors:
+      "Patil, D. P., Dhotre, D. P., Chavan, S. G., Sultan, A., Jain, D. S., Lanjekar, V. B., Gangawani, J., et al.",
+    venue: "Journal of Biosciences 37, 647–657",
     year: 2012,
+    topic: "Human Microbiome & Disease",
   },
   {
-    title: "Determination of Wolbachia diversity in butterflies from Western Ghats, India, by a multigene approach",
-    authors: "Salunke, Bipinchandra K., Rahul C. Salunkhe, Dhiraj P. Dhotre , Sandeep A. Walujkar, Avinash B. Khandagale, Rahul Chaudhari, Rakesh K. Chandode et al.",
-    venue: "Applied and Environmental Microbiology 78, no. 12",
+    title:
+      "Determination of Wolbachia diversity in butterflies from Western Ghats, India, by a multigene approach",
+    authors:
+      "Salunke, B. K., Salunkhe, R. C., Dhotre, D. P., Walujkar, S. A., Khandagale, A. B., Chaudhari, R., Chandode, R. K., et al.",
+    venue: "Applied and Environmental Microbiology 78(12), 4458–4467",
     year: 2012,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Diversity of Wolbachia in Odontotermes spp.(Termitidae) and Coptotermes heimi (Rhinotermitidae) using the multigene approach",
-    authors: "Salunke, Bipinchandra K., Rahul C. Salunkhe, Dhiraj P. Dhotre , Avinash B. Khandagale, Sandeep A. Walujkar, Gulab S. Kirwale, Hemant V. Ghate, Mili...",
-    venue: "FEMS microbiology letters 307, no. 1",
+    title:
+      "Diversity of Wolbachia in Odontotermes spp. (Termitidae) and Coptotermes heimi (Rhinotermitidae) using the multigene approach",
+    authors:
+      "Salunke, B. K., Salunkhe, R. C., Dhotre, D. P., Khandagale, A. B., Walujkar, S. A., Kirwale, G. S., Ghate, H. V., Patole, M. S., Shouche, Y. S.",
+    venue: "FEMS Microbiology Letters 307(1), 55–64",
     year: 2010,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Generation, annotation, and analysis of ESTs from midgut tissue of adult female Anopheles stephensi mosquitoes",
-    authors: "Patil, Deepak P., Santosh Atanur, Dhiraj P. Dhotre , D. Anantharam, Vineet S. Mahajan, Sandeep A. Walujkar, Rakesh K. Chandode et al.",
-    venue: "BMC genomics 10, no. 1",
+    title:
+      "Generation, annotation, and analysis of ESTs from midgut tissue of adult female Anopheles stephensi mosquitoes",
+    authors:
+      "Patil, D. P., Atanur, S., Dhotre, D. P., Anantharam, D., Mahajan, V. S., Walujkar, S. A., Chandode, R. K., et al.",
+    venue: "BMC Genomics 10(1), 1–12",
     year: 2009,
+    topic: "Bioinformatics & Multi-omics",
   },
   {
-    title: "The genus Selenomonas",
-    authors: "Shouche, Y., A. Dighe, D. Dhotre , M. Patole, D. Ranade",
-    venue: "Bergey’s Manual of Systematic Bacteriology 1106",
-    year: 2009,
-  },
-  {
-    title: "Molecular evidence and phylogenetic affiliations of Wolbachia in cockroaches",
-    authors: "Vaishampayan, Parag A., Dhiraj P. Dhotre , Rakeshkumar P. Gupta, Pritesh Lalwani, Hemant Ghate, Milind S. Patole, Yogesh S. Shouche",
-    venue: "Molecular phylogenetics and evolution 44, no. 3",
+    title:
+      "Molecular evidence and phylogenetic affiliations of Wolbachia in cockroaches",
+    authors:
+      "Vaishampayan, P. A., Dhotre, D. P., Gupta, R. P., Lalwani, P., Ghate, H., Patole, M. S., Shouche, Y. S.",
+    venue: "Molecular Phylogenetics and Evolution 44(3), 1346–1351",
     year: 2007,
+    topic: "Environmental Microbiology",
   },
   {
-    title: "Evaluation of mitochondrial 12S rRNA gene in the identification of Panthera pardus fusca (Meyer, 1794) from field-collected scat samples in the Western Ghats, Maharashtra, India",
-    authors: "Pandey, Prashant K., Dhiraj P. Dhotre , Mahesh S. Dharne, Ashok N. Khadse, Umesh I. Hiremath, Ravindra D. Chaudhari, Milind S. Patole, Yogesh S. Sh...",
-    venue: "Current Science",
+    title:
+      "Evaluation of mitochondrial 12S rRNA gene in the identification of Panthera pardus fusca (Meyer, 1794) from field-collected scat samples in the Western Ghats, Maharashtra, India",
+    authors:
+      "Pandey, P. K., Dhotre, D. P., Dharne, M. S., Khadse, A. N., Hiremath, U. I., Chaudhari, R. D., Patole, M. S., Shouche, Y. S.",
+    venue: "Current Science, 1129–1133",
     year: 2007,
+    topic: "Environmental Microbiology",
+  },
+];
+
+export type FeaturedPublication = {
+  title: string;
+  authors: string;
+  venue: string;
+  year: number;
+  doi?: string;
+  image: string;
+};
+
+export const featuredPublications: FeaturedPublication[] = [
+  {
+    title:
+      "Heart failure severity closely correlates with intestinal dysbiosis and subsequent metabolomic alterations",
+    authors: "Spehlmann, M. E., Rangrez, A. Y., Dhotre, D. P., et al.",
+    venue: "Biomedicines",
+    year: 2022,
+    doi: "10.3390/biomedicines10040809",
+    image: pubHeart,
+  },
+  {
+    title:
+      "MicFunPred: A conserved approach to predict functional profiles from 16S rRNA gene sequence data",
+    authors:
+      "Mongad, D. S., Chavan, N. S., Narwade, N. P., Dixit, K., Shouche, Y. S., Dhotre, D. P.",
+    venue: "Genomics",
+    year: 2021,
+    doi: "10.1016/j.ygeno.2021.08.016",
+    image: pubMicfun,
+  },
+  {
+    title:
+      "Gut, oral and skin microbiome of Indian patrilineal families reveal perceptible association with age",
+    authors: "Chaudhari, D. S., Dhotre, D. P., Agarwal, D. M., et al.",
+    venue: "Scientific Reports",
+    year: 2020,
+    doi: "10.1038/s41598-020-62195-5",
+    image: pubFamily,
+  },
+  {
+    title:
+      "The gut microbial diversity of newly diagnosed diabetics is significantly different from that of healthy nondiabetics",
+    authors: "Gaike, A. H., Paul, D., Bhute, S., Dhotre, D. P., et al.",
+    venue: "mSystems",
+    year: 2020,
+    doi: "10.1128/msystems.00578-19",
+    image: pubDiabetes,
+  },
+  {
+    title:
+      "Site-specific microbial signatures in non-celiac gluten sensitivity and irritable bowel syndrome",
+    authors:
+      "Dixit, K., Ahmed, A., Singh, A., et al., Dhotre, D., Makharia, G. K.",
+    venue: "Gastroenterology",
+    year: 2023,
+    image: pubGluten,
+  },
+  {
+    title:
+      "Indian sewage microbiome has unique community characteristics and potential for population-level disease predictions",
+    authors:
+      "Singh, K. S., Paul, D., Gupta, A., Dhotre, D., Klawonn, F., Shouche, Y.",
+    venue: "Science of The Total Environment",
+    year: 2023,
+    image: pubSewage,
   },
 ];
 
@@ -571,39 +879,57 @@ export const people: Person[] = [
     role: "Principal Investigator, Scientist 'E'",
     group: "pi",
     link: "/dhiraj-dhotre",
-    photo: assetUrl("/images/people/dhiraj-dhotre.jpg"),
+    photo: photoDhirajDhotre,
   },
   {
     slug: "niraj-rane",
     name: "Dr. Niraj Rane",
     role: "Project Scientist",
     group: "scientist",
-    photo: assetUrl("/images/people/niraj-rane.jpg"),
+    photo: photoNirajRane,
   },
-  { slug: "mitali-inamdar", name: "Mitali Inamdar", role: "Ph.D. Student", group: "student" },
   {
-    slug: "suyash-jadhav",
-    name: "Suyash Jadhav",
+    slug: "bhagyashree-karmarkar",
+    name: "Bhagyashree Karmarkar",
     role: "Ph.D. Student",
     group: "student",
-    photo: assetUrl("/images/people/suyash-jadhav.jpg"),
   },
-  { slug: "puja-ghosh", name: "Puja Ghosh", role: "Ph.D. Student", group: "student" },
   {
     slug: "harshada-pardeshi",
     name: "Harshada Pardeshi",
     role: "Ph.D. Student",
     group: "student",
-    photo: assetUrl("/images/people/harshada-pardeshi.jpg"),
   },
-  { slug: "bhagyashree-karmarkar", name: "Bhagyashree Karmarkar", role: "Ph.D. Student", group: "student", photo: assetUrl("/images/people/bhagyashree-karmarkar.jpg"), },
-  { slug: "hemangini-mahadeo", name: "Hemangini Mahadeo", role: "Technical Officer", group: "staff" },
+  {
+    slug: "mitali-inamdar",
+    name: "Mitali Inamdar",
+    role: "Ph.D. Student",
+    group: "student",
+  },
+  {
+    slug: "puja-ghosh",
+    name: "Puja Ghosh",
+    role: "Ph.D. Student",
+    group: "student",
+  },
+  {
+    slug: "suyash-jadhav",
+    name: "Suyash Jadhav",
+    role: "Ph.D. Student",
+    group: "student",
+    photo: photoSuyashJadhav,
+  },
+  {
+    slug: "hemangini-mahadeo",
+    name: "Hemangini Mahadeo",
+    role: "Technical Officer",
+    group: "staff",
+  },
   {
     slug: "tanaya-ghanvatkar",
     name: "Tanaya Ghanvatkar",
     role: "Project Staff",
     group: "staff",
-    photo: assetUrl("/images/people/tanaya-ghanvatkar.jpg"),
   },
 ];
 
@@ -611,28 +937,14 @@ export const alumni = [
   {
     name: "Dr. Dattatray S. Mongad",
     role: "Ph.D. Student",
-    photo: assetUrl("/images/people/dattatray-mongad.jpg"),
+    photo: photoDattatrayMongad,
   },
   {
     name: "Dr. Kunal Dixit",
     role: "Ph.D. Student",
-    photo: assetUrl("/images/people/kunal-dixit.jpg"),
+    photo: photoKunalDixit,
   },
 ];
-
-/** Candid lab-life photos for the scrolling gallery on the People page.
- *
- * Auto-discovered from src/assets/gallery — drop a new image file into that
- * folder (any name, jpg/jpeg/png/webp) and it will automatically appear in
- * the gallery on the next build. No code changes needed.
- */
-const galleryModules = import.meta.glob<{ default: string }>(
-  "../assets/gallery/*.{jpg,jpeg,png,webp}",
-  { eager: true },
-);
-export const galleryPhotos = Object.keys(galleryModules)
-  .sort()
-  .map((key) => galleryModules[key]!.default);
 
 /* ---------- Principal Investigator ---------- */
 
@@ -640,23 +952,24 @@ export const pi = {
   name: "Dr. Dhiraj Dhotre",
   title: "Principal Investigator, Scientist 'E'",
   institute: "National Centre for Cell Science, Pune",
+  photo: photoDhirajDhotre,
   about:
     "Dr. Dhiraj Dhotre is a bioinformatician with a research interest in the human microbiome. His lab investigates the role of the human microbiome in health and disease using genomics, metabolomics and culturomics approaches. He believes it is crucial to study the taxonomic, functional and metabolic structure of the microbiome to understand the true potential and consequences of alterations within it. His group generates high-throughput sequencing data and combines computational analyses of multi-dimensional omics data with molecular and in-vivo experimentation to understand the potential of the human microbiome in diagnostics and therapeutics.",
   experience: [
     {
       role: "Scientist \u2018E\u2019",
-      period: "present",
+      period: "Dec 2025 – present",
       place: "National Centre for Cell Science, Pune",
     },
     {
       role: "Scientist \u2018D\u2019",
-      period: "July 2021 – present",
+      period: "July 2021 – Dec 2025",
       place: "National Centre for Cell Science, Pune",
     },
     {
       role: "Senior Research Scientist",
       period: "Dec 2019 – July 2021",
-      place: "Reliance Life Sciences Pvt. Ltd., Navi Mumbai",
+      place: "Reliance Life Sciences Pvt. Ltd.",
     },
     {
       role: "Scientist \u2018C\u2019",
@@ -670,49 +983,133 @@ export const pi = {
     },
   ],
   education: [
-    { degree: "Ph.D. Biotechnology", period: "2006 – 2014", place: "Savitribai Phule Pune University (SPPU), Pune" },
-    { degree: "M.Sc. Bioinformatics", period: "2003 – 2005", place: "Bioinformatics Centre, SPPU, Pune" },
-    { degree: "B.Sc. Zoology", period: "1999 – 2003", place: "Mumbai University, Thane" },
+    {
+      degree: "Ph.D. Biotechnology",
+      period: "2006 – 2014",
+      place: "Savitribai Phule Pune University (SPPU), Pune",
+    },
+    {
+      degree: "M.Sc. Bioinformatics",
+      period: "2003 – 2005",
+      place: "Bioinformatics Centre, SPPU, Pune",
+    },
+    {
+      degree: "B.Sc. Zoology",
+      period: "1999 – 2003",
+      place: "Mumbai University, Thane",
+    },
   ],
   awards: [
-    "Travel award for Management and Application of Microbial Data Resource, supported by WFCC, UNESCO, WDCM and IMCAS (2014)",
-    "Indo-Finnish Mobility Award 2019, Academy of Finland",
+    "Travel award for Management and Application of Microbial Data Resource, WFCC, UNESCO, WDCM and IMCAS (2014)",
+    "Indo-Finnish Mobility Award, Academy of Finland (2019)",
+    "Regional Young Investigators Meeting, India Bioscience (2023)",
   ],
-  grants: [
+  bookChapters: [
     {
-      title: "Human Microbiome Initiative of Select Endogamous Populations in India",
-      code: "BT/PR23968/BRB/10/1602/2017-18",
-      amount: "₹24,17,93,311",
+      title: "Probiotics: A Mainstream Therapy for the Disease Suppression",
+      authors:
+        "Ghattargi, V. C., Shouche, Y. S., Dhakephalkar, P. K., Rao, P., Ramana, V., Dhotre, D. P., Lanjekar, V. B.",
+      publisher: "Elsevier",
+      year: 2022,
     },
     {
-      title: "DBT Consortium on Celiac Disease",
-      code: "BT/PR45830/MED/12/963/2022",
-      amount: "₹88,07,360",
+      title:
+        "Bioprospecting appraisal of Himalayan pindrow fir for pharmacological applications",
+      authors:
+        "Assad, R., Reshi, Z. A., Mir, S. H., Rashid, I., Shouche, Y., Dhotre, D.",
+      publisher: "Academic Press",
+      year: 2021,
     },
     {
-      title: "Genomic Surveillance for SARS-CoV-2 in India — INSACOG Phase II",
-      code: "INSACOG-II",
-      amount: "₹89,21,000",
+      title: "Role of ectomycorrhizal biotechnology in pesticide remediation",
+      authors: "Assad, R., Reshi, Z. A., Rashid, I., Shouche, Y., Dhotre, D.",
+      publisher: "Springer",
+      year: 2020,
     },
     {
-      title: "Centre of Excellence: National Centre for Microbial Resource",
-      code: "BT/COORD.II/01/03/2016-179",
-      amount: "₹118,42,85,291",
+      title:
+        "Per rectum administration of buttermilk processed with medicinal plants alters gut microbiota in obese individuals",
+      authors: "Mane, S., Dixit, K., Lathwal, N., et al.",
+      publisher: "Wiley",
+      year: 2019,
+    },
+    {
+      title:
+        "Arsenic oxidation by hypertolerant Bacillus sp. L-148 in artificial groundwater microcosm",
+      authors:
+        "Bagade, A., Paul, D., Giri, A., Dhotre, D., Pawar, S., Kodam, K.",
+      publisher: "CRC Press",
+      year: 2019,
+    },
+    {
+      title:
+        "Diversity of arsenic resistant bacteria from Lonar lake: A meteorite impact alkaline crater lake in India",
+      authors:
+        "Bagade, A., Paul, D., Rikame, Giri, A. P., Dhotre, D., Pawar, S., Kodam, K. M.",
+      publisher: "CRC Press",
+      year: 2016,
     },
   ],
 };
 
-export const news = [
+export type NewsItem = {
+  category:
+    "Publication" | "Media" | "Talks" | "Announcements" | "Career Notification";
+  author: string;
+  date: string;
+  iso: string;
+  title: string;
+  excerpt: string;
+  image: string;
+};
+
+export const newsItems: NewsItem[] = [
   {
-    date: "June 2026",
-    title: "IHMI cohort crosses 3,000 sequenced gut and oral samples",
+    category: "Publication",
+    author: "Dhiraj Dhotre",
+    date: "6/18/26",
+    iso: "2026-06-18",
+    title:
+      "Publication Alert: The Indian Gut Microbiome Across 17 Endogamous Populations",
+    excerpt:
+      "Deep shotgun profiling shows that diet and community structure — not geography alone — explain most of the variation in the Indian gut microbiome.",
+    image: artData,
   },
   {
-    date: "March 2026",
-    title: "Lab presents mother–infant transmission findings at the Indian Microbiome Meeting",
+    category: "Publication",
+    author: "Niraj Rane",
+    date: "5/14/26",
+    iso: "2026-05-14",
+    title:
+      "Publication Alert: Culturomics Recovers 42 Novel Anaerobes from Indian Donors",
+    excerpt:
+      "Anaerobic isolation pipelines add strains with no cultured representative in public repositories — several with promising bile-salt hydrolase activity.",
+    image: artPetri,
   },
   {
-    date: "November 2025",
-    title: "New DBT grant awarded for gut–brain axis metabolomics",
+    category: "Talks",
+    author: "Dhiraj Dhotre",
+    date: "3/22/26",
+    iso: "2026-03-22",
+    title:
+      "Mother–infant transmission findings presented at the Indian Microbiome Meeting",
+    excerpt:
+      "Early-life strain sharing between mother and infant persists well past weaning in our Pune birth cohort.",
+    image: artGut,
+  },
+  {
+    category: "Media",
+    author: "Mitali Inamdar",
+    date: "9/9/25",
+    iso: "2025-09-09",
+    title: "Lab featured in a national feature on India's microbiome map",
+    excerpt:
+      "Why a country-scale reference matters for diagnostics, probiotics and nutrition research in Indian populations.",
+    image: artMicrobes,
   },
 ];
+
+export const news = newsItems.slice(0, 3).map((n) => ({
+  date: n.date,
+  title: n.title,
+}));
