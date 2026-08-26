@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Matches this repo's current deployment: GitHub Pages project URL at
+  https://suyash007-1.github.io/ddomicslab_website
+  If you move to the custom domain (www.ddomicslab.in) later, regenerate
+  every <loc> below (and SITE_URL in SEO.tsx, and the Sitemap: line in
+  robots.txt) to match.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/research</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/publications</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/dhiraj-dhotre</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people/niraj-rane</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people/bhagyashree-karmarkar</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people/harshada-pardeshi</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people/mitali-inamdar</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people/puja-ghosh</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people/suyash-jadhav</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people/hemangini-mahadeo</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/people/tanaya-ghanvatkar</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/news</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomicslab_website/join</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
+
