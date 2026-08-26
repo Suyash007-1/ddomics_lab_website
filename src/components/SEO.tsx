@@ -24,7 +24,7 @@ import { lab, pi, people, publications } from "@/lib/lab-data";
 // deployed at the GitHub Pages project URL. If you later move to the
 // custom domain (www.ddomicslab.in), change this one line, and update
 // sitemap.xml + robots.txt to match.
-const SITE_URL = "https://suyash007-1.github.io/ddomicslab_website";
+const SITE_URL = "https://suyash007-1.github.io/ddomics_lab_website";
 
 function stripBasePath(pathname: string) {
   // Works whether the app is served from "/" (custom domain) or from a
