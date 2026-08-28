@@ -17,6 +17,11 @@ import { Route as PeopleRouteImport } from './routes/people'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as PersonProfileRouteImport } from './routes/person-profile'
+import { Route as NewsPublicationsRouteImport } from './routes/news-publications'
+import { Route as NewsCareerNotificationsRouteImport } from './routes/news-career-notifications'
+import { Route as NewsAnnouncementsRouteImport } from './routes/news-announcements'
+import { Route as NewsMediaRouteImport } from './routes/news-media'
+import { Route as ResearchTrackRouteImport } from './routes/research-track'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +63,31 @@ const PersonProfileRoute = PersonProfileRouteImport.update({
   path: '/people/$personId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsPublicationsRoute = NewsPublicationsRouteImport.update({
+  id: '/news/publications',
+  path: '/news/publications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsCareerNotificationsRoute = NewsCareerNotificationsRouteImport.update({
+  id: '/news/career-notifications',
+  path: '/news/career-notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsAnnouncementsRoute = NewsAnnouncementsRouteImport.update({
+  id: '/news/announcements',
+  path: '/news/announcements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsMediaRoute = NewsMediaRouteImport.update({
+  id: '/news/media',
+  path: '/news/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchTrackRoute = ResearchTrackRouteImport.update({
+  id: '/research/$trackSlug',
+  path: '/research/$trackSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +98,11 @@ export interface FileRoutesByFullPath {
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/people/$personId': typeof PersonProfileRoute
+  '/news/announcements': typeof NewsAnnouncementsRoute
+  '/news/career-notifications': typeof NewsCareerNotificationsRoute
+  '/news/media': typeof NewsMediaRoute
+  '/news/publications': typeof NewsPublicationsRoute
+  '/research/$trackSlug': typeof ResearchTrackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +113,11 @@ export interface FileRoutesByTo {
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/people/$personId': typeof PersonProfileRoute
+  '/news/announcements': typeof NewsAnnouncementsRoute
+  '/news/career-notifications': typeof NewsCareerNotificationsRoute
+  '/news/media': typeof NewsMediaRoute
+  '/news/publications': typeof NewsPublicationsRoute
+  '/research/$trackSlug': typeof ResearchTrackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +129,11 @@ export interface FileRoutesById {
   '/publications': typeof PublicationsRoute
   '/research': typeof ResearchRoute
   '/people/$personId': typeof PersonProfileRoute
+  '/news/announcements': typeof NewsAnnouncementsRoute
+  '/news/career-notifications': typeof NewsCareerNotificationsRoute
+  '/news/media': typeof NewsMediaRoute
+  '/news/publications': typeof NewsPublicationsRoute
+  '/research/$trackSlug': typeof ResearchTrackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +146,11 @@ export interface FileRouteTypes {
     | '/publications'
     | '/research'
     | '/people/$personId'
+    | '/news/announcements'
+    | '/news/career-notifications'
+    | '/news/media'
+    | '/news/publications'
+    | '/research/$trackSlug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +161,11 @@ export interface FileRouteTypes {
     | '/publications'
     | '/research'
     | '/people/$personId'
+    | '/news/announcements'
+    | '/news/career-notifications'
+    | '/news/media'
+    | '/news/publications'
+    | '/research/$trackSlug'
   id:
     | '__root__'
     | '/'
@@ -121,6 +176,11 @@ export interface FileRouteTypes {
     | '/publications'
     | '/research'
     | '/people/$personId'
+    | '/news/announcements'
+    | '/news/career-notifications'
+    | '/news/media'
+    | '/news/publications'
+    | '/research/$trackSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +192,11 @@ export interface RootRouteChildren {
   PublicationsRoute: typeof PublicationsRoute
   ResearchRoute: typeof ResearchRoute
   PersonProfileRoute: typeof PersonProfileRoute
+  NewsAnnouncementsRoute: typeof NewsAnnouncementsRoute
+  NewsCareerNotificationsRoute: typeof NewsCareerNotificationsRoute
+  NewsMediaRoute: typeof NewsMediaRoute
+  NewsPublicationsRoute: typeof NewsPublicationsRoute
+  ResearchTrackRoute: typeof ResearchTrackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +257,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PersonProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/announcements': {
+      id: '/news/announcements'
+      path: '/news/announcements'
+      fullPath: '/news/announcements'
+      preLoaderRoute: typeof NewsAnnouncementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/career-notifications': {
+      id: '/news/career-notifications'
+      path: '/news/career-notifications'
+      fullPath: '/news/career-notifications'
+      preLoaderRoute: typeof NewsCareerNotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/media': {
+      id: '/news/media'
+      path: '/news/media'
+      fullPath: '/news/media'
+      preLoaderRoute: typeof NewsMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/publications': {
+      id: '/news/publications'
+      path: '/news/publications'
+      fullPath: '/news/publications'
+      preLoaderRoute: typeof NewsPublicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/$trackSlug': {
+      id: '/research/$trackSlug'
+      path: '/research/$trackSlug'
+      fullPath: '/research/$trackSlug'
+      preLoaderRoute: typeof ResearchTrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +304,11 @@ const rootRouteChildren: RootRouteChildren = {
   PublicationsRoute: PublicationsRoute,
   ResearchRoute: ResearchRoute,
   PersonProfileRoute: PersonProfileRoute,
+  NewsAnnouncementsRoute: NewsAnnouncementsRoute,
+  NewsCareerNotificationsRoute: NewsCareerNotificationsRoute,
+  NewsMediaRoute: NewsMediaRoute,
+  NewsPublicationsRoute: NewsPublicationsRoute,
+  ResearchTrackRoute: ResearchTrackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

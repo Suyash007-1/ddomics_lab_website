@@ -54,6 +54,64 @@ export const navLinks = [
   { to: "/dhiraj-dhotre", label: "Dr. Dhotre" },
 ] as const;
 
+/** Header navigation, including hover/tap dropdown menus.
+ *
+ * Each top-level item is a Link on its own (clicking the label goes to
+ * `to`); items with a `menu` also show a dropdown of sub-links on hover
+ * (desktop) or tap (mobile). Sub-links with a `hash` jump straight to the
+ * matching `id="..."` on the target page — add or move an id and the menu
+ * link follows it automatically.
+ */
+export type NavSubLink = { label: string; to: string; hash?: string };
+export type NavMenuItem = { label: string; to: string; menu?: NavSubLink[] };
+
+export const navMenu: NavMenuItem[] = [
+  { label: "Home", to: "/" },
+  {
+    label: "Research",
+    to: "/research",
+    menu: [
+      { label: "Facilities", to: "/research", hash: "facilities" },
+      { label: "Research Domains", to: "/research", hash: "research-domains" },
+    ],
+  },
+  {
+    label: "Publications",
+    to: "/publications",
+    menu: [
+      {
+        label: "Featured Publications",
+        to: "/publications",
+        hash: "featured-publications",
+      },
+      {
+        label: "All Publications",
+        to: "/publications",
+        hash: "all-publications",
+      },
+    ],
+  },
+  {
+    label: "People",
+    to: "/people",
+    menu: [
+      { label: "Dr. Dhotre", to: "/dhiraj-dhotre" },
+      { label: "Current Lab Members", to: "/people", hash: "current-members" },
+      { label: "Alumni", to: "/people", hash: "alumni" },
+    ],
+  },
+  {
+    label: "News",
+    to: "/news",
+    menu: [
+      { label: "Publication", to: "/news/publications" },
+      { label: "Career Notifications", to: "/news/career-notifications" },
+      { label: "Announcements", to: "/news/announcements" },
+      { label: "Media", to: "/news/media" },
+    ],
+  },
+];
+
 export const stats = [
   { value: 4000, suffix: "+", label: "Individuals sequenced so far" },
   { value: 17, suffix: "", label: "Endogamous populations sampled" },
@@ -87,51 +145,95 @@ export const methods = [
   },
 ];
 
+/** Facilities on the Research page, in place of the old "How we work"
+ * section. EDIT ME — swap in the lab's actual facility names/photos
+ * whenever that's ready; this is placeholder copy so the "Facilities"
+ * nav link has somewhere to land.
+ */
+export const facilities = [
+  {
+    title: "Anaerobic culture & isolation suite",
+    body: "Anaerobic chamber and culture-based workflows for isolating and characterizing gut anaerobes and candidate probiotic strains from human and animal samples.",
+  },
+  {
+    title: "Sequencing & genomics",
+    body: "Targeted amplicon (16S rRNA), shotgun metagenomic and whole-genome sequencing, run across population cohorts and individual bacterial isolates alike.",
+  },
+  {
+    title: "Bioinformatics compute cluster",
+    body: "In-house compute for the lab's genomics and metagenomics pipelines, from taxonomic profiling through functional prediction and comparative genomics.",
+  },
+];
+
 export type ResearchTrack = {
   code: string;
+  slug: string;
   title: string;
   summary: string;
   detail: string;
+  image: string;
+  /** Only IHMI has this for now — the click-to-play explainer video. */
+  video?: { youtubeId: string; title: string };
+  /** Only IHMI has this for now — link out to the dedicated project site. */
+  externalLink?: { label: string; href: string };
 };
 
 export const researchTracks: ResearchTrack[] = [
   {
     code: "IHMI",
+    slug: "ihmi",
     title: "Indian Human Microbiome Initiative",
     summary:
       "A flagship project of NCCS Pune and DBT, Government of India, mapping the gut and oral cavity microbiome of 3,400 individuals from 17 endogamous populations.",
+    image: artData,
+    video: {
+      youtubeId: "CcKmH3aTekU",
+      title: "Indian Human Microbiome Initiative — overview",
+    },
+    externalLink: {
+      label: "Visit the IHMI website",
+      href: "https://microdm.github.io/IHMI_website/",
+    },
     detail:
       "Phase I profiles the gut and oral cavity microbiome of 3,400 individuals from 17 endogamous populations across the country using targeted amplicon and metagenomic sequencing, followed by 20,000 individuals in the next phase. The aim is a comprehensive dietary and baseline microbiome map of India for comparative analysis, usable across microbiome-based studies in human health, disease and therapy. The project runs in parallel with a genotyping study on the same individuals, allowing the two datasets to be correlated.",
   },
   {
     code: "M / I",
+    slug: "mother-infant",
     title: "Impact of maternal microbiome on infant health",
     summary:
       "Longitudinal study of maternal gut, milk and skin microbiomes and their role in establishing a healthy infant microbiome.",
+    image: artGut,
     detail:
       "The development of microbiome in infant occurs through mother-infant axis during or after the birth. First few days of life represent a crucial window of opportunity for shaping the development of the gastrointestinal tract and immune system, as well as the adult microbiome. But any dysbiosis during the development of microbiome in new-born can cause IBD, obesity, diabetes, inflammatory bowel disease and other long-term lifestyle disorders. The initial exposure of microbes in infant is said to begin during pregnancy through intra-uterine passage (fetal membranes, umbical cords, amniotic fluids) followed by the mode of delivery and by the type of feeding (breast feeding/ formulae fed) given to the infant. Breast milk is one of the continuous sources of mutually beneficial bacteria that are hypothesized to seed the infant’s gut via breastfeeding. It is believed that bacteria from mother’s gut translocate to breast milk via an entero-mammary pathway and thereby populate the infant’s oral and gut subsequently. Whereas, another hypothesis suggests the retrograde flux where a backward movement of milk occurs due to infant suckling and transfers the bacteria from infant’s mouth into the mother’s mammary gland. Mother’s breast milk serves as an important component in shaping the health of infant short term and long term as it harbours ideal balance of nutrients and the abundance of microbes which further acts as perfect food and an optimum medium for growth and development of immunity. Among all bioactive components present in milk, HMOs (Human Milk Oligosaccharides) presents chemical, microbial and medical importance. HMOs form a category of nondigestible, unconjugated, multifunctional and structurally glyans which resist gastrointestinal hydrolysis by gastric acidity and are not absorbable in significant amounts. Thus, allows HMOs to reach infant gut and produce a variety of beneficial effects. HMO’s acts as substrate for various useful bacteria like Bifidobacterium sp. where they are fermented in intestine. Apart from the nutritional role of HMOs in the intestinal microbiota of infants, there is increasing evidence that their interaction with pathogens is important in terms of reducing infection, for example HMOs exhibit bacteriostatic properties against group B Streptococcus (GBS). HMOs play a valuable role in development and maturation of the immune response by activating the expression of multiple cytokines and chemokines, adhesion molecules and receptors, thus maturing the naive immunity in infants. Any deviant in early microbial colonization in new-borns may lead to autoimmune diseases such as diabetes, inflammatory bowel disease, atopy, and other severe health conditions. It is known, that mother microbiome serves as reservoir in transmitting the microbes to infants. However, the exact source and route of infant pioneering microbes are poorly understood. Hence, to address this we propose a study of how different body sites of mother help in shaping the early microbiome of infant. The proposed longitudinal study will compare the effect of different maternal microbial communities (gut, breast milk and areolar skin) on the development of infant’s gut and oral microbiome. Moreover, to address this we have proposed an animal study of how different body sites of mother Balb/c mice help in shaping the early microbiome of infant mice. The proposed longitudinal study will compare the effect of different maternal microbial communities (gut, breast milk and areolar skin) on the development of infant’s gut and oral microbiome through high throughput species level targeted metagenomics (16S rRNA gene sequencing). For this purpose, fluorescently tagged specific bacterial stains will be transformed with a plasmid and subsequently, the transformed strains will be orally administered to pregnant mice. This mice model will allow the visualization, isolation, and detection of the transformed bacteria in different body locations, including mammary tissue and milk and hence reinforcing the hypothesis that physiological translocation of maternal bacteria during pregnancy and lactation may contribute to the composition of the microbiota of infant mice.",
   },
   {
     code: "INSACOG",
+    slug: "insacog",
     title: "Indian SARS-CoV-2 Consortium on Genomics",
     summary:
       "We are part of INSACOG, the forum set up under the Ministry of Health and Family Welfare, monitoring circulating SARS-CoV-2 variants in India.",
+    image: artChromatogram,
     detail:
       "Our aim is to study and monitor genome sequencing and virus variation of circulating strains of COVID-19 in India. We carry out whole-genome sequencing of the SARS-CoV-2 virus, aiding the understanding of how the virus spreads and evolves, and providing information that supports the public health response.",
   },
   {
     code: "GRD",
+    slug: "gluten-spectrum-disorders",
     title: "Microbiome associated with gluten spectrum disorders",
     summary:
       "Multi-omics study of intestinal and stool microbiomes in celiac disease, non-celiac gluten sensitivity and irritable bowel syndrome.",
+    image: artPetri,
     detail:
       "We study intestinal and stool microbiomes associated with gluten-related disorders such as celiac disease, non-celiac gluten sensitivity and functional gastrointestinal disorders including irritable bowel syndrome, using a multi-omics approach. The aim is to establish site-specific microbial biomarkers and their role in the development of GRDs, and to look for novel approaches towards potential diagnostics and therapeutics.",
   },
   {
     code: "GBA",
+    slug: "gut-brain-axis",
     title: "Gut–brain axis",
     summary:
       "Investigating gut–brain axis dysregulation in individuals with autism spectrum disorder.",
+    image: artMicrobes,
     detail:
       "Our main goal is to understand how the microbiome present in the gastrointestinal tract affects neurodevelopmental disorders such as autism spectrum disorder. Microbes in the body produce secondary metabolites such as short-chain fatty acids that directly regulate brain gene expression, and we quantify these alongside community profiles to trace plausible mechanistic links. During the last decade or so, clinical as well as animal studies linked gut microbiota with many psychiatric disorders. Gut microbial dynamics is an enormously strong, intrinsic, biologically active non-genetic factor. It may be suggested that the microbiota may undertake epigenetic events through its impact on metabolism. In the current study, we are aiming to investigate the possibility of gut microbial changes affecting the brain epigenetic events which could be leading to regulation of downstream target genes implicated in neuronal communication and synaptic plasticity using rodent animal model. With the importance of epigenetics in shaping the experience-induced brain functions, it is paramount to establish the link, in gut microbiota and brain epigenetics. Our goal is to identify the epigenetic signatures of neuronal plasticity drawn in by gut microbiota with potential probiotic characteristics in the neurocircuitry of emotion and cognition, i.e., amygdala and hippocampus. Whole genome-wide epigenetic changes and whole metagenomic sequencing will be employed to establish the correlations in the gut microbiome and epigenetic changes in the brain of behaving animals. In addition, the observations drawn through these studies will be further employed to draw the mechanistic molecular model operative in behavioural implications of probiotics. ",
   },
@@ -865,11 +967,24 @@ export type Person = {
   slug: string;
   name: string;
   role: string;
-  group: "pi" | "scientist" | "student" | "staff";
+  group: "pi" | "scientist" | "student" | "staff" | "alumni";
   link?: string;
   photo?: string;
   bio?: string;
   socials?: SocialLinks;
+};
+
+/** A few lines shown beside the photo card for groups that currently have
+ * only one member (PI, Scientists) — otherwise that row of the People page
+ * is mostly empty space. EDIT ME freely; the PI text below is a separate
+ * copy of `pi.about` so editing one doesn't change the other, and the
+ * Niraj Rane text is placeholder copy pending his own bio.
+ */
+export const groupBlurbs: Record<string, string> = {
+  pi: "Dr. Dhiraj Dhotre is a bioinformatician with a research interest in the human microbiome. His lab investigates the role of the human microbiome in health and disease using genomics, metabolomics and culturomics approaches. He believes it is crucial to study the taxonomic, functional and metabolic structure of the microbiome to understand the true potential and consequences of alterations within it. His group generates high-throughput sequencing data and combines computational analyses of multi-dimensional omics data with molecular and in-vivo experimentation to understand the potential of the human microbiome in diagnostics and therapeutics.",
+  // EDIT ME — placeholder bio for Dr. Niraj Rane, pending his own text.
+  scientist:
+    "Dr. Niraj Rane works on the lab's project-scale genomics and sequencing efforts, helping coordinate sample processing, data generation and analysis across the group's ongoing microbiome studies.",
 };
 
 export const people: Person[] = [
@@ -898,6 +1013,12 @@ export const people: Person[] = [
     slug: "harshada-pardeshi",
     name: "Harshada Pardeshi",
     role: "Ph.D. Student",
+    group: "student",
+  },
+  {
+    slug: "madhumita-bhattacharya",
+    name: "Madhumita Bhattacharya",
+    role: "Postdoctoral Fellow",
     group: "student",
   },
   {
@@ -933,15 +1054,19 @@ export const people: Person[] = [
   },
 ];
 
-export const alumni = [
+export const alumni: Person[] = [
   {
+    slug: "dattatray-mongad",
     name: "Dr. Dattatray S. Mongad",
     role: "Ph.D. Student",
+    group: "alumni",
     photo: photoDattatrayMongad,
   },
   {
+    slug: "kunal-dixit",
     name: "Dr. Kunal Dixit",
     role: "Ph.D. Student",
+    group: "alumni",
     photo: photoKunalDixit,
   },
 ];

@@ -82,7 +82,10 @@ function PublicationsPage() {
       />
 
       {/* ---------- Featured studies ---------- */}
-      <section className="bg-background">
+      <section
+        id="featured-publications"
+        className="bg-background scroll-mt-24"
+      >
         <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 lg:px-10 lg:pt-24">
           <Reveal className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-4">
             <h2 className="display-title text-3xl lg:text-4xl">
@@ -147,7 +150,7 @@ function PublicationsPage() {
       </section>
 
       {/* ---------- Full list ---------- */}
-      <section className="bg-background">
+      <section id="all-publications" className="bg-background scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
           <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-4 border-t border-border pt-10">
             <h2 className="display-title text-3xl lg:text-4xl">

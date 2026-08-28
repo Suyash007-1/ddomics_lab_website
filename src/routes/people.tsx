@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { ImageMarquee } from "@/components/ImageMarquee";
 import { ProtectedImage } from "@/components/ProtectedImage";
-import { alumni, people, labGroupPhoto } from "@/lib/lab-data";
+import { alumni, groupBlurbs, people, labGroupPhoto } from "@/lib/lab-data";
+import type { Person } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/people")({
   head: () => ({
@@ -26,7 +27,7 @@ export const Route = createFileRoute("/people")({
 const groups = [
   { key: "pi", label: "Principal Investigator" },
   { key: "scientist", label: "Scientists" },
-  { key: "student", label: "Ph.D. Students" },
+  { key: "student", label: "Ph.D. Students & Postdoctoral Fellow" },
   { key: "staff", label: "Technical & Project Staff" },
 ] as const;
 
@@ -38,6 +39,54 @@ function initials(name: string) {
     .join("")
     .slice(0, 2)
     .toUpperCase();
+}
+
+function PersonCard({ p }: { p: Person }) {
+  const card = (
+    <>
+      <div className="relative flex aspect-square w-36 items-center justify-center overflow-hidden rounded-full bg-muted ring-1 ring-silver/30 transition-all duration-500 group-hover:ring-primary">
+        {p.photo ? (
+          <ProtectedImage
+            src={p.photo}
+            alt={p.name}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <span className="display-title text-3xl text-muted-foreground transition-transform duration-500 group-hover:scale-110">
+            {initials(p.name)}
+          </span>
+        )}
+      </div>
+      <div>
+        <h3 className="display-title text-xl leading-tight">{p.name}</h3>
+        <p className="mt-1 font-display text-base font-semibold text-primary">
+          {p.role}
+        </p>
+      </div>
+    </>
+  );
+  const cls =
+    "lift-card sheen group flex h-full flex-col items-center gap-5 border border-border bg-card p-8 text-center";
+  const viewProfile = (
+    <span className="eyebrow text-muted-foreground opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+      View profile →
+    </span>
+  );
+
+  if (p.link) {
+    return (
+      <Link to="/dhiraj-dhotre" className={cls}>
+        {card}
+        {viewProfile}
+      </Link>
+    );
+  }
+  return (
+    <Link to="/people/$personId" params={{ personId: p.slug }} className={cls}>
+      {card}
+      {viewProfile}
+    </Link>
+  );
 }
 
 function PeoplePage() {
@@ -70,116 +119,64 @@ function PeoplePage() {
         </div>
       </section>
 
-      <section className="bg-surface">
+      <section id="current-members" className="scroll-mt-24 bg-surface">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           {groups.map((g) => {
             const members = people.filter((p) => p.group === g.key);
             if (members.length === 0) return null;
+            const blurb = groupBlurbs[g.key];
+            const soleMember = members.length === 1 ? members[0] : undefined;
+            const showBlurb = !!soleMember && !!blurb;
             return (
               <div key={g.key} className="mb-20 last:mb-0">
                 <Reveal>
                   <h2 className="display-title text-2xl">{g.label}</h2>
                   <hr className="silver-rule mt-5 mb-10" />
                 </Reveal>
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                  {members.map((p, i) => {
-                    const card = (
-                      <>
-                        <div className="relative flex aspect-square w-36 items-center justify-center overflow-hidden rounded-full bg-muted ring-1 ring-silver/30 transition-all duration-500 group-hover:ring-primary">
-                          {p.photo ? (
-                            <ProtectedImage
-                              src={p.photo}
-                              alt={p.name}
-                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                          ) : (
-                            <span className="display-title text-3xl text-muted-foreground transition-transform duration-500 group-hover:scale-110">
-                              {initials(p.name)}
-                            </span>
-                          )}
-                        </div>
-                        <div>
-                          <h3 className="display-title text-xl leading-tight">
-                            {p.name}
-                          </h3>
-                          <p className="mt-1 font-display text-base font-semibold text-primary">
-                            {p.role}
-                          </p>
-                        </div>
-                      </>
-                    );
-                    const cls =
-                      "lift-card sheen group flex h-full flex-col items-center gap-5 border border-border bg-card p-8 text-center";
-                    const viewProfile = (
-                      <span className="eyebrow text-muted-foreground opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                        View profile →
-                      </span>
-                    );
-                    return (
+                {showBlurb && soleMember ? (
+                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                    <Reveal>
+                      <PersonCard p={soleMember} />
+                    </Reveal>
+                    <Reveal
+                      delay={80}
+                      className="flex items-center sm:col-span-1 lg:col-span-3"
+                    >
+                      <p className="measure leading-relaxed text-muted-foreground">
+                        {blurb}
+                      </p>
+                    </Reveal>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                    {members.map((p, i) => (
                       <Reveal key={p.slug} delay={(i % 4) * 80}>
-                        {p.link ? (
-                          <Link to="/dhiraj-dhotre" className={cls}>
-                            {card}
-                            {viewProfile}
-                          </Link>
-                        ) : (
-                          <Link
-                            to="/people/$personId"
-                            params={{ personId: p.slug }}
-                            className={cls}
-                          >
-                            {card}
-                            {viewProfile}
-                          </Link>
-                        )}
+                        <PersonCard p={p} />
                       </Reveal>
-                    );
-                  })}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
       </section>
 
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-4xl px-6 py-20 lg:py-24">
+      <section id="alumni" className="scroll-mt-24 border-t border-border">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <Reveal>
             <h2 className="display-title text-2xl sm:text-3xl">Alumni</h2>
-            <hr className="silver-rule mt-5 mb-8" />
+            <hr className="silver-rule mt-5 mb-10" />
           </Reveal>
-          <ul className="divide-y divide-border border-t border-b border-border">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {alumni.map((a, i) => (
-              <Reveal
-                as="li"
-                key={a.name}
-                delay={i * 70}
-                className="flex items-center justify-between gap-4 py-5"
-              >
-                <span className="flex items-center gap-4">
-                  {a.photo ? (
-                    <span className="block h-12 w-12 shrink-0 overflow-hidden rounded-full ring-1 ring-silver/30">
-                      <ProtectedImage
-                        src={a.photo}
-                        alt={a.name}
-                        className="h-full w-full object-cover"
-                      />
-                    </span>
-                  ) : (
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-muted text-sm font-semibold text-muted-foreground ring-1 ring-silver/30">
-                      {initials(a.name)}
-                    </span>
-                  )}
-                  <span className="font-display text-lg font-semibold">
-                    {a.name}
-                  </span>
-                </span>
-                <span className="text-sm text-muted-foreground">{a.role}</span>
+              <Reveal key={a.slug} delay={(i % 4) * 80}>
+                <PersonCard p={a} />
               </Reveal>
             ))}
-          </ul>
+          </div>
           <Reveal delay={140}>
-            <p className="measure mt-8 leading-relaxed text-muted-foreground">
+            <p className="measure mt-12 leading-relaxed text-muted-foreground">
               Former students and staff of the lab have moved on to postdoctoral
               positions, industry bioinformatics roles and doctoral programmes
               in India and abroad. Alumni listings are updated each academic

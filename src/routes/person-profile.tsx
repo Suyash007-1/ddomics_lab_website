@@ -1,11 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { ProtectedImage } from "@/components/ProtectedImage";
-import { people } from "@/lib/lab-data";
+import { alumni, people } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/people/$personId")({
   loader: ({ params }) => {
-    const person = people.find((p) => p.slug === params.personId);
+    const person = [...people, ...alumni].find(
+      (p) => p.slug === params.personId,
+    );
     if (!person) throw notFound();
     return person;
   },

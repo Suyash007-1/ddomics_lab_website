@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/PageHero";
+import { YouTubeFacade } from "@/components/YouTubeFacade";
 import bgResearch from "@/assets/bg-research.jpg";
-import { methods, researchTracks } from "@/lib/lab-data";
+import { facilities, researchTracks } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/research")({
   head: () => ({
@@ -40,7 +41,10 @@ function ResearchPage() {
         lede="Our work moves between the bench and the cluster: anaerobic culture and isolation on one side, metagenomic and metabolomic analysis on the other. Below are the five tracks currently running in the lab."
       />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+      <div
+        id="research-domains"
+        className="mx-auto max-w-7xl scroll-mt-24 px-6 lg:px-10"
+      >
         {researchTracks.map((t, i) => (
           <Reveal
             as="section"
@@ -48,6 +52,14 @@ function ResearchPage() {
             className="grid grid-cols-1 gap-8 border-b border-border py-16 lg:grid-cols-12 lg:py-24"
           >
             <div className="lg:col-span-4">
+              <div className="art-tile mb-6 aspect-[4/3] w-full overflow-hidden border border-border">
+                <img
+                  src={t.image}
+                  alt=""
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
               <span className="eyebrow text-muted-foreground">
                 {String(i + 1).padStart(2, "0")} / {t.code}
               </span>
@@ -60,26 +72,55 @@ function ResearchPage() {
             </div>
             <div className="lg:col-span-8">
               <p className="text-lg leading-relaxed">{t.summary}</p>
-              <p className="mt-5 leading-relaxed text-muted-foreground">
-                {t.detail}
-              </p>
+
+              {t.video && (
+                <div className="mt-6 max-w-xl">
+                  <YouTubeFacade
+                    videoId={t.video.youtubeId}
+                    title={t.video.title}
+                  />
+                </div>
+              )}
+
+              <div className="mt-6 flex flex-wrap gap-4">
+                {t.externalLink && (
+                  <a
+                    href={t.externalLink.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="eyebrow sheen border border-primary px-6 py-3 tracking-[0.12em] text-primary uppercase transition-colors hover:bg-primary hover:text-primary-foreground"
+                  >
+                    {t.externalLink.label} ↗
+                  </a>
+                )}
+                <Link
+                  to="/research/$trackSlug"
+                  params={{ trackSlug: t.slug }}
+                  className="eyebrow sheen border border-silver/50 px-6 py-3 tracking-[0.12em] uppercase transition-colors hover:border-silver"
+                >
+                  Read More →
+                </Link>
+              </div>
             </div>
           </Reveal>
         ))}
       </div>
 
-      <section className="bg-ink text-ink-foreground">
+      <section
+        id="facilities"
+        className="scroll-mt-24 bg-ink text-ink-foreground"
+      >
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <Reveal>
             <h2 className="display-title mb-12 text-2xl lg:text-3xl">
-              How we work
+              Facilities
             </h2>
           </Reveal>
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
-            {methods.map((m, i) => (
-              <Reveal key={m.title} delay={i * 90}>
-                <h3 className="display-title mb-3 text-xl">{m.title}</h3>
-                <p className="text-sm leading-relaxed opacity-60">{m.body}</p>
+            {facilities.map((f, i) => (
+              <Reveal key={f.title} delay={i * 90}>
+                <h3 className="display-title mb-3 text-xl">{f.title}</h3>
+                <p className="text-sm leading-relaxed opacity-60">{f.body}</p>
               </Reveal>
             ))}
           </div>

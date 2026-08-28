@@ -65,9 +65,66 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/people/madhumita-bhattacharya</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/people/dattatray-mongad</loc>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/people/kunal-dixit</loc>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/research/ihmi</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/research/mother-infant</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/research/insacog</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/research/gluten-spectrum-disorders</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/research/gut-brain-axis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://suyash007-1.github.io/ddomics_lab_website/news</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/news/publications</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/news/career-notifications</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/news/announcements</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://suyash007-1.github.io/ddomics_lab_website/news/media</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://suyash007-1.github.io/ddomics_lab_website/join</loc>

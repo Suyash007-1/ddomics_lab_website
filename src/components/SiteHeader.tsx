@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { lab, navLinks } from "@/lib/lab-data";
+import { useEffect, useRef, useState } from "react";
+import { lab, navMenu, type NavMenuItem } from "@/lib/lab-data";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -55,20 +56,13 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
-            {navLinks.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                activeOptions={{ exact: l.to === "/" }}
-                className="link-underline nav-item opacity-80 transition-opacity hover:opacity-100 data-[status=active]:opacity-100"
-              >
-                {l.label}
-              </Link>
+          <nav className="hidden items-center gap-2 lg:flex">
+            {navMenu.map((item) => (
+              <DesktopNavItem key={item.to} item={item} />
             ))}
             <Link
               to="/join"
-              className="eyebrow sheen border border-primary px-5 py-2 text-sm tracking-[0.1em] text-primary uppercase transition-colors hover:bg-primary hover:text-primary-foreground"
+              className="eyebrow sheen ml-4 border border-primary px-5 py-2 text-sm tracking-[0.1em] text-primary uppercase transition-colors hover:bg-primary hover:text-primary-foreground"
             >
               Join the Lab
             </Link>
@@ -107,18 +101,156 @@ export function SiteHeader() {
 
       {open && (
         <nav className="flex animate-fade-in flex-col gap-1 border-t border-border bg-background px-6 pb-6 lg:hidden">
-          {[...navLinks, { to: "/join", label: "Join the Lab" }].map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              onClick={() => setOpen(false)}
-              className="nav-item block border-b border-border py-3 text-foreground/85 last:border-0"
-            >
-              {l.label}
-            </Link>
+          {navMenu.map((item) => (
+            <div key={item.to} className="border-b border-border last:border-0">
+              <div className="flex items-center justify-between">
+                <Link
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  className="nav-item block flex-1 py-3 text-foreground/85"
+                >
+                  {item.label}
+                </Link>
+                {item.menu && (
+                  <button
+                    type="button"
+                    aria-label={`Toggle ${item.label} submenu`}
+                    aria-expanded={mobileSubmenu === item.label}
+                    onClick={() =>
+                      setMobileSubmenu((v) =>
+                        v === item.label ? null : item.label,
+                      )
+                    }
+                    className="p-3 text-foreground/60"
+                  >
+                    <svg
+                      viewBox="0 0 20 20"
+                      className={`h-4 w-4 fill-current transition-transform duration-300 ${
+                        mobileSubmenu === item.label ? "rotate-180" : ""
+                      }`}
+                    >
+                      <path d="M5 7l5 5 5-5H5z" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+              {item.menu && mobileSubmenu === item.label && (
+                <div className="flex flex-col gap-1 pb-3 pl-4">
+                  {item.menu.map((sub) => (
+                    <Link
+                      key={sub.label}
+                      to={sub.to}
+                      {...(sub.hash ? { hash: sub.hash } : {})}
+                      onClick={() => {
+                        setOpen(false);
+                        setMobileSubmenu(null);
+                      }}
+                      className="nav-item py-2 text-sm text-foreground/70"
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
+          <Link
+            to="/join"
+            onClick={() => setOpen(false)}
+            className="nav-item block border-b border-border py-3 text-foreground/85 last:border-0"
+          >
+            Join the Lab
+          </Link>
         </nav>
       )}
     </header>
+  );
+}
+
+function DesktopNavItem({ item }: { item: NavMenuItem }) {
+  const [hovered, setHovered] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearCloseTimer = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const open = () => {
+    clearCloseTimer();
+    setHovered(true);
+  };
+
+  // Small delay before closing so moving the mouse from the label down into
+  // the dropdown doesn't accidentally close it.
+  const scheduleClose = () => {
+    clearCloseTimer();
+    closeTimer.current = setTimeout(() => setHovered(false), 120);
+  };
+
+  useEffect(() => clearCloseTimer, []);
+
+  if (!item.menu) {
+    return (
+      <Link
+        to={item.to}
+        activeOptions={{ exact: item.to === "/" }}
+        className="link-underline nav-item px-3 py-2 opacity-80 transition-opacity hover:opacity-100 data-[status=active]:opacity-100"
+      >
+        {item.label}
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={open}
+      onMouseLeave={scheduleClose}
+      onFocus={open}
+      onBlur={scheduleClose}
+    >
+      <Link
+        to={item.to}
+        className="link-underline nav-item flex items-center gap-1.5 px-3 py-2 opacity-80 transition-opacity hover:opacity-100 data-[status=active]:opacity-100"
+        aria-haspopup="true"
+        aria-expanded={hovered}
+      >
+        {item.label}
+        <svg
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+          className={`h-3 w-3 fill-current transition-transform duration-300 ${
+            hovered ? "rotate-180" : ""
+          }`}
+        >
+          <path d="M5 7l5 5 5-5H5z" />
+        </svg>
+      </Link>
+
+      <div
+        className={`absolute top-full left-1/2 z-50 w-64 -translate-x-1/2 pt-3 transition-all duration-300 ease-out ${
+          hovered
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-2 opacity-0"
+        }`}
+      >
+        <div className="sheen border border-border bg-background/95 py-2 text-foreground shadow-xl backdrop-blur-md">
+          {item.menu.map((sub) => (
+            <Link
+              key={sub.label}
+              to={sub.to}
+              {...(sub.hash ? { hash: sub.hash } : {})}
+              onClick={() => setHovered(false)}
+              className="nav-item block px-5 py-3 text-sm opacity-80 transition-all duration-200 hover:bg-primary/10 hover:pl-6 hover:opacity-100"
+            >
+              {sub.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
