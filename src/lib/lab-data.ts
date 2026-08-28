@@ -19,6 +19,7 @@ import photoBhagyashreeKarmarkar from "@/assets/people/bhagyashree-karmarkar.jpg
 import photoTanayaGhanvatkar from "@/assets/people/tanaya-ghanvatkar.jpg";
 import photoDattatrayMongad from "@/assets/people/dattatray-mongad.jpg";
 import photoKunalDixit from "@/assets/people/kunal-dixit.jpg";
+import photoMadhumitaBhattacharya from "@/assets/people/madhumita-bhattacharya.jpg";
 import labGroupPhoto from "@/assets/lab-group.jpg";
 
 /** Candid lab-life photos for the scrolling gallery on the People page.
@@ -1019,9 +1020,11 @@ export const people: Person[] = [
   },
   {
     slug: "madhumita-bhattacharya",
-    name: "Madhumita Bhattacharya",
-    role: "Postdoctoral Fellow",
+    name: "Madhumita Bhattacharyya",
+    role: "Bioinformatics Scientist, DBT-BioCARe Fellow",
     group: "student",
+    photo: photoMadhumitaBhattacharya,
+    bio: "Dr. Madhumita Bhattacharyya is a bioinformatician with research experience spanning microbiome analysis, network analysis, structural biology, lipidomics, proteomics and transcriptome analysis. She completed her PhD at CSIR-Indian Institute of Chemical Biology, working on host–pathogen interaction networks, phylogenetic analysis and structural studies of biomolecular complexes. Her postdoctoral and research experience at the Institute of Environmental Medicine, Technical University Munich/University of Augsburg focused on skin and stool microbiomes, atopic dermatitis, lipid–microbe interactions, antibiotic resistance, and development of computational tools and pipelines for microbiome analysis. She has contributed to the development of AnnotIEM, a species-level annotation approach for 16S gene-based microbial sequencing, and MicrobIEM, a user-friendly tool for microbiome data analysis. Her current work focuses on identifying niche-specific microbiome patterns in healthy skin and gut using computational and integrative approaches.",
   },
   {
     slug: "mitali-inamdar",
