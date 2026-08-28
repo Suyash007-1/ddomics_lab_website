@@ -145,25 +145,25 @@ export const methods = [
   },
 ];
 
-/** Facilities, shown on their own page at /research/facilities.
+/** Facilities, shown on the page at /research/facilities.
  * EDIT ME — swap in the lab's actual instrument/facility photos whenever
  * they're ready; the images below are the lab's existing art assets used
- * as stand-ins so each facility has something to show meanwhile.
+ * as stand-ins so each facility has something to show meanwhile. More images can be added to it. 
  */
 export const facilities = [
   {
-    title: "Anaerobic culture & isolation suite",
+    title: "Anaerobic culture & culturomics setup",
     body: "Anaerobic chamber and culture-based workflows for isolating and characterizing gut anaerobes and candidate probiotic strains from human and animal samples.",
     image: artPetri,
   },
   {
-    title: "Sequencing & genomics",
-    body: "Targeted amplicon (16S rRNA), shotgun metagenomic and whole-genome sequencing, run across population cohorts and individual bacterial isolates alike.",
+    title: "Sequencing & Genomics",
+    body: "Targeted amplicon (16S rRNA), shotgun metagenomic and whole-genome sequencing, run across population cohorts and individual bacterial isolates alike, using multiple sequencing platforms.",
     image: artChromatogram,
   },
   {
-    title: "Bioinformatics compute cluster",
-    body: "In-house compute for the lab's genomics and metagenomics pipelines, from taxonomic profiling through functional prediction and comparative genomics.",
+    title: "Bioinformatics computational facitlities",
+    body: "In-house compute for the lab's genomics and metagenomics pipelines, with robust Servers; from taxonomic profiling through functional prediction and comparative genomics.",
     image: artNetwork,
   },
 ];
@@ -175,9 +175,9 @@ export type ResearchTrack = {
   summary: string;
   detail: string;
   image: string;
-  /** Only IHMI has this for now — the click-to-play explainer video. */
+  /** Only IHMI has this for now we can the click-to-play explainer video. */
   video?: { youtubeId: string; title: string };
-  /** Only IHMI has this for now — link out to the dedicated project site. */
+  /** Only IHMI has this for now, click on the link out to the dedicated project site. */
   externalLink?: { label: string; href: string };
 };
 
