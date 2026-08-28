@@ -62,26 +62,6 @@ function Home() {
         {/* Floating concept art */}
 
         <div className="relative mx-auto w-full max-w-4xl px-6 pt-32 pb-24 text-center">
-          <Reveal>
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 100 100"
-              className="mx-auto mb-10 h-24 w-24"
-            >
-              <circle
-                cx="42"
-                cy="52"
-                r="24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                className="text-silver"
-              />
-              <circle cx="62" cy="34" r="15" className="fill-primary" />
-              <circle cx="62" cy="70" r="12" className="fill-silver" />
-            </svg>
-          </Reveal>
-
           <Reveal delay={120}>
             <h1 className="display-title text-4xl leading-[1.15] sm:text-5xl lg:text-6xl">
               <em>The microbiome is an integral part of</em>
@@ -116,13 +96,6 @@ function Home() {
             </Link>
           </Reveal>
         </div>
-
-        <span
-          aria-hidden="true"
-          className="absolute bottom-8 left-1/2 h-12 w-px -translate-x-1/2 overflow-hidden bg-silver/25"
-        >
-          <span className="block h-4 w-full animate-[marquee-scroll_2.4s_linear_infinite] bg-primary" />
-        </span>
       </section>
 
       <Marquee />
