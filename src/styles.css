@@ -225,6 +225,8 @@
 
 @utility measure {
   max-width: 62ch;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 @utility display-title {
