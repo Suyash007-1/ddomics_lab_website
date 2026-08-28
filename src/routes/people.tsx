@@ -101,11 +101,11 @@ function PeoplePage() {
           aria-hidden="true"
           width={1920}
           height={1080}
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-45"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-65"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,var(--deep)_8%,color-mix(in_oklch,var(--deep)_78%,transparent)_55%,color-mix(in_oklch,var(--deep)_92%,transparent)_100%)]"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,var(--deep)_8%,color-mix(in_oklch,var(--deep)_60%,transparent)_55%,color-mix(in_oklch,var(--deep)_78%,transparent)_100%)]"
         />
         <div className="relative mx-auto flex min-h-[64vh] max-w-7xl flex-col justify-end px-6 pt-44 pb-16 lg:px-10 lg:pt-52 lg:pb-24">
           <Reveal>
