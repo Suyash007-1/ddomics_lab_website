@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { lab, navMenu, type NavMenuItem } from "@/lib/lab-data";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import labLogo from "@/assets/lab-logo-mark.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -25,26 +26,17 @@ export function SiteHeader() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex h-24 items-center justify-between gap-6">
-          {/* Logo slot — drop the lab logo image in place of the mark below */}
+          {/* Logo slot — the lab logo is used only here, once, sitewide. */}
           <Link to="/" className="group flex items-center gap-3">
             <span
-              aria-hidden="true"
               data-logo-slot
-              className="grid h-12 w-12 shrink-0 place-items-center rounded-full ring-1 ring-silver/50 transition-all duration-500 group-hover:ring-primary"
+              className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-md bg-white ring-1 ring-silver/50 transition-all duration-500 group-hover:ring-primary"
             >
-              <svg viewBox="0 0 40 40" className="h-7 w-7">
-                <circle
-                  cx="17"
-                  cy="21"
-                  r="10"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="text-silver transition-colors duration-500 group-hover:text-primary"
-                />
-                <circle cx="25" cy="14" r="6" className="fill-primary" />
-                <circle cx="26" cy="29" r="4.5" className="fill-silver" />
-              </svg>
+              <img
+                src={labLogo}
+                alt={`${lab.name} logo`}
+                className="h-full w-full object-contain p-1"
+              />
             </span>
             <span className="leading-none">
               <span className="block font-display text-[11px] font-semibold tracking-[0.28em] opacity-60">
