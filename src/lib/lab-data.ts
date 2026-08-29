@@ -145,25 +145,25 @@ export const methods = [
   },
 ];
 
-/** Facilities, shown on the page at /research/facilities.
+/** Facilities, shown on their own page at /research/facilities.
  * EDIT ME — swap in the lab's actual instrument/facility photos whenever
  * they're ready; the images below are the lab's existing art assets used
- * as stand-ins so each facility has something to show meanwhile. More images can be added to it. 
+ * as stand-ins so each facility has something to show meanwhile.
  */
 export const facilities = [
   {
-    title: "Anaerobic culture & culturomics setup",
+    title: "Anaerobic culture & isolation suite",
     body: "Anaerobic chamber and culture-based workflows for isolating and characterizing gut anaerobes and candidate probiotic strains from human and animal samples.",
     image: artPetri,
   },
   {
-    title: "Sequencing & Genomics",
-    body: "Targeted amplicon (16S rRNA), shotgun metagenomic and whole-genome sequencing, run across population cohorts and individual bacterial isolates alike, using multiple sequencing platforms.",
+    title: "Sequencing & genomics",
+    body: "Targeted amplicon (16S rRNA), shotgun metagenomic and whole-genome sequencing, run across population cohorts and individual bacterial isolates alike.",
     image: artChromatogram,
   },
   {
-    title: "Bioinformatics computational facitlities",
-    body: "In-house compute for the lab's genomics and metagenomics pipelines, with robust Servers; from taxonomic profiling through functional prediction and comparative genomics.",
+    title: "Bioinformatics compute cluster",
+    body: "In-house compute for the lab's genomics and metagenomics pipelines, from taxonomic profiling through functional prediction and comparative genomics.",
     image: artNetwork,
   },
 ];
@@ -175,9 +175,9 @@ export type ResearchTrack = {
   summary: string;
   detail: string;
   image: string;
-  /** Only IHMI has this for now we can the click-to-play explainer video. */
+  /** Only IHMI has this for now — the click-to-play explainer video. */
   video?: { youtubeId: string; title: string };
-  /** Only IHMI has this for now, click on the link out to the dedicated project site. */
+  /** Only IHMI has this for now — link out to the dedicated project site. */
   externalLink?: { label: string; href: string };
 };
 
@@ -966,6 +966,31 @@ export type SocialLinks = {
   website?: string;
 };
 
+export type PersonExperience = {
+  role: string;
+  place: string;
+  period: string;
+};
+
+export type PersonEducation = {
+  degree: string;
+  place?: string;
+  period?: string;
+};
+
+export type PersonPublication = {
+  title: string;
+  venue?: string;
+  year?: string;
+  doi?: string;
+};
+
+/** All fields below `bio` are optional and used to build out a richer
+ * /people/$personId page (education, prior roles, awards, selected
+ * publications, hobbies, a personal quote, a CV link). Fill in whichever
+ * a person has sent in — the profile page only renders the sections that
+ * are present, so a bare-minimum entry (slug/name/role/group) still works.
+ */
 export type Person = {
   slug: string;
   name: string;
@@ -975,6 +1000,15 @@ export type Person = {
   photo?: string;
   bio?: string;
   socials?: SocialLinks;
+  joinedYear?: string;
+  researchFocus?: string;
+  education?: PersonEducation[];
+  experience?: PersonExperience[];
+  awards?: string[];
+  publications?: PersonPublication[];
+  outsideLab?: string;
+  quote?: string;
+  cvUrl?: string;
 };
 
 /** A few lines shown beside the photo card for groups that currently have
@@ -1024,7 +1058,88 @@ export const people: Person[] = [
     role: "Bioinformatics Scientist, DBT-BioCARe Fellow",
     group: "student",
     photo: photoMadhumitaBhattacharya,
+    joinedYear: "2025",
     bio: "Dr. Madhumita Bhattacharyya is a bioinformatician with research experience spanning microbiome analysis, network analysis, structural biology, lipidomics, proteomics and transcriptome analysis. She completed her PhD at CSIR-Indian Institute of Chemical Biology, working on host–pathogen interaction networks, phylogenetic analysis and structural studies of biomolecular complexes. Her postdoctoral and research experience at the Institute of Environmental Medicine, Technical University Munich/University of Augsburg focused on skin and stool microbiomes, atopic dermatitis, lipid–microbe interactions, antibiotic resistance, and development of computational tools and pipelines for microbiome analysis. She has contributed to the development of AnnotIEM, a species-level annotation approach for 16S gene-based microbial sequencing, and MicrobIEM, a user-friendly tool for microbiome data analysis. Her current work focuses on identifying niche-specific microbiome patterns in healthy skin and gut using computational and integrative approaches.",
+    researchFocus:
+      "Understanding the composition and functional characteristics of the human microbiome, particularly the skin and gut microbiomes — identifying niche-specific microbial communities in healthy individuals and their interactions with the host and environmental factors. Her work combines microbiome data analysis, bioinformatics, multi-omics approaches, and the development of computational tools for microbial profiling and species-level annotation.",
+    education: [
+      {
+        degree: "Ph.D.",
+        place: "CSIR-Indian Institute of Chemical Biology",
+        period: "2018",
+      },
+    ],
+    experience: [
+      {
+        role: "Post-Doctoral Fellow, DBT-BioCARe",
+        place: "DDOmics Lab, NCCS, Pune",
+        period: "2025 – present",
+      },
+      {
+        role: "Research Associate (Remote)",
+        place: "Institute of Environmental Medicine, University of Augsburg",
+        period: "2021 – 2025",
+      },
+      {
+        role: "Postdoctoral Fellow",
+        place:
+          "Institute of Environmental Medicine, UNIKA-T, Technical University Munich",
+        period: "2019 – 2021",
+      },
+      {
+        role: "Guest Scientist",
+        place:
+          "Institute of Environmental Medicine, UNIKA-T / Helmholtz Zentrum München",
+        period: "2017",
+      },
+      {
+        role: "Senior Research Fellow",
+        place: "CSIR-Indian Institute of Chemical Biology",
+        period: "2010 – 2016",
+      },
+    ],
+    awards: [
+      "CSIR-NET Senior Research Fellowship, CSIR (2012–2015)",
+      "CSIR-NET Junior Research Fellowship, CSIR (2010–2012)",
+      "SERB National Post-Doctoral Fellowship, SERB (2018)",
+      "Indira Gandhi Single Girl Child Scholarship for Postgraduate Studies (2007–2009)",
+    ],
+    publications: [
+      {
+        title:
+          "AnnotIEM: A novel algorithm for species-level annotation of 16S gene based microbial OTUs",
+        venue: "F1000Research / ISCB Comm J",
+        year: "2019",
+        doi: "10.12688/f1000research.20858.1",
+      },
+      {
+        title:
+          "Skin pH–dependent Staphylococcus aureus abundance as predictor for increasing atopic dermatitis severity",
+        venue: "Allergy",
+        year: "2020",
+        doi: "10.1111/all.14402",
+      },
+      {
+        title:
+          "Efflux-linked accelerated evolution of antibiotic resistance at a population edge",
+        venue: "Molecular Cell 82(22), 4368–4385.e6",
+        year: "2022",
+      },
+      {
+        title:
+          "Skin microbiome and its association with host cofactors in determining atopic dermatitis severity",
+        venue: "Journal of the European Academy of Dermatology and Venereology",
+        year: "2023",
+      },
+      {
+        title:
+          "Skin lipid–microbe interplay links Staphylococcus hominis to barrier control in adult atopic dermatitis",
+        venue: "Allergy",
+        year: "2025",
+      },
+    ],
+    outsideLab: "Avid reader and story buff; food enthusiast; likes art and craft.",
+    quote: "Value is not what you are given, value is what you create for yourself.",
   },
   {
     slug: "mitali-inamdar",
