@@ -203,7 +203,7 @@ Changes can be made directly through [github.com](https://github.com), without i
 4. Scroll to "Commit changes" and choose "Create a new branch and start a pull request." Do not commit directly to `main`.
 5. Give the pull request a short, descriptive title, such as "Update Suyash Jadhav's profile," and open it.
 6. Check the Actions tab, or the checks shown on the pull request, after a few minutes. A passing check means the site built successfully. A failing check means something in the edit does not match the expected format; opening it will usually point to the exact line to fix, most often a missing comma or a straight quote that was converted to a curly quote.
-7. Once the checks pass, ask Dhiraj, or whoever has merge access, to merge the pull request. The live site updates automatically after that.
+7. Once the checks pass, ask Dr. Dhiraj, or whoever has merge access, to merge the pull request. The live site updates automatically after that.
 
 This process catches formatting mistakes before they reach the live site, since a failing check blocks the merge until it is fixed.
 
