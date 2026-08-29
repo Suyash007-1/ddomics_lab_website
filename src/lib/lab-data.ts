@@ -270,6 +270,152 @@ export const publicationTopics: PublicationTopic[] = [
 export const publications: Publication[] = [
   {
     title:
+      "Gut microbiomes of tribal communities in India vary with dairy and grain consumption",
+    authors:
+      "Ebel, E. R., Kulkarni, A. S., Mongad, D. S., … Sonnenburg, J. L., Dhotre, D. P.",
+    venue: "Gut Microbes 17(1), 2694242",
+    year: 2026,
+    topic: "Human Microbiome & Disease",
+    doi: "10.1080/19490976.2026.2694242",
+    selected: true,
+  },
+  {
+    title:
+      "Harnessing gut microbiome enzymes: Segatella copri and Stenotrophomonas maltophilia prolyl peptidases degrade gliadin peptides and improve epithelial barrier function in a celiac disease model",
+    authors: "Karmarkar, B., Dhotre, D.",
+    venue: "Microbiology Spectrum",
+    year: 2026,
+    topic: "Gluten-Related Disorders",
+    doi: "10.1128/spectrum.03214-25",
+    selected: true,
+  },
+  {
+    title:
+      "Multi-meta-omics reveal distinct microbial genomic profiles and metabolic dysregulation in non-celiac gluten sensitivity",
+    authors:
+      "Dixit, K., Busi, S. B., Ahmed, A., Kshirsagar, A., Jäger, C., Singh, A., Shah, V., Saroj, S. D., Ahuja, V., Wilmes, P., Shouche, Y., Makharia, G., Dhotre, D.",
+    venue: "mSphere",
+    year: 2026,
+    topic: "Gluten-Related Disorders",
+    doi: "10.1128/msphere.00856-25",
+    selected: true,
+  },
+  {
+    title:
+      "Evaluation of extraction solvents for untargeted metabolomics in characterizing Antarctic cryoconite hole dissolved organic matter",
+    authors:
+      "Mundhe, S., Maiti, S., Sanyal, A., Majumder, A., Kadoo, N. Y., Dhotre, D., et al.",
+    venue: "Analytica Chimica Acta, 345648",
+    year: 2026,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Isolation and characterization of a bacteria of Cupriavidus genus from Indian Himalayan region and its evaluation for production of Poly-3-hydroxybutyrate",
+    authors:
+      "Sinha, S., Khonde, V., Mirza, Y., Nandi, S., Dhotre, D., Ghosalkar, A.",
+    venue: "Archives of Microbiology 207(9), 231",
+    year: 2025,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Microbiome and antibiotic resistance profile of milk and faeces from cattle in an organized dairy production system",
+    authors:
+      "Amarlapudi, M. R., Balasubramaniam, C., Singh, H., Yadav, A., et al.",
+    venue: "International Journal of Antimicrobial Agents, 107590",
+    year: 2025,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Human gut microbiota, anaerobic probiotics and faecal microbiota transplant (FMT)",
+    authors: "Jiya, N., Hagir, A., Prakash, O., Dhotre, D.",
+    venue: "Anaerobes of Clinical Significance, 352",
+    year: 2025,
+    topic: "Human Microbiome & Disease",
+  },
+  {
+    title:
+      "Assessment of seasonal variations in antibiotic resistance genes and microbial communities in sewage treatment plants for public health monitoring",
+    authors:
+      "Keer, A., Oza, Y., Mongad, D., Ramakrishnan, D., Dhotre, D., Ahmed, A., Zumla, A., et al.",
+    venue: "Environmental Pollution 375, 126367",
+    year: 2025,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title: "Metagenomics-guided reengineering of the gut microbiome",
+    authors: "Dhotre, D. P., Karmarkar, B.",
+    venue: "Metagenomics, 225–264",
+    year: 2025,
+    topic: "Human Microbiome & Disease",
+  },
+  {
+    title:
+      "Prolonged exposure to insulin might cause epigenetic alteration leading to insulin resistance",
+    authors:
+      "Bano, S., More, S., Mongad, D. S., Khalique, A., Dhotre, D. P., Bhat, M. K., Seshadri, V.",
+    venue: "FEBS Open Bio 15(1), 81–93",
+    year: 2025,
+    topic: "Bioinformatics & Multi-omics",
+    doi: "10.1002/2211-5463.13891",
+  },
+  {
+    title:
+      "Site-specific gut microbial signatures in non-celiac gluten sensitivity",
+    authors:
+      "Dixit, K., Ahmed, A., Singh, A., Inamdar, M., Chavan, S., Bodkhe, R., Mehtab, W., Chauhan, A., Saroj, S. D., Ahuja, V., Shouche, Y., Dhotre, D., Makharia, G.",
+    venue: "Gut Microbes Reports 1(1), 2438621",
+    year: 2024,
+    topic: "Gluten-Related Disorders",
+    doi: "10.1080/29933935.2024.2438621",
+  },
+  {
+    title:
+      "Holed up, but thriving: impact of multitrophic cryoconite communities on glacier elemental cycles",
+    authors: "Antony, R., Mongad, D., Sanyal, A., Dhotre, D., Thamban, M.",
+    venue: "Science of the Total Environment 933, 173187",
+    year: 2024,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
+      "Biochemical analyses can complement sequencing-based ARG load monitoring: a case study in Indian hospital sewage networks",
+    authors: "Bhanushali, S., Pärnänen, K., Mongad, D., Dhotre, D., Lahti, L.",
+    venue: "medRxiv preprint",
+    year: 2024,
+    topic: "Environmental Microbiology",
+    doi: "10.1101/2024.05.31.24308262",
+  },
+  {
+    title:
+      "Decoding the role of oxidative stress resistance and alternative carbon substrate assimilation in the mature biofilm growth mode of Candida glabrata",
+    authors: "Raj, K., Paul, D., Rishi, P., Shukla, G., Dhotre, D., Souche, Y.",
+    venue: "BMC Microbiology 24(1), 128",
+    year: 2024,
+    topic: "Pathogen Genomics",
+  },
+  {
+    title:
+      "Correlation of severity & clinical outcomes of COVID-19 with virus variants: A prospective, multicentre hospital network study",
+    authors:
+      "Wadhwa, K., Malik, S., Balaji, S., Thiruvengadam, R., Bashyam, M. D., et al.",
+    venue: "The Indian Journal of Medical Research 159(1), 91",
+    year: 2024,
+    topic: "Pathogen Genomics",
+  },
+  {
+    title:
+      "Culture-based and culture-independent approach for the study of the methanogens and obligate anaerobes from different landfill sites",
+    authors:
+      "Prakash, O., Dewala, S. R., Nimonkar, Y., Patil, S. K., Chauhan, A., Yadav, A., et al.",
+    venue: "Frontiers in Microbiology 14, 1273037",
+    year: 2024,
+    topic: "Environmental Microbiology",
+  },
+  {
+    title:
       "Heart failure severity closely correlates with intestinal dysbiosis and subsequent metabolomic alterations",
     authors:
       "Spehlmann, M. E., Rangrez, A. Y., Dhotre, D. P., Schmiedel, N., Chavan, N., Bang, C., … Frey, N.",
