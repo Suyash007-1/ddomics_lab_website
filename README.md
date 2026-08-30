@@ -1,6 +1,6 @@
 # Editing Website Content
 
-This guide explains how to add or update content on the lab website — a new lab member, a new publication, a news item — without writing code.
+This guide explains how to add or update content on the lab website, like a new lab member, a new publication, a news item; all of these without writing code.
 
 All content lives in one file:
 
@@ -29,7 +29,7 @@ Find this line:
 export const people: Person[] = [
 ```
 
-Below it is a list of blocks, one per person. Suyash Jadhav's entry looks like this:
+Below it is a list of blocks, one per person. For example, Suyash Jadhav's entry looks like this:
 
 ```ts
 {
