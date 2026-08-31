@@ -20,6 +20,7 @@ import photoTanayaGhanvatkar from "@/assets/people/tanaya-ghanvatkar.jpg";
 import photoDattatrayMongad from "@/assets/people/dattatray-mongad.jpg";
 import photoKunalDixit from "@/assets/people/kunal-dixit.jpg";
 import photoMadhumitaBhattacharya from "@/assets/people/madhumita-bhattacharya.jpg";
+import photoPujaGhosh from "@/assets/people/puja-ghosh.jpg";
 import labGroupPhoto from "@/assets/lab-group.jpg";
 
 /** Candid lab-life photos for the scrolling gallery on the People page.
@@ -1343,6 +1344,7 @@ export const people: Person[] = [
     name: "Puja Ghosh",
     role: "UGC-SRF / PhD Student",
     group: "student",
+    photo: photoPujaGhosh,
     joinedYear: "2022",
     researchFocus:
       "The microbiota–gut–brain axis, and how gut dysbiosis drives core behavioral phenotypes in autism. This translational work focuses on isolating and characterizing indigenous psychobiotic candidates from the Indian pediatric gut microbiome, followed by in vitro and in vivo validation using Maternal Immune Activation (MIA) mouse models.",
