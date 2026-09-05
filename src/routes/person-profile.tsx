@@ -64,6 +64,7 @@ const socialLabels: Record<string, string> = {
   orcid: "ORCID",
   github: "GitHub",
   website: "Website",
+  instagram: "Instagram",
 };
 
 function PersonProfilePage() {
@@ -341,4 +342,4 @@ function PersonProfilePage() {
       )}
     </>
   );
-                      }
+}
