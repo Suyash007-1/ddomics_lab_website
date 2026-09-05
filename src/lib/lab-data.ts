@@ -1114,6 +1114,7 @@ export type SocialLinks = {
   orcid?: string;
   github?: string;
   website?: string;
+  instagram?: string;
 };
 
 export type PersonExperience = {
@@ -1385,6 +1386,48 @@ export const people: Person[] = [
     role: "Ph.D. Student",
     group: "student",
     photo: photoSuyashJadhav,
+    joinedYear: "2026",
+    quote:
+      "On a given day, a given circumstance, you think you have a limit. You go for the limit, you reach that limit, something happens and you suddenly can go a little bit further. With your mind power, your determination, your instinct and the experience as well, you can fly very high.",
+    education: [
+      {
+        degree: "M.Sc. Bioinformatics",
+        place: "Bioinformatics Centre, Savitribai Phule Pune University",
+        period: "2024 – 2026",
+      },
+      {
+        degree: "B.Sc. Biotechnology",
+        place: "H.P.T. Arts & R.Y.K. Science College, Nashik",
+        period: "2021 – 2024",
+      },
+    ],
+    experience: [
+      {
+        role: "PhD Scholar",
+        place: "DDOmics Lab, NCCS, Pune",
+        period: "Aug 2026 – present",
+      },
+      {
+        role: "Tutor (Biology)",
+        place: "Atharva Classes",
+        period: "2021 – 2024",
+      },
+    ],
+    awards: [
+      "Junior Research Fellowship (JRF), CSIR-UGC NET (2026 – present)",
+      "CSIR-UGC NET Junior Research Fellowship, AIR 105 (June 2025)",
+      "GATE Biotechnology (GAT-B), AIR 31 (2024)",
+      "Qualified IIT JAM (2024)",
+      "Qualified NIV-SPPU Entrance Exam",
+      "Best Student Award, H.P.T. Arts & R.Y.K. Science College (2023–24)",
+    ],
+    socials: {
+      linkedin: "https://www.linkedin.com/in/suyash-jadhav-bioinformatician/",
+      orcid: "https://orcid.org/0009-0000-1043-7044",
+      twitter: "https://x.com/SuyashJ0710",
+      instagram: "https://www.instagram.com/suyash.0.0.7/",
+      github: "https://github.com/Suyash007-1",
+    },
   },
   {
     slug: "hemangini-mahadeo",
