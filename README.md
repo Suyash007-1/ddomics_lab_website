@@ -1,6 +1,6 @@
 # Editing Website Content
 
-This guide explains how to add or update content on the lab website, like a new lab member, a new publication, a news item; all of these without writing code.
+This guide explains how to add or update content on the lab website, like a new lab member, a new publication, a news item; all of these without writing code. All the examples given here are using the name Suyash Jadhav.
 
 All content is stored in one single file:
 
