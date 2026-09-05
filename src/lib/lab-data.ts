@@ -1419,6 +1419,9 @@ export const people: Person[] = [
       "GATE Biotechnology (GAT-B), AIR 31 (2024)",
       "Qualified IIT JAM (2024)",
       "Qualified NIV-SPPU Entrance Exam",
+      "DBT Studentship (2024 – 2026)",
+      "Late Shripad Ganesh Gokhale Fellowship (2024)",
+      "Rathi Scholarship (2024)",
       "Best Student Award, H.P.T. Arts & R.Y.K. Science College (2023–24)",
     ],
     socials: {
