@@ -1105,6 +1105,16 @@ export const featuredPublications: FeaturedPublication[] = [
     year: 2023,
     image: pubSewage,
   },
+  {
+    title:
+      "Gut microbiomes of tribal communities in India vary with dairy and grain consumption",
+    authors:
+      "Ebel, E. R., Kulkarni, A. S., Mongad, D. S., …, Sonnenburg, J. L., Dhotre, D. P.",
+    venue: "Gut Microbes 18(1), 2694242",
+    year: 2026,
+    doi: "10.1080/19490976.2026.2694242",
+    image: artGut,
+  },
 ];
 
 export type SocialLinks = {
@@ -1623,6 +1633,38 @@ export const newsItems: NewsItem[] = [
     excerpt:
       "Why a country-scale reference matters for diagnostics, probiotics and nutrition research in Indian populations.",
     image: artMicrobes,
+  },
+  {
+    category: "Media",
+    author: "Dhiraj Dhotre",
+    date: "8/12/26",
+    iso: "2026-08-12",
+    title:
+      "Tribal-diet gut microbiome study with Stanford picked up in national science coverage",
+    excerpt:
+      "Our Gut Microbes paper with the Sonnenburg lab at Stanford found that trans-Himalayan communities carry Bifidobacterium adolescentis strains genetically distinct from those in industrialised countries — evidence for why India needs its own microbiome reference and its own probiotic strains, not imported ones.",
+    image: artGut,
+  },
+  {
+    category: "Announcements",
+    author: "Dhiraj Dhotre",
+    date: "6/12/23",
+    iso: "2023-06-12",
+    title: "Dr. Dhotre selected for the IndiaBioscience Regional Young Investigators' Meeting Grant",
+    excerpt:
+      "Awarded the RYIM Pune (2023–2024) grant by IndiaBioscience, recognising early-career investigators building independent research programmes.",
+    image: artNetwork,
+  },
+  {
+    category: "Career Notification",
+    author: "Dhiraj Dhotre",
+    date: "6/26/26",
+    iso: "2026-06-26",
+    title:
+      "Project Technical Support-III positions (2 posts) — gut microbiome & methylcobalamin project",
+    excerpt:
+      "NCCS advertised two Project Technical Support-III openings on Dr. Dhotre's project studying oral methylcobalamin dosing effects on the gut microbiome. Applications have now closed (last date 26 June 2026) — watch NCCS's official careers page for the next round on this project.",
+    image: artHand,
   },
 ];
 
