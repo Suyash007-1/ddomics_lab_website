@@ -88,6 +88,43 @@ function PIPage() {
                 Publications
               </Link>
             </Reveal>
+            <Reveal delay={260} className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+              <a
+                href="https://scholar.google.co.in/citations?user=wURU1tQAAAAJ&hl=en"
+                target="_blank"
+                rel="noreferrer"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                Google Scholar
+              </a>
+              <span aria-hidden="true" className="text-muted-foreground">·</span>
+              <a
+                href="https://www.scopus.com/authid/detail.uri?authorId=16306801600"
+                target="_blank"
+                rel="noreferrer"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                Scopus
+              </a>
+              <span aria-hidden="true" className="text-muted-foreground">·</span>
+              <a
+                href="https://orcid.org/0000-0002-5000-7396"
+                target="_blank"
+                rel="noreferrer"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                ORCID
+              </a>
+              <span aria-hidden="true" className="text-muted-foreground">·</span>
+              <a
+                href="https://www.linkedin.com/in/dhiraj-dhotre-36ab7a75/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                LinkedIn
+              </a>
+            </Reveal>
           </div>
         </div>
       </section>
