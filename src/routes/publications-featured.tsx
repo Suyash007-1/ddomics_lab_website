@@ -7,15 +7,19 @@ import { featuredPublications } from "@/lib/lab-data";
 const profileLinks = [
   {
     label: "Google Scholar",
-    href: "https://scholar.google.com/citations?user=Dhiraj+Dhotre",
+    href: "https://scholar.google.co.in/citations?user=wURU1tQAAAAJ&hl=en",
   },
   {
     label: "Scopus",
-    href: "https://www.scopus.com/results/authorNamesList.uri?query=Dhiraj%20Dhotre",
+    href: "https://www.scopus.com/authid/detail.uri?authorId=16306801600",
   },
   {
     label: "ORCID",
-    href: "https://orcid.org/orcid-search/search?searchQuery=Dhiraj%20Dhotre",
+    href: "https://orcid.org/0000-0002-5000-7396",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/dhiraj-dhotre-36ab7a75/",
   },
 ] as const;
 
