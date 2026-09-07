@@ -106,6 +106,7 @@ export const navMenu: NavMenuItem[] = [
     to: "/news",
     menu: [
       { label: "Publication", to: "/news/publications" },
+      { label: "Talks", to: "/news/talks" },
       { label: "Career Notifications", to: "/news/career-notifications" },
       { label: "Announcements", to: "/news/announcements" },
       { label: "Media", to: "/news/media" },
@@ -1665,6 +1666,17 @@ export const newsItems: NewsItem[] = [
     excerpt:
       "NCCS advertised two Project Technical Support-III openings on Dr. Dhotre's project studying oral methylcobalamin dosing effects on the gut microbiome. Applications have now closed (last date 26 June 2026) — watch NCCS's official careers page for the next round on this project.",
     image: artHand,
+  },
+  {
+    category: "Talks",
+    author: "Dhiraj Dhotre",
+    date: "9/8/26",
+    iso: "2026-09-08",
+    title:
+      "Featured speaker at Accelerating Biology 2026 (C-DAC Pune): AI-guided enterotype mapping and predictive supplementation",
+    excerpt:
+      "Presented findings from the Indian Human Microbiome Initiative — 4,080 individuals across 17 endogamous and tribal communities — and a two-stage AI framework that predicts an individual's enterotype from self-reported variables and translates it into personalized synbiotic recommendations, at the C-DAC Pune symposium on bioinformatics, genomics and AI in the National Supercomputing Mission series.",
+    image: artChromatogram,
   },
 ];
 
