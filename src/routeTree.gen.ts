@@ -21,6 +21,7 @@ import { Route as NewsPublicationsRouteImport } from './routes/news-publications
 import { Route as NewsCareerNotificationsRouteImport } from './routes/news-career-notifications'
 import { Route as NewsAnnouncementsRouteImport } from './routes/news-announcements'
 import { Route as NewsMediaRouteImport } from './routes/news-media'
+import { Route as NewsTalksRouteImport } from './routes/news-talks'
 import { Route as PublicationsFeaturedRouteImport } from './routes/publications-featured'
 import { Route as PublicationsAllRouteImport } from './routes/publications-all'
 import { Route as ResearchFacilitiesRouteImport } from './routes/research-facilities'
@@ -87,6 +88,11 @@ const NewsMediaRoute = NewsMediaRouteImport.update({
   path: '/news/media',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsTalksRoute = NewsTalksRouteImport.update({
+  id: '/news/talks',
+  path: '/news/talks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PublicationsFeaturedRoute = PublicationsFeaturedRouteImport.update({
   id: '/publications/featured',
   path: '/publications/featured',
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/news/career-notifications': typeof NewsCareerNotificationsRoute
   '/news/media': typeof NewsMediaRoute
   '/news/publications': typeof NewsPublicationsRoute
+  '/news/talks': typeof NewsTalksRoute
   '/publications/all': typeof PublicationsAllRoute
   '/publications/featured': typeof PublicationsFeaturedRoute
   '/research/domains': typeof ResearchDomainsRoute
@@ -145,6 +152,7 @@ export interface FileRoutesByTo {
   '/news/career-notifications': typeof NewsCareerNotificationsRoute
   '/news/media': typeof NewsMediaRoute
   '/news/publications': typeof NewsPublicationsRoute
+  '/news/talks': typeof NewsTalksRoute
   '/publications/all': typeof PublicationsAllRoute
   '/publications/featured': typeof PublicationsFeaturedRoute
   '/research/domains': typeof ResearchDomainsRoute
@@ -165,6 +173,7 @@ export interface FileRoutesById {
   '/news/career-notifications': typeof NewsCareerNotificationsRoute
   '/news/media': typeof NewsMediaRoute
   '/news/publications': typeof NewsPublicationsRoute
+  '/news/talks': typeof NewsTalksRoute
   '/publications/all': typeof PublicationsAllRoute
   '/publications/featured': typeof PublicationsFeaturedRoute
   '/research/domains': typeof ResearchDomainsRoute
@@ -186,6 +195,7 @@ export interface FileRouteTypes {
     | '/news/career-notifications'
     | '/news/media'
     | '/news/publications'
+    | '/news/talks'
     | '/publications/all'
     | '/publications/featured'
     | '/research/domains'
@@ -205,6 +215,7 @@ export interface FileRouteTypes {
     | '/news/career-notifications'
     | '/news/media'
     | '/news/publications'
+    | '/news/talks'
     | '/publications/all'
     | '/publications/featured'
     | '/research/domains'
@@ -224,6 +235,7 @@ export interface FileRouteTypes {
     | '/news/career-notifications'
     | '/news/media'
     | '/news/publications'
+    | '/news/talks'
     | '/publications/all'
     | '/publications/featured'
     | '/research/domains'
@@ -244,6 +256,7 @@ export interface RootRouteChildren {
   NewsCareerNotificationsRoute: typeof NewsCareerNotificationsRoute
   NewsMediaRoute: typeof NewsMediaRoute
   NewsPublicationsRoute: typeof NewsPublicationsRoute
+  NewsTalksRoute: typeof NewsTalksRoute
   PublicationsFeaturedRoute: typeof PublicationsFeaturedRoute
   PublicationsAllRoute: typeof PublicationsAllRoute
   ResearchFacilitiesRoute: typeof ResearchFacilitiesRoute
@@ -337,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsPublicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/talks': {
+      id: '/news/talks'
+      path: '/news/talks'
+      fullPath: '/news/talks'
+      preLoaderRoute: typeof NewsTalksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/publications/all': {
       id: '/publications/all'
       path: '/publications/all'
@@ -388,6 +408,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsCareerNotificationsRoute: NewsCareerNotificationsRoute,
   NewsMediaRoute: NewsMediaRoute,
   NewsPublicationsRoute: NewsPublicationsRoute,
+  NewsTalksRoute: NewsTalksRoute,
   PublicationsFeaturedRoute: PublicationsFeaturedRoute,
   PublicationsAllRoute: PublicationsAllRoute,
   ResearchFacilitiesRoute: ResearchFacilitiesRoute,
