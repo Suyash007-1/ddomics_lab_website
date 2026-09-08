@@ -136,6 +136,14 @@ function PersonProfilePage() {
               delay={200}
               className="mt-10 flex flex-wrap gap-3"
             >
+              {person.email && (
+                <a
+                  href={`mailto:${person.email}`}
+                  className="eyebrow sheen border border-silver/50 px-5 py-2.5 tracking-[0.1em] uppercase transition-colors hover:border-silver"
+                >
+                  Email
+                </a>
+              )}
               {socialEntries.map(([key, url]) => (
                 <a
                   key={key}
