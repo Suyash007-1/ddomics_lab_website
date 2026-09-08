@@ -1161,6 +1161,7 @@ export type Person = {
   link?: string;
   photo?: string;
   bio?: string;
+  email?: string;
   socials?: SocialLinks;
   joinedYear?: string;
   researchFocus?: string;
@@ -1445,9 +1446,22 @@ export const people: Person[] = [
   },
   {
     slug: "hemangini-mahadeo",
-    name: "Hemangini Mahadeo",
-    role: "Technical Officer",
+    name: "Hemangini Mahadeo Shikhare",
+    role: "Technical Officer 'A'",
     group: "staff",
+    email: "hemanginims@nccs.res.in",
+    joinedYear: "2022",
+    researchFocus:
+      "Operates the lab's high-end instrumentation, including flow cytometers and DNA analysers.",
+    education: [
+      { degree: "B.Sc. (Microbiology)", place: "Mumbai University" },
+    ],
+    experience: [
+      {
+        role: "Clinical Pathology; contributed to national health programmes (RNTCP, Polio Vaccination)",
+        place: "Rural Hospital, Malvan, Sindhudurg, Maharashtra",
+      },
+    ],
   },
   {
     slug: "tanaya-ghanvatkar",
