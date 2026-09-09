@@ -77,6 +77,16 @@ function FacilitiesPage() {
                 <p className="measure mt-3 leading-relaxed text-muted-foreground">
                   {f.body}
                 </p>
+                {f.link && (
+                  <a
+                    href={f.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-block text-sm font-medium text-blue-500 underline decoration-blue-500/40 underline-offset-4 transition-colors hover:text-blue-400"
+                  >
+                    Read more →
+                  </a>
+                )}
               </Reveal>
             ))}
           </div>
