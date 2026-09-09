@@ -67,6 +67,8 @@ function PersonCard({ p }: { p: Person }) {
   );
   const cls =
     "lift-card sheen group flex h-full flex-col items-center gap-5 border border-border bg-card p-8 text-center";
+  const staticCls =
+    "flex h-full cursor-default flex-col items-center gap-5 border border-border bg-card p-8 text-center";
   const viewProfile = (
     <span className="eyebrow text-muted-foreground opacity-0 transition-opacity duration-500 group-hover:opacity-100">
       View profile →
@@ -80,6 +82,9 @@ function PersonCard({ p }: { p: Person }) {
         {viewProfile}
       </Link>
     );
+  }
+  if (p.noProfilePage) {
+    return <div className={staticCls}>{card}</div>;
   }
   return (
     <Link to="/people/$personId" params={{ personId: p.slug }} className={cls}>
