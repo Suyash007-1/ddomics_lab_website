@@ -21,6 +21,7 @@ import photoSuyashJadhav from "@/assets/people/suyash-jadhav.jpg";
 import photoHarshadaPardeshi from "@/assets/people/harshada-pardeshi.jpg";
 import photoBhagyashreeKarmarkar from "@/assets/people/bhagyashree-karmarkar.jpg";
 import photoTanayaGhanvatkar from "@/assets/people/tanaya-ghanvatkar.jpg";
+import photoMitaliInamdar from "@/assets/people/mitali-inamdar.jpg";
 import photoDattatrayMongad from "@/assets/people/dattatray-mongad.jpg";
 import photoKunalDixit from "@/assets/people/kunal-dixit.jpg";
 import photoMadhumitaBhattacharya from "@/assets/people/madhumita-bhattacharya.jpg";
@@ -1165,6 +1166,9 @@ export type Person = {
   outsideLab?: string;
   quote?: string;
   cvUrl?: string;
+  /** No profile submitted yet — show name/photo only on the People page,
+   * not clickable through to a (mostly empty) profile page. */
+  noProfilePage?: boolean;
 };
 
 /** A few lines shown beside the photo card for groups that currently have
@@ -1344,6 +1348,8 @@ export const people: Person[] = [
     name: "Mitali Inamdar",
     role: "Ph.D. Student",
     group: "student",
+    photo: photoMitaliInamdar,
+    noProfilePage: true,
   },
   {
     slug: "puja-ghosh",
@@ -1448,6 +1454,8 @@ export const people: Person[] = [
     name: "Tanaya Ghanvatkar",
     role: "Project Staff",
     group: "staff",
+    photo: photoTanayaGhanvatkar,
+    noProfilePage: true,
   },
 ];
 
