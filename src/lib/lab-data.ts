@@ -164,6 +164,7 @@ export const facilities = [
   {
     title: "DNA Sequencing Facility",
     body: "Three sequencing platforms run in-house, covering single-gene reads through to whole-genome and metagenomic scale. An Illumina MiSeq handles targeted amplicon (16S rRNA/ITS), whole-genome and metagenomic sequencing-by-synthesis runs; an Ion GeneStudio S5 Prime performs semiconductor-based sequencing for genome and metagenome projects, with library and template preparation automated on an Ion Chef System; and an Applied Biosystems 3730xl DNA Analyzer is used for Sanger sequencing and capillary-based confirmatory reads. Together they support everything from strain identification and phylogenetic placement to population-scale microbiome profiling.",
+    link: "https://www.nccs.res.in/Facilities/DNAseq",
     images: [
       facilityMiseq,
       facilityIonGeneStudio,
