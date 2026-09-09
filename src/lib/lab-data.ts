@@ -4,7 +4,11 @@ import artPetri from "@/assets/art-petri.jpg";
 import artGut from "@/assets/art-gut.jpg";
 import artMicrobes from "@/assets/art-microbes.png";
 import artHand from "@/assets/art-hand.png";
-import artNetwork from "@/assets/art-network.jpg";
+import facilityAnaerobicWorkstation from "@/assets/facilities/anaerobic-workstation.jpg";
+import facilityMiseq from "@/assets/facilities/miseq.jpg";
+import facilityIonGeneStudio from "@/assets/facilities/ion-genestudio-s5-prime.jpg";
+import facilityIonChef from "@/assets/facilities/ion-chef-system.jpg";
+import facilityDnaAnalyzer3730xl from "@/assets/facilities/dna-analyzer-3730xl.jpg";
 import pubHeart from "@/assets/pub-heart.jpg";
 import pubMicfun from "@/assets/pub-micfunpred.jpg";
 import pubFamily from "@/assets/pub-family.jpg";
@@ -106,7 +110,6 @@ export const navMenu: NavMenuItem[] = [
     to: "/news",
     menu: [
       { label: "Publication", to: "/news/publications" },
-      { label: "Talks", to: "/news/talks" },
       { label: "Career Notifications", to: "/news/career-notifications" },
       { label: "Announcements", to: "/news/announcements" },
       { label: "Media", to: "/news/media" },
@@ -154,19 +157,19 @@ export const methods = [
  */
 export const facilities = [
   {
-    title: "Anaerobic culture & isolation suite",
-    body: "Anaerobic chamber and culture-based workflows for isolating and characterizing gut anaerobes and candidate probiotic strains from human and animal samples.",
-    image: artPetri,
+    title: "Anaerobic Workstation",
+    body: "A Whitley A35 anaerobic workstation keeps a fully oxygen-free, temperature-controlled atmosphere for isolating and growing obligate anaerobes straight from human and animal gut samples. Integrated glove ports and an airlock let strains be plated, sub-cultured and screened without ever breaking anaerobic conditions — essential for recovering the strict anaerobes that dominate the gut microbiota, and for taking candidate probiotic isolates through to full characterisation.",
+    images: [facilityAnaerobicWorkstation],
   },
   {
-    title: "Sequencing & genomics",
-    body: "Targeted amplicon (16S rRNA), shotgun metagenomic and whole-genome sequencing, run across population cohorts and individual bacterial isolates alike.",
-    image: artChromatogram,
-  },
-  {
-    title: "Bioinformatics compute cluster",
-    body: "In-house compute for the lab's genomics and metagenomics pipelines, from taxonomic profiling through functional prediction and comparative genomics.",
-    image: artNetwork,
+    title: "DNA Sequencing Facility",
+    body: "Three sequencing platforms run in-house, covering single-gene reads through to whole-genome and metagenomic scale. An Illumina MiSeq handles targeted amplicon (16S rRNA/ITS), whole-genome and metagenomic sequencing-by-synthesis runs; an Ion GeneStudio S5 Prime performs semiconductor-based sequencing for genome and metagenome projects, with library and template preparation automated on an Ion Chef System; and an Applied Biosystems 3730xl DNA Analyzer is used for Sanger sequencing and capillary-based confirmatory reads. Together they support everything from strain identification and phylogenetic placement to population-scale microbiome profiling.",
+    images: [
+      facilityMiseq,
+      facilityIonGeneStudio,
+      facilityIonChef,
+      facilityDnaAnalyzer3730xl,
+    ],
   },
 ];
 
@@ -1106,16 +1109,6 @@ export const featuredPublications: FeaturedPublication[] = [
     year: 2023,
     image: pubSewage,
   },
-  {
-    title:
-      "Gut microbiomes of tribal communities in India vary with dairy and grain consumption",
-    authors:
-      "Ebel, E. R., Kulkarni, A. S., Mongad, D. S., …, Sonnenburg, J. L., Dhotre, D. P.",
-    venue: "Gut Microbes 18(1), 2694242",
-    year: 2026,
-    doi: "10.1080/19490976.2026.2694242",
-    image: artGut,
-  },
 ];
 
 export type SocialLinks = {
@@ -1161,7 +1154,6 @@ export type Person = {
   link?: string;
   photo?: string;
   bio?: string;
-  email?: string;
   socials?: SocialLinks;
   joinedYear?: string;
   researchFocus?: string;
@@ -1446,22 +1438,9 @@ export const people: Person[] = [
   },
   {
     slug: "hemangini-mahadeo",
-    name: "Hemangini Mahadeo Shikhare",
-    role: "Technical Officer 'A'",
+    name: "Hemangini Mahadeo",
+    role: "Technical Officer",
     group: "staff",
-    email: "hemanginims@nccs.res.in",
-    joinedYear: "2022",
-    researchFocus:
-      "Operates the lab's high-end instrumentation, including flow cytometers and DNA analysers.",
-    education: [
-      { degree: "B.Sc. (Microbiology)", place: "Mumbai University" },
-    ],
-    experience: [
-      {
-        role: "Clinical Pathology; contributed to national health programmes (RNTCP, Polio Vaccination)",
-        place: "Rural Hospital, Malvan, Sindhudurg, Maharashtra",
-      },
-    ],
   },
   {
     slug: "tanaya-ghanvatkar",
@@ -1648,49 +1627,6 @@ export const newsItems: NewsItem[] = [
     excerpt:
       "Why a country-scale reference matters for diagnostics, probiotics and nutrition research in Indian populations.",
     image: artMicrobes,
-  },
-  {
-    category: "Media",
-    author: "Dhiraj Dhotre",
-    date: "8/12/26",
-    iso: "2026-08-12",
-    title:
-      "Tribal-diet gut microbiome study with Stanford picked up in national science coverage",
-    excerpt:
-      "Our Gut Microbes paper with the Sonnenburg lab at Stanford found that trans-Himalayan communities carry Bifidobacterium adolescentis strains genetically distinct from those in industrialised countries — evidence for why India needs its own microbiome reference and its own probiotic strains, not imported ones.",
-    image: artGut,
-  },
-  {
-    category: "Announcements",
-    author: "Dhiraj Dhotre",
-    date: "6/12/23",
-    iso: "2023-06-12",
-    title: "Dr. Dhotre selected for the IndiaBioscience Regional Young Investigators' Meeting Grant",
-    excerpt:
-      "Awarded the RYIM Pune (2023–2024) grant by IndiaBioscience, recognising early-career investigators building independent research programmes.",
-    image: artNetwork,
-  },
-  {
-    category: "Career Notification",
-    author: "Dhiraj Dhotre",
-    date: "6/26/26",
-    iso: "2026-06-26",
-    title:
-      "Project Technical Support-III positions (2 posts) — gut microbiome & methylcobalamin project",
-    excerpt:
-      "NCCS advertised two Project Technical Support-III openings on Dr. Dhotre's project studying oral methylcobalamin dosing effects on the gut microbiome. Applications have now closed (last date 26 June 2026) — watch NCCS's official careers page for the next round on this project.",
-    image: artHand,
-  },
-  {
-    category: "Talks",
-    author: "Dhiraj Dhotre",
-    date: "9/8/26",
-    iso: "2026-09-08",
-    title:
-      "Featured speaker at Accelerating Biology 2026 (C-DAC Pune): AI-guided enterotype mapping and predictive supplementation",
-    excerpt:
-      "Presented findings from the Indian Human Microbiome Initiative — 4,080 individuals across 17 endogamous and tribal communities — and a two-stage AI framework that predicts an individual's enterotype from self-reported variables and translates it into personalized synbiotic recommendations, at the C-DAC Pune symposium on bioinformatics, genomics and AI in the National Supercomputing Mission series.",
-    image: artChromatogram,
   },
 ];
 
