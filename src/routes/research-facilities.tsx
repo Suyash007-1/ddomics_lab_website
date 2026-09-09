@@ -11,13 +11,13 @@ export const Route = createFileRoute("/research/facilities")({
       {
         name: "description",
         content:
-          "Instruments and facilities in the DDOmics Lab: anaerobic culture and isolation, sequencing and genomics, and the in-house bioinformatics compute cluster.",
+          "Instruments and facilities in the DDOmics Lab: an anaerobic workstation for culturing and isolating gut anaerobes, and an in-house DNA sequencing facility spanning Sanger, Ion Torrent and Illumina platforms.",
       },
       { property: "og:title", content: "Facilities — DDOmics Lab, NCCS Pune" },
       {
         property: "og:description",
         content:
-          "The instruments and facilities behind the lab's wet-lab and computational work.",
+          "The instruments and facilities behind the lab's wet-lab and sequencing work.",
       },
     ],
   }),
@@ -37,7 +37,7 @@ function FacilitiesPage() {
             Instruments <span className="silver-text">&amp; facilities</span>
           </>
         }
-        lede="What the lab can run in-house, from anaerobic culture on the bench to sequencing and the compute behind it."
+        lede="What the lab can run in-house, from anaerobic culture on the bench to sequencing."
       />
 
       <section className="bg-background">
@@ -45,14 +45,32 @@ function FacilitiesPage() {
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
             {facilities.map((f, i) => (
               <Reveal key={f.title} delay={i * 90}>
-                <div className="art-tile mb-6 aspect-[4/3] w-full overflow-hidden border border-border">
-                  <img
-                    src={f.image}
-                    alt=""
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+                {f.images.length > 1 ? (
+                  <div className="mb-6 grid grid-cols-2 gap-2">
+                    {f.images.map((src) => (
+                      <div
+                        key={src}
+                        className="art-tile aspect-[4/3] w-full overflow-hidden border border-border"
+                      >
+                        <img
+                          src={src}
+                          alt=""
+                          loading="lazy"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="art-tile mb-6 aspect-[4/3] w-full overflow-hidden border border-border">
+                    <img
+                      src={f.images[0]}
+                      alt=""
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                )}
                 <h2 className="display-title text-xl lg:text-2xl">
                   {f.title}
                 </h2>
