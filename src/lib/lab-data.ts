@@ -1466,6 +1466,7 @@ export const alumni: Person[] = [
     role: "Ph.D. Student",
     group: "alumni",
     photo: photoDattatrayMongad,
+    noProfilePage: true,
   },
   {
     slug: "kunal-dixit",
@@ -1473,6 +1474,7 @@ export const alumni: Person[] = [
     role: "Ph.D. Student",
     group: "alumni",
     photo: photoKunalDixit,
+    noProfilePage: true,
   },
 ];
 
