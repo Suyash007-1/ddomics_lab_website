@@ -80,11 +80,19 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-ink-foreground/10 pt-8">
+        <div className="mt-14 flex flex-col items-center gap-3 border-t border-ink-foreground/10 pt-8 sm:flex-row sm:justify-between">
           <p className="font-mono text-[11px] opacity-50">
             © {new Date().getFullYear()} {lab.name}, NCCS Pune. All rights
             reserved.
           </p>
+          <a
+            href="https://github.com/oktavianos"
+            target="_blank"
+            rel="noreferrer"
+            className="font-mono text-[11px] opacity-50 transition-opacity hover:opacity-80"
+          >
+            Site built by Suyash Jadhav
+          </a>
         </div>
       </div>
     </footer>
