@@ -1440,7 +1440,7 @@ export const people: Person[] = [
       orcid: "https://orcid.org/0009-0000-1043-7044",
       twitter: "https://x.com/SuyashJ0710",
       instagram: "https://www.instagram.com/suyash.0.0.7/",
-      github: "https://github.com/Suyash007-1",
+      github: "https://github.com/oktavianos",
     },
   },
   {
