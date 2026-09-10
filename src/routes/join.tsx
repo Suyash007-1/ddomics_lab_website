@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/PageHero";
 import bgJoin from "@/assets/bg-join.jpg";
 import { lab } from "@/lib/lab-data";
+import iconGmail from "@/assets/social/gmail.png";
 
 export const Route = createFileRoute("/join")({
   head: () => ({
@@ -87,8 +88,9 @@ function JoinPage() {
             </p>
             <a
               href={`mailto:${lab.email}`}
-              className="eyebrow mt-8 inline-block rounded-full bg-background px-6 py-3 text-foreground transition-opacity hover:opacity-80"
+              className="eyebrow mt-8 inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 text-foreground transition-opacity hover:opacity-80"
             >
+              <img src={iconGmail} alt="" className="h-4 w-4 rounded-sm" />
               {lab.email}
             </a>
           </Reveal>
