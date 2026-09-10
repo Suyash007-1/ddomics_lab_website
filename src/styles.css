@@ -397,6 +397,16 @@
   animation-play-state: paused;
 }
 
+@utility domains-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 34s linear infinite;
+}
+
+.domains-marquee-track:hover {
+  animation-play-state: paused;
+}
+
 @utility slow-spin {
   animation: marquee-drift 120s linear infinite;
 }
@@ -410,6 +420,7 @@
   .slow-spin,
   .marquee-track,
   .image-marquee-track,
+  .domains-marquee-track,
   .silver-text {
     animation: none;
   }
