@@ -1445,9 +1445,23 @@ export const people: Person[] = [
   },
   {
     slug: "hemangini-mahadeo",
-    name: "Hemangini Mahadeo",
-    role: "Technical Officer",
+    name: "Hemangini Mahadeo Shikhare",
+    role: "Technical Officer 'A'",
     group: "staff",
+    joinedYear: "2022",
+    researchFocus: "Operating high-end instruments — flow cytometers and DNA Analyser.",
+    education: [
+      {
+        degree: "B.Sc. Microbiology",
+        place: "Mumbai University",
+      },
+    ],
+    experience: [
+      {
+        role: "Clinical Pathology — RNTCP & Polio Vaccination Programmes",
+        place: "Rural Hospital, Malvan, Sindhudurg, Maharashtra",
+      },
+    ],
   },
   {
     slug: "tanaya-ghanvatkar",
