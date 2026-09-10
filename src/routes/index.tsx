@@ -1,20 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
+import { DomainsMarquee } from "@/components/DomainsMarquee";
 import { CountUp } from "@/components/CountUp";
 import heroBg from "@/assets/microbiome-heads.png";
-import artPetri from "@/assets/art-petri.jpg";
 import artHand from "@/assets/art-hand.png";
 import artMicrobes from "@/assets/art-microbes.png";
-import artChromatogram from "@/assets/art-chromatogram.jpg";
-import artData from "@/assets/art-data.jpg";
-import {
-  methods,
-  newsItems,
-  publications,
-  researchTracks,
-  stats,
-} from "@/lib/lab-data";
+import { newsItems, publications, stats } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -100,6 +92,44 @@ function Home() {
 
       <Marquee />
 
+      {/* Research preview */}
+      <section className="bg-deep text-deep-foreground">
+        <div className="mx-auto max-w-7xl py-24 lg:py-32">
+          <Reveal className="mx-auto mb-16 max-w-2xl px-6 text-center lg:px-10">
+            <p className="eyebrow mb-4 opacity-50">Research</p>
+            <h2 className="display-title text-3xl lg:text-4xl">
+              Our lab researches in the following domains
+            </h2>
+          </Reveal>
+
+          <DomainsMarquee />
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="border-y border-border bg-background">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-border px-0 lg:grid-cols-4">
+          {stats.map((s, i) => (
+            <Reveal
+              key={s.label}
+              delay={i * 80}
+              className="bg-background px-6 py-12 text-center"
+            >
+              <p className="display-title text-4xl lg:text-5xl">
+                <CountUp
+                  value={s.value}
+                  suffix={s.suffix}
+                  className="silver-text"
+                />
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {s.label}
+              </p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* Mission */}
       <section className="relative overflow-hidden bg-ink text-ink-foreground">
         <img
@@ -139,95 +169,6 @@ function Home() {
               about health?
             </h3>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="border-y border-border bg-background">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-border px-0 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <Reveal
-              key={s.label}
-              delay={i * 80}
-              className="bg-background px-6 py-12 text-center"
-            >
-              <p className="display-title text-4xl lg:text-5xl">
-                <CountUp
-                  value={s.value}
-                  suffix={s.suffix}
-                  className="silver-text"
-                />
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {s.label}
-              </p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* How we work */}
-      <section className="bg-background">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-20 md:grid-cols-3 lg:px-10 lg:py-28">
-          {methods.map((m, i) => (
-            <Reveal
-              key={m.title}
-              delay={i * 90}
-              className="lift-card sheen border border-border bg-card p-8"
-            >
-              <div className="art-tile mb-6 aspect-[16/9] w-full overflow-hidden border border-border bg-ink">
-                <img
-                  src={[artPetri, artChromatogram, artData][i % 3]}
-                  alt=""
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <span
-                aria-hidden="true"
-                className="mb-6 block h-1 w-10 bg-primary"
-              />
-              <h3 className="display-title mb-3 text-2xl">{m.title}</h3>
-              <p className="leading-relaxed text-muted-foreground">{m.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Research preview */}
-      <section className="bg-deep text-deep-foreground">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-          <Reveal className="mx-auto mb-16 max-w-2xl text-center">
-            <p className="eyebrow mb-4 opacity-50">Research</p>
-            <h2 className="display-title text-3xl lg:text-4xl">
-              Five active tracks
-            </h2>
-          </Reveal>
-
-          <div className="grid grid-cols-1 gap-px bg-deep-foreground/10 sm:grid-cols-2 lg:grid-cols-5">
-            {researchTracks.map((t, i) => (
-              <Reveal key={t.code} delay={i * 70} className="bg-deep">
-                <Link
-                  to="/research"
-                  hash={t.code.replace(/[^a-z0-9]/gi, "").toLowerCase()}
-                  className="group flex h-full flex-col gap-4 px-6 py-10 transition-colors hover:bg-deep-foreground/5"
-                >
-                  <span className="eyebrow opacity-50 transition-colors group-hover:text-primary group-hover:opacity-100">
-                    {t.code}
-                  </span>
-                  <h3 className="display-title text-lg leading-snug">
-                    {t.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed opacity-60">
-                    {t.summary}
-                  </p>
-                  <span className="eyebrow mt-auto translate-y-1 pt-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-70">
-                    Read more →
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
