@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Github } from "lucide-react";
 import { lab, navLinks } from "@/lib/lab-data";
 
 export function SiteFooter() {
@@ -80,7 +81,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center gap-3 border-t border-ink-foreground/10 pt-8 sm:flex-row sm:justify-between">
+        <div className="mt-14 flex flex-col items-center gap-4 border-t border-ink-foreground/10 pt-8 sm:flex-row sm:justify-between">
           <p className="font-mono text-[11px] opacity-50">
             © {new Date().getFullYear()} {lab.name}, NCCS Pune. All rights
             reserved.
@@ -89,8 +90,9 @@ export function SiteFooter() {
             href="https://github.com/oktavianos"
             target="_blank"
             rel="noreferrer"
-            className="font-mono text-[11px] opacity-50 transition-opacity hover:opacity-80"
+            className="sheen inline-flex items-center gap-2 border border-ink-foreground/20 px-3 py-1.5 font-mono text-[11px] opacity-80 transition-all hover:border-ink-foreground/40 hover:opacity-100"
           >
+            <Github className="h-3.5 w-3.5" strokeWidth={1.75} />
             Site built by Suyash Jadhav
           </a>
         </div>
