@@ -8,6 +8,11 @@ import {
   type PersonEducation,
   type PersonPublication,
 } from "@/lib/lab-data";
+import iconInstagram from "@/assets/social/instagram.png";
+import iconLinkedin from "@/assets/social/linkedin.png";
+import iconOrcid from "@/assets/social/orcid.png";
+import iconX from "@/assets/social/x.png";
+import iconGithub from "@/assets/social/github.png";
 
 export const Route = createFileRoute("/people/$personId")({
   loader: ({ params }) => {
@@ -65,6 +70,14 @@ const socialLabels: Record<string, string> = {
   github: "GitHub",
   website: "Website",
   instagram: "Instagram",
+};
+
+const socialIcons: Record<string, string> = {
+  twitter: iconX,
+  linkedin: iconLinkedin,
+  orcid: iconOrcid,
+  github: iconGithub,
+  instagram: iconInstagram,
 };
 
 function PersonProfilePage() {
@@ -136,25 +149,35 @@ function PersonProfilePage() {
               delay={200}
               className="mt-10 flex flex-wrap gap-3"
             >
-              {person.email && (
-                <a
-                  href={`mailto:${person.email}`}
-                  className="eyebrow sheen border border-silver/50 px-5 py-2.5 tracking-[0.1em] uppercase transition-colors hover:border-silver"
-                >
-                  Email
-                </a>
+              {socialEntries.map(([key, url]) =>
+                socialIcons[key] ? (
+                  <a
+                    key={key}
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={socialLabels[key] ?? key}
+                    aria-label={socialLabels[key] ?? key}
+                    className="sheen h-10 w-10 shrink-0 overflow-hidden rounded-full border border-silver/50 transition-transform hover:scale-105 hover:border-silver"
+                  >
+                    <img
+                      src={socialIcons[key]}
+                      alt={socialLabels[key] ?? key}
+                      className="h-full w-full object-cover"
+                    />
+                  </a>
+                ) : (
+                  <a
+                    key={key}
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="eyebrow sheen border border-silver/50 px-5 py-2.5 tracking-[0.1em] uppercase transition-colors hover:border-silver"
+                  >
+                    {socialLabels[key] ?? key}
+                  </a>
+                ),
               )}
-              {socialEntries.map(([key, url]) => (
-                <a
-                  key={key}
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="eyebrow sheen border border-silver/50 px-5 py-2.5 tracking-[0.1em] uppercase transition-colors hover:border-silver"
-                >
-                  {socialLabels[key] ?? key}
-                </a>
-              ))}
               {person.cvUrl && (
                 <a
                   href={person.cvUrl}
