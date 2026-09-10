@@ -1,4 +1,5 @@
 import artData from "@/assets/art-data.jpg";
+import ihmiGroupPhoto from "@/assets/ihmi-group.png";
 import artChromatogram from "@/assets/art-chromatogram.jpg";
 import artPetri from "@/assets/art-petri.jpg";
 import artGut from "@/assets/art-gut.jpg";
@@ -195,7 +196,7 @@ export const researchTracks: ResearchTrack[] = [
     title: "Indian Human Microbiome Initiative",
     summary:
       "A flagship project of NCCS Pune and DBT, Government of India, mapping the gut and oral cavity microbiome of 3,400 individuals from 17 endogamous populations.",
-    image: artData,
+    image: ihmiGroupPhoto,
     video: {
       youtubeId: "CcKmH3aTekU",
       title: "Indian Human Microbiome Initiative — overview",
