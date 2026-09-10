@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Github } from "lucide-react";
 import { lab, navLinks } from "@/lib/lab-data";
+import iconGmail from "@/assets/social/gmail.png";
 
 export function SiteFooter() {
   return (
@@ -55,8 +56,11 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`mailto:${lab.email}`}
-                  className="transition-colors hover:text-ink-foreground"
+                  title={lab.email}
+                  aria-label={`Email ${lab.email}`}
+                  className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
                 >
+                  <img src={iconGmail} alt="" className="h-4 w-4 rounded-sm" />
                   {lab.email}
                 </a>
               </li>
