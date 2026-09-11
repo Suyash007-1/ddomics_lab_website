@@ -1,12 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
-import { Marquee } from "@/components/Marquee";
 import { DomainsMarquee } from "@/components/DomainsMarquee";
-import { CountUp } from "@/components/CountUp";
 import heroBg from "@/assets/microbiome-heads.png";
 import artHand from "@/assets/art-hand.png";
 import artMicrobes from "@/assets/art-microbes.png";
-import { stats } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -88,12 +85,10 @@ function Home() {
         </div>
       </section>
 
-      <Marquee />
-
       {/* Research preview */}
       <section className="bg-surface">
-        <div className="mx-auto max-w-7xl py-24 lg:py-32">
-          <Reveal className="mx-auto mb-16 max-w-2xl px-6 text-center lg:px-10">
+        <div className="py-14 lg:py-20">
+          <Reveal className="mx-auto mb-10 max-w-2xl px-6 text-center lg:px-10">
             <p className="eyebrow mb-4 text-muted-foreground">Research</p>
             <h2 className="display-title text-3xl lg:text-4xl">
               Our lab researches in the following domains
@@ -101,30 +96,6 @@ function Home() {
           </Reveal>
 
           <DomainsMarquee />
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="border-y border-border bg-background">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-border px-0 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <Reveal
-              key={s.label}
-              delay={i * 80}
-              className="bg-background px-6 py-12 text-center"
-            >
-              <p className="display-title text-4xl lg:text-5xl">
-                <CountUp
-                  value={s.value}
-                  suffix={s.suffix}
-                  className="silver-text"
-                />
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {s.label}
-              </p>
-            </Reveal>
-          ))}
         </div>
       </section>
 
@@ -142,7 +113,7 @@ function Home() {
           aria-hidden="true"
           className="pointer-events-none absolute -right-20 top-6 hidden h-[70%] object-contain opacity-25 mix-blend-screen lg:block"
         />
-        <div className="relative mx-auto max-w-4xl px-6 py-24 text-center lg:py-32">
+        <div className="relative mx-auto max-w-4xl px-6 py-16 text-center lg:py-20">
           <Reveal>
             <hr className="silver-rule mx-auto mb-14 w-72" />
             <h2 className="display-title text-2xl leading-snug sm:text-4xl">
