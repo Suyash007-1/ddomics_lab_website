@@ -6,7 +6,7 @@ import { CountUp } from "@/components/CountUp";
 import heroBg from "@/assets/microbiome-heads.png";
 import artHand from "@/assets/art-hand.png";
 import artMicrobes from "@/assets/art-microbes.png";
-import { newsItems, publications, stats } from "@/lib/lab-data";
+import { stats } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,8 +32,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const selected = publications.filter((p) => p.selected).slice(0, 4);
-
   return (
     <>
       {/* Hero */}
@@ -93,10 +91,10 @@ function Home() {
       <Marquee />
 
       {/* Research preview */}
-      <section className="bg-deep text-deep-foreground">
+      <section className="bg-surface">
         <div className="mx-auto max-w-7xl py-24 lg:py-32">
           <Reveal className="mx-auto mb-16 max-w-2xl px-6 text-center lg:px-10">
-            <p className="eyebrow mb-4 opacity-50">Research</p>
+            <p className="eyebrow mb-4 text-muted-foreground">Research</p>
             <h2 className="display-title text-3xl lg:text-4xl">
               Our lab researches in the following domains
             </h2>
@@ -169,106 +167,6 @@ function Home() {
               about health?
             </h3>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Publications preview */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-          <Reveal className="mx-auto mb-14 max-w-2xl text-center">
-            <p className="eyebrow mb-4 text-muted-foreground">Publications</p>
-            <h2 className="display-title text-3xl lg:text-4xl">
-              Selected papers
-            </h2>
-          </Reveal>
-
-          <ul className="divide-y divide-border border-t border-b border-border">
-            {selected.map((p, i) => (
-              <Reveal
-                as="li"
-                key={p.title}
-                delay={i * 60}
-                className="group flex flex-col gap-2 py-6 transition-colors sm:flex-row sm:items-baseline sm:justify-between"
-              >
-                <div>
-                  <p className="font-display text-lg font-semibold transition-colors group-hover:text-primary">
-                    {p.title}
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {p.authors.split(",")[0]} et al. · {p.venue}, {p.year}
-                  </p>
-                </div>
-                {p.doi && (
-                  <span className="eyebrow whitespace-nowrap text-muted-foreground">
-                    {p.doi}
-                  </span>
-                )}
-              </Reveal>
-            ))}
-          </ul>
-
-          <div className="mt-10 text-center">
-            <Link
-              to="/publications"
-              className="eyebrow sheen inline-block border border-primary px-7 py-3 tracking-[0.12em] text-primary uppercase transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
-              View full publication list
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* News */}
-      <section className="border-t border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="eyebrow mb-3 text-primary">Newsroom</p>
-              <h2 className="display-title text-3xl sm:text-4xl">
-                Latest news &amp; media
-              </h2>
-            </div>
-            <Link
-              to="/news"
-              className="eyebrow sheen border border-primary px-6 py-3 text-sm tracking-[0.12em] text-primary uppercase transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
-              All stories
-            </Link>
-          </Reveal>
-
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-            {newsItems.slice(0, 3).map((n, i) => (
-              <Reveal
-                as="article"
-                key={n.title}
-                delay={i * 80}
-                className="group flex flex-col"
-              >
-                <Link to="/news" className="flex flex-1 flex-col">
-                  <div className="art-tile aspect-[4/3] w-full overflow-hidden border border-border bg-ink">
-                    <img
-                      src={n.image}
-                      alt=""
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <p className="mt-5 flex items-center gap-3 text-xs tracking-[0.14em] uppercase">
-                    <span className="border border-primary px-2 py-1 text-primary">
-                      {n.category}
-                    </span>
-                    <span className="text-muted-foreground">{n.date}</span>
-                  </p>
-                  <h3 className="display-title mt-3 text-xl leading-snug transition-colors group-hover:text-primary">
-                    {n.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {n.excerpt}
-                  </p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
     </>
