@@ -17,12 +17,12 @@ export function DomainsMarquee() {
             key={`${t.slug}-${i}`}
             to="/research/$trackSlug"
             params={{ trackSlug: t.slug }}
-            className="lift-card sheen group block w-72 shrink-0 border border-deep-foreground/15 bg-deep p-6 sm:w-80"
+            className="lift-card sheen group block w-72 shrink-0 border border-border bg-card p-6 sm:w-80"
           >
-            <h3 className="display-title text-lg leading-snug text-deep-foreground transition-colors group-hover:text-primary">
+            <h3 className="display-title text-lg leading-snug transition-colors group-hover:text-primary">
               {t.title}
             </h3>
-            <div className="art-tile mt-5 aspect-[4/3] w-full overflow-hidden border border-deep-foreground/10">
+            <div className="art-tile mt-5 aspect-[4/3] w-full overflow-hidden border border-border">
               <img
                 src={t.image}
                 alt=""
@@ -33,8 +33,8 @@ export function DomainsMarquee() {
           </Link>
         ))}
       </div>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-deep to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-deep to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-surface to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-surface to-transparent sm:w-24" />
     </div>
   );
 }
