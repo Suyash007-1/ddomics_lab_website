@@ -70,6 +70,8 @@ const socialLabels: Record<string, string> = {
   github: "GitHub",
   website: "Website",
   instagram: "Instagram",
+  scopus: "Scopus",
+  loop: "Loop (Frontiers)",
 };
 
 const socialIcons: Record<string, string> = {
