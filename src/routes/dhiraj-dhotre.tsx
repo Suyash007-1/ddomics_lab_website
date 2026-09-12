@@ -34,7 +34,7 @@ function PIPage() {
 
   return (
     <>
-      <section className="hero-veil relative -mt-24 overflow-hidden text-deep-foreground">
+      <section className="hero-veil relative -mt-24 flex min-h-[64vh] items-end overflow-hidden text-deep-foreground">
         <img
           src={bgWave}
           alt=""
