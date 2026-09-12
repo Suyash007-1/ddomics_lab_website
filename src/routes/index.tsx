@@ -32,7 +32,7 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="hero-veil relative -mt-24 flex min-h-[85vh] items-center overflow-hidden text-deep-foreground">
+      <section className="hero-veil relative -mt-24 flex min-h-[64vh] items-center overflow-hidden text-deep-foreground">
         <img
           src={heroBg}
           alt=""
