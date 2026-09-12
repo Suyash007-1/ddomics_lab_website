@@ -57,7 +57,7 @@ function AllPublicationsPage() {
       />
 
       <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <Reveal className="mb-12 flex flex-wrap items-end justify-end gap-4">
             <label className="flex items-center gap-3 text-sm">
               <span className="eyebrow text-muted-foreground">Year</span>
