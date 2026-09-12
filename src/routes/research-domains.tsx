@@ -50,7 +50,7 @@ function ResearchDomainsPage() {
           <Reveal
             as="section"
             key={t.code}
-            className="grid grid-cols-1 gap-8 border-b border-border py-16 lg:grid-cols-12 lg:py-24"
+            className="grid grid-cols-1 gap-8 border-b border-border py-10 lg:grid-cols-12 lg:py-14"
           >
             <div className="lg:col-span-4">
               <div className="art-tile mb-6 aspect-[4/3] w-full overflow-hidden border border-border">
