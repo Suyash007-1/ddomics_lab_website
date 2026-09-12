@@ -1508,6 +1508,12 @@ export const pi = {
   title: "Principal Investigator, Scientist 'E'",
   institute: "National Centre for Cell Science, Pune",
   photo: photoDhirajDhotre,
+  socials: {
+    linkedin: "https://www.linkedin.com/in/dhiraj-dhotre-36ab7a75/",
+    scholar: "https://scholar.google.com/citations?hl=en&user=wURU1tQAAAAJ",
+    github: "https://github.com/DDOmicsLab",
+    orcid: "https://orcid.org/0000-0002-5000-7396",
+  },
   about:
     "Dr. Dhiraj Dhotre is a bioinformatician with a research interest in the human microbiome. His lab investigates the role of the human microbiome in health and disease using genomics, metabolomics and culturomics approaches. He believes it is crucial to study the taxonomic, functional and metabolic structure of the microbiome to understand the true potential and consequences of alterations within it. His group generates high-throughput sequencing data and combines computational analyses of multi-dimensional omics data with molecular and in-vivo experimentation to understand the potential of the human microbiome in diagnostics and therapeutics.",
   experience: [
