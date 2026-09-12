@@ -4,6 +4,22 @@ import { ProtectedImage } from "@/components/ProtectedImage";
 import bgWave from "@/assets/bg-pi.jpg";
 import { lab, pi, publications } from "@/lib/lab-data";
 import iconGmail from "@/assets/social/gmail.png";
+import iconLinkedin from "@/assets/social/linkedin.png";
+import iconGithub from "@/assets/social/github.png";
+import iconOrcid from "@/assets/social/orcid.png";
+
+const socialLabels: Record<string, string> = {
+  linkedin: "LinkedIn",
+  scholar: "Google Scholar",
+  github: "GitHub",
+  orcid: "ORCID",
+};
+
+const socialIcons: Record<string, string> = {
+  linkedin: iconLinkedin,
+  github: iconGithub,
+  orcid: iconOrcid,
+};
 
 export const Route = createFileRoute("/dhiraj-dhotre")({
   head: () => ({
@@ -90,6 +106,39 @@ function PIPage() {
                 Publications
               </Link>
             </Reveal>
+            {pi.socials && (
+              <Reveal delay={240} className="mt-6 flex flex-wrap items-center gap-3">
+                {Object.entries(pi.socials).map(([key, url]) =>
+                  socialIcons[key] ? (
+                    <a
+                      key={key}
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      title={socialLabels[key] ?? key}
+                      aria-label={socialLabels[key] ?? key}
+                      className="sheen h-10 w-10 shrink-0 overflow-hidden rounded-full border border-silver/50 transition-transform hover:scale-105 hover:border-silver"
+                    >
+                      <img
+                        src={socialIcons[key]}
+                        alt={socialLabels[key] ?? key}
+                        className="h-full w-full object-cover"
+                      />
+                    </a>
+                  ) : (
+                    <a
+                      key={key}
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="eyebrow sheen border border-silver/50 px-5 py-2.5 tracking-[0.1em] uppercase transition-colors hover:border-silver"
+                    >
+                      {socialLabels[key] ?? key}
+                    </a>
+                  ),
+                )}
+              </Reveal>
+            )}
           </div>
         </div>
       </section>
