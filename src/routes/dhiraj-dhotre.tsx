@@ -49,7 +49,7 @@ function PIPage() {
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_oklch,var(--deep)_35%,transparent),var(--deep)_62%)]"
         />
 
-        <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 pt-44 pb-20 lg:grid-cols-12 lg:px-10 lg:pt-52 lg:pb-28">
+        <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 pt-44 pb-16 lg:grid-cols-12 lg:px-10 lg:pt-52 lg:pb-24">
           <Reveal className="lg:col-span-4">
             <div className="silver-frame sheen relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden bg-card/40 backdrop-blur">
               <ProtectedImage
