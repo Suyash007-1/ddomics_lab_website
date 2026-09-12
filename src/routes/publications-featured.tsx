@@ -7,19 +7,15 @@ import { featuredPublications } from "@/lib/lab-data";
 const profileLinks = [
   {
     label: "Google Scholar",
-    href: "https://scholar.google.co.in/citations?user=wURU1tQAAAAJ&hl=en",
+    href: "https://scholar.google.com/citations?user=Dhiraj+Dhotre",
   },
   {
     label: "Scopus",
-    href: "https://www.scopus.com/authid/detail.uri?authorId=16306801600",
+    href: "https://www.scopus.com/results/authorNamesList.uri?query=Dhiraj%20Dhotre",
   },
   {
     label: "ORCID",
-    href: "https://orcid.org/0000-0002-5000-7396",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/dhiraj-dhotre-36ab7a75/",
+    href: "https://orcid.org/orcid-search/search?searchQuery=Dhiraj%20Dhotre",
   },
 ] as const;
 
@@ -61,7 +57,7 @@ function FeaturedPublicationsPage() {
       />
 
       <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <Reveal className="flex flex-wrap items-baseline justify-end gap-x-8 gap-y-4">
             <p className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
               {profileLinks.map((link, i) => (
