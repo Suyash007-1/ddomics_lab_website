@@ -68,9 +68,11 @@ export function PageHero({
       />
 
       <div
-        className={`relative mx-auto w-full max-w-7xl px-6 pt-44 pb-16 lg:px-10 lg:pt-52 lg:pb-24 ${
-          align === "center" ? "text-center" : ""
-        }`}
+        className={`relative mx-auto w-full max-w-7xl px-6 lg:px-10 ${
+          height === "tall"
+            ? "pt-44 pb-16 lg:pt-52 lg:pb-24"
+            : "pt-32 pb-10 lg:pt-40 lg:pb-14"
+        } ${align === "center" ? "text-center" : ""}`}
       >
         <Reveal>
           <p className="eyebrow mb-5 opacity-60">{eyebrow}</p>
